@@ -1,7 +1,7 @@
 # Last Escape GDD
 By **NND_**
 
-_**v. 0.2** (24/09/2021)_
+_**v. 0.2.1** (24/09/2021)_
 
 ## Descripción
 En este juego web basado en una de los legendarios cortos de _Alfred Hitchcock Presenta_, somos un viejo sepulturero de una cárcel femenina, preparando la huida de una convicta con la que nos hemos aliado. Debemos conseguir lo necesario para poder crear un ataúd, para así poder enterrarla y que pueda escapar, sin que nos pillen los guardias.
@@ -55,3 +55,13 @@ Cada noche comenzará en la zona del taller del sepulturero.
 - **Teleglitch** _(visuales, mecánicas)_: https://store.steampowered.com/app/234390/Teleglitch_Die_More_Edition/
 
 
+## _ChangeLog:_
+### v0.1: 
+- Created Game Design Document 
+- Specified main mechanics
+### v0.2: 
+- Defined game dynamic
+- Added new mechanics
+### v0.2.1:
+- Formatted GDD
+- Implemented into GitHub repository
