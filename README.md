@@ -1,5 +1,5 @@
 # Last Escape GDD
-By **NND_**
+![nnd488_negate](https://user-images.githubusercontent.com/81875802/134952453-7c453107-a870-46ed-be91-e4a61608e402.png)
 
 _**v. 0.2.1** (24/09/2021)_
 
@@ -54,6 +54,9 @@ Cada noche comenzará en la zona del taller del sepulturero.
 - **Yumori Forest** _(visuales, mecánicas)_: https://store.steampowered.com/app/911120/Yumori_Forest/
 - **Teleglitch** _(visuales, mecánicas)_: https://store.steampowered.com/app/234390/Teleglitch_Die_More_Edition/
 
+#
+
+#
 
 ## _ChangeLog:_
 ### v0.1: 
