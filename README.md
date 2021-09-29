@@ -32,7 +32,8 @@ El objetivo del juego es ir consiguiendo objetos por la prisión para realizar l
 Cada noche se completa exitosamente si conseguimos llevar todos los materiales necesarios a la zona del taller. 
 
 ## Estética
-El juego estará hecho con pixelart y un ambiente oscuro.
+La estética del juego será pixelart, con colores casi monótonos para proporcionar el ambiente triste y opaco característico de una prisión.
+Esto permitirá una mejor experiencia y sensaciones, a la vez que facilitará la representación gráfica y  comprensión de varias mecánicas.
 
 ## Contenido
 ### Historia
