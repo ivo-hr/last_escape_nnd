@@ -1,4 +1,4 @@
-# Last Escape GDD
+# Last Escape GDD                    Twitter: https://twitter.com/NameNotDet
 ![nnd488_negate](https://user-images.githubusercontent.com/81875802/134952453-7c453107-a870-46ed-be91-e4a61608e402.png)
 
 _**v. 0.2.1** (24/09/2021)_
@@ -50,12 +50,12 @@ Cada noche comenzará en la zona del taller del sepulturero.
 
 - **Guardias:** son los enemigos del juego. Distintos guardias patrullan la cárcel para impedir que los presos escapen o hagan actividades extrañas. Tiene también en vigilancia siempre al sepulturero, ya que tiene libre acceso a la cárcel.
 
-## REFERENCIAS:
+## Referencias:
 - **Alfred Hitchcock Presents: Final Escape** _(historia, concepto)_: https://youtu.be/xmSNjhHKtCk
 - **Yumori Forest** _(visuales, mecánicas)_: https://store.steampowered.com/app/911120/Yumori_Forest/
 - **Teleglitch** _(visuales, mecánicas)_: https://store.steampowered.com/app/234390/Teleglitch_Die_More_Edition/
 
-## CONTACTO:
+## Contacto:
 - enrijuan@ucm.es
 - rodsan05@ucm.es
 - pablos16@ucm.es
