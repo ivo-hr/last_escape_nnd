@@ -55,6 +55,12 @@ Cada noche comenzará en la zona del taller del sepulturero.
 - **Yumori Forest** _(visuales, mecánicas)_: https://store.steampowered.com/app/911120/Yumori_Forest/
 - **Teleglitch** _(visuales, mecánicas)_: https://store.steampowered.com/app/234390/Teleglitch_Die_More_Edition/
 
+## CONTACTO:
+- enrijuan@ucm.es
+- rodsan05@ucm.es
+- pablos16@ucm.es
+- gonzaf05@ucm.es
+
 #
 
 #
