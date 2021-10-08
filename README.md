@@ -49,6 +49,7 @@ Esto permitirá una mejor experiencia y sensaciones, a la vez que facilitará la
 ### Historia
 Una mujer es mandada a la cárcel con cadena perpetua por realizar diversos crímenes, tales como estafa y asesinato. Una vez dentro intenta por todos los medios escapar. Un día conoce al sepulturero de la cárcel apodado “Matasanos” y lo engaña para que le ayude a escapar de la cárcel. 
 El sepulturero se encargará entonces de preparar el ataúd para enterrar a la mujer junto con el siguiente preso que muera.	
+
 ### Niveles
 El juego se dividirá en 5 noches. 
 Cada noche comenzará en la zona del taller del sepulturero.
