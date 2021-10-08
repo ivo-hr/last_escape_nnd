@@ -28,7 +28,7 @@ RMB para indicar dónde coger/dejar un objeto
 WASD para moverse,
 Space para coger/dejar un objeto
 ### Cámara
-El juego tendrá una perspectiva top down, se verá gran parte del escenario y cada vez se irá reduciendo más la visión.
+El juego tendrá una perspectiva top down. El mapa ocupa toda la pantalla, sin embargo, el jugador solo verá un área que se irá reduciendo.
 ### Dinámica
 El objetivo del juego es ir consiguiendo objetos por la prisión para realizar la fuga sin que los guardias de la cárcel se den cuenta.
 Cada noche se completa exitosamente si conseguimos llevar todos los materiales necesarios a la zona del taller. 
