@@ -54,9 +54,9 @@ El juego se dividirá en 5 noches.
 Cada noche comenzará en la zona del taller del sepulturero.
 
 Al final de las 5 noches habrán 3 resultados: 
-1- El jugador ha completado la lista a tiempo. Se llega al final neutral (mismo final del capítulo original).
-2- El jugador no ha logrado completar la lista. Se llega al final malo: la convicta no consigue escapar.
-3- El jugador completa la lista antes de tiempo. Se llega al final bueno: la convicta consigue escapar y el sepulturero no muere.
+1. El jugador ha completado la lista a tiempo. Se llega al final neutral (mismo final del capítulo original).
+2. El jugador no ha logrado completar la lista. Se llega al final malo: la convicta no consigue escapar.
+3. El jugador completa la lista antes de tiempo. Se llega al final bueno: la convicta consigue escapar y el sepulturero no muere.
 
 ### Personajes
 - **Matasanos:** es el sepulturero de la cárcel. Es un señor con edad avanzada (unos 60-70 años). Tiene cataratas por la edad, lo que hace que vea mal incluso con sus gafas.
