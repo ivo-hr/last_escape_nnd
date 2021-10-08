@@ -19,7 +19,7 @@ En este juego web basado en una de los legendarios cortos de _Alfred Hitchcock P
 - **Coger objetos clave:** el personaje puede coger objetos específicos del escenario y transportarlos.
 - **Dejar objetos:** el personaje puede dejar objetos recogidos con anterioridad en cualquier lugar.
 - **Zonas restringidas:** hay zonas en las que los guardias sospecharán del jugador aunque no lleve objetos, se indicará con un cono de visión de otro color o tono.
-- **Objetos grandes:** tablones, taladro, pala… Si un guardia ve al jugador con un objeto grande sospechará. Si sólo ve el objeto lo devuelve a su sitio. El jugador carga los objetos grandes, por lo que serán visibles.
+- **Objetos grandes:** tablones, pala, cruz… Si un guardia ve al jugador con un objeto grande sospechará. Si sólo ve el objeto lo devuelve a su sitio. El jugador carga los objetos grandes, por lo que serán visibles.
 - **Objetos pequeños:** martillo, clavos… Una vez recogidos, los objetos pequeños se añaden automáticamente a la lista. Los guardias no verán si el jugador ha recogido objetos pequeños. 
 #### Enemigos
 - **Guardias:** los guardias patrullan por la cárcel por rutas predefinidas, que no cambian entre noches, y sospecharán (sube la barra de sospecha) del jugador si entra en su cono de visión junto con un objeto grande. Si no lleva nada encima el jugador pasará desapercibido. Los guardias pueden recoger los objetos del suelo si se los encuentran, devolviéndolos a su lugar. Para representarlo en pantalla se quejarán al verlo (saldrá un bocadillo visible siempre, sin tener en cuentar el rango de visión).
