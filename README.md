@@ -1,4 +1,5 @@
-# Last Escape GDD                    Twitter: https://twitter.com/NameNotDet
+# Last Escape GDD
+Twitter: https://twitter.com/NameNotDet
 ![nnd488_negate](https://user-images.githubusercontent.com/81875802/134952453-7c453107-a870-46ed-be91-e4a61608e402.png)
 
 _**v. 0.2.1** (24/09/2021)_
