@@ -3,7 +3,7 @@
 
 Twitter: https://twitter.com/NameNotDet
 
-_**v. 0.2.1** (24/09/2021)_
+_**v. 0.3** (08/10/2021)_
 
 ## Descripción
 En este juego web basado en una de los legendarios cortos de _Alfred Hitchcock Presenta_, somos un viejo sepulturero de una cárcel femenina, preparando la huida de una convicta con la que nos hemos aliado. Debemos conseguir lo necesario para poder crear un ataúd, para así poder enterrarla y que pueda escapar, sin que nos pillen los guardias.
@@ -11,18 +11,18 @@ En este juego web basado en una de los legendarios cortos de _Alfred Hitchcock P
 ## Jugabilidad
 ### Mecánicas del personaje
 - **Movimiento:** el personaje será capaz de moverse por el escenario en cualquier dirección.
-- **Cataratas:** el personaje irá perdiendo la visión con el transcurso de las noches.
-- **Barra de Sospecha:** el personaje tendrá una barra que indicará si los guardias sospechan de él. La barra se irá llenando gradualmente si los guardias sospechan de él, y disminuirá a medida que dejen de hacerlo.
-- **Escucha:** el personaje puede escuchar a los guardias patrullar, en pantalla se verán unas ondas para representarlo.
+- **Cataratas:** el personaje irá perdiendo la visión con el transcurso de las noches, se reducirá el radio del círculo de visión.
+- **Barra de Sospecha:** el personaje tendrá una barra que indicará si los guardias sospechan de él. La barra se irá llenando gradualmente si el jugador entra en el cono de visión de los guardias con un objeto grande. La barra disminuye lentamente si el jugador se encuentra en el taller.
+- **Escucha:** el personaje puede escuchar a los guardias que patrullan fuera de su radio de visión, en pantalla se verán unas ondas para representarlo. El jugador escuchará a los guardias en intervalos de tiempo. No es visible la dirección de los guardias o hacia dónde se encuentran mirando.
 
 ### Mecánicas del escenario
 - **Coger objetos clave:** el personaje puede coger objetos específicos del escenario y transportarlos.
 - **Dejar objetos:** el personaje puede dejar objetos recogidos con anterioridad en cualquier lugar.
 - **Zonas restringidas:** hay zonas en las que los guardias sospecharán del jugador aunque no lleve objetos, se indicará con un cono de visión de otro color o tono.
-- **Objetos grandes:** tablones, taladro, pala… Si un guardia ve al jugador con un objeto grande sospechará. Si sólo ve el objeto lo devuelve a su sitio.
-- **Objetos pequeños:** martillo, clavos… El jugador puede cogerlos y guardarlos en el bolsillo. Los guardias no verán si el jugador ha recogido objetos pequeños. 
+- **Objetos grandes:** tablones, taladro, pala… Si un guardia ve al jugador con un objeto grande sospechará. Si sólo ve el objeto lo devuelve a su sitio. El jugador carga los objetos grandes, por lo que serán visibles.
+- **Objetos pequeños:** martillo, clavos… Una vez recogidos, los objetos pequeños se añaden automáticamente a la lista. Los guardias no verán si el jugador ha recogido objetos pequeños. 
 #### Enemigos
-- **Guardias:** los guardias patrullan por la cárcel y sospecharán del jugador si le ven con objetos extraños. Si no lleva nada encima el jugador pasará desapercibido. Los guardias pueden recoger los objetos del suelo si se los encuentran, devolviéndolos a su lugar. Para representarlo en pantalla se quejarán al verlo.
+- **Guardias:** los guardias patrullan por la cárcel por rutas predefinidas, que no cambian entre noches, y sospecharán (sube la barra de sospecha) del jugador si entra en su cono de visión junto con un objeto grande. Si no lleva nada encima el jugador pasará desapercibido. Los guardias pueden recoger los objetos del suelo si se los encuentran, devolviéndolos a su lugar. Para representarlo en pantalla se quejarán al verlo (saldrá un bocadillo visible siempre, sin tener en cuentar el rango de visión).
 
 ### Controles
 - **Ratón:**
@@ -34,12 +34,14 @@ WASD para moverse,
 Space para coger/dejar un objeto
 
 ### Cámara
-El juego tendrá una perspectiva top down. El mapa ocupa toda la pantalla, sin embargo, el jugador solo verá un área que se irá reduciendo.
+El juego tendrá una perspectiva top down. El mapa ocupa toda la pantalla, sin embargo, el jugador solo verá un área circular que se irá reduciendo.
 
 ### Dinámica
-El objetivo del juego es ir consiguiendo objetos por la prisión para realizar la fuga sin que los guardias de la cárcel se den cuenta.
+El objetivo del juego es ir consiguiendo objetos por la prisión para realizar la fuga sin que la barra de sospecha llegue al máximo. Si la barra llega al máximo el jugador es detenido, se le quita el objeto grande que lleve encima y se pasa directamente a la siguiente noche.
 
-Cada noche tiene un tiempo límite para recoger objetos, indicado en pantalla. El jugador podrá recoger tantos objetos como le dé tiempo. Esto permite poder acabar la lista antes de que transcurran las 5 noches.
+Cada noche tiene un tiempo límite para recoger objetos, indicado en pantalla con un reloj. El jugador podrá recoger tantos objetos como le dé tiempo. Esto permite poder acabar la lista antes de que transcurran las 5 noches.
+
+Cada noche tendrá una duración de 2 minutos(temporal).
 
 ## Estética
 La estética del juego será pixelart, con colores casi monótonos para proporcionar el ambiente triste y opaco característico de una prisión.
@@ -59,6 +61,20 @@ Al final de las 5 noches habrán 3 resultados:
 2. El jugador no ha logrado completar la lista. Se llega al final malo: la convicta no consigue escapar.
 3. El jugador completa la lista antes de tiempo. Se llega al final bueno: la convicta consigue escapar y el sepulturero no muere.
 
+### Lista de objetos
+El juego acaba cuando el jugador complete esta lista. Se compone de:
+
+#### Objetos grandes
+- 8 tablas de madera.
+- 1 cruz.
+- 1 pala.
+- 1 sierra.
+
+#### Objetos pequeños
+- 1 caja de clavos.
+- 1 martillo.
+- 1 set de visagras.
+
 ### Personajes
 - **Matasanos:** es el sepulturero de la cárcel. Es un señor con edad avanzada (unos 60-70 años). Tiene cataratas por la edad, lo que hace que vea mal incluso con sus gafas.
 
@@ -70,6 +86,8 @@ Al final de las 5 noches habrán 3 resultados:
 - **Alfred Hitchcock Presents: Final Escape** _(historia, concepto)_: https://youtu.be/xmSNjhHKtCk
 - **Yumori Forest** _(visuales, mecánicas)_: https://store.steampowered.com/app/911120/Yumori_Forest/
 - **Teleglitch** _(visuales, mecánicas)_: https://store.steampowered.com/app/234390/Teleglitch_Die_More_Edition/
+- **The Legend of Zelda: Majora's Mask** _(mecánica de paso del tiempo)_
+- **Darkwood** _(tipo de visibilidad)_: https://store.steampowered.com/app/274520/Darkwood/
 
 ## Contacto:
 - enrijuan@ucm.es
@@ -91,3 +109,6 @@ Al final de las 5 noches habrán 3 resultados:
 ### v0.2.1:
 - Formatted GDD
 - Implemented into GitHub repository
+### v0.3:
+- Redefined mechanics and dinamics
+- Added items list
