@@ -3,7 +3,7 @@
 
 Twitter: https://twitter.com/NameNotDet
 
-_**v. 0.3** (08/10/2021)_
+_**v. 0.4** (13/10/2021)_
 
 ## Descripción
 En este juego web basado en una de los legendarios cortos de _Alfred Hitchcock Presenta_, somos un viejo sepulturero de una cárcel femenina, preparando la huida de una convicta con la que nos hemos aliado. Debemos conseguir lo necesario para poder crear un ataúd, para así poder enterrarla y que pueda escapar, sin que nos pillen los guardias.
@@ -26,9 +26,7 @@ En este juego web basado en una de los legendarios cortos de _Alfred Hitchcock P
 - **Objetos grandes:** tablones, pala, cruz… Si un guardia ve al jugador con un objeto grande sospechará. Si sólo ve el objeto lo devuelve a su sitio. El jugador carga los objetos grandes, por lo que serán visibles.
 - **Objetos pequeños:** martillo, clavos… Una vez recogidos, los objetos pequeños se añaden automáticamente a la lista. Los guardias no verán si el jugador ha recogido objetos pequeños. 
 #### Enemigos
-- **Guardias:** los guardias patrullan por la cárcel por rutas predefinidas, que no cambian entre noches, y sospecharán (sube la barra de sospecha) del jugador si entra en su cono de visión junto con un objeto grande. Si no lleva nada encima el jugador pasará desapercibido. Los guardias pueden recoger los objetos del suelo si se los encuentran, devolviéndolos a su lugar. Para representarlo en pantalla se quejarán al verlo (saldrá un bocadillo visible siempre, sin tener en cuentar el rango de visión).
-
-Su cono de visión estará representado por la luz de la linterna.
+- **Guardias:** los guardias patrullan por la cárcel por rutas predefinidas, que no cambian entre noches, y sospecharán (sube la barra de sospecha) del jugador si entra en su cono de visión junto con un objeto grande. Si no lleva nada encima el jugador pasará desapercibido. Los guardias pueden recoger los objetos del suelo si se los encuentran, devolviéndolos a su lugar. Para representarlo en pantalla se quejarán al verlo (saldrá un bocadillo visible siempre, sin tener en cuentar el rango de visión). Su cono de visión estará representado por la luz de la linterna.
 
 ### Controles
 - **Ratón:**
@@ -118,3 +116,5 @@ El juego acaba cuando el jugador complete esta lista. Se compone de:
 ### v0.3:
 - Redefined mechanics and dinamics
 - Added items list
+### v0.3:
+- Added game image
