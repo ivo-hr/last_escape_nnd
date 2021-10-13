@@ -1,5 +1,5 @@
 # Last Escape GDD
-![nnd488_negate](Images/nnd488_negate.png)
+![nnd488_negate](Images/nnd488_negate.png =50x50)
 
 Twitter: https://twitter.com/NameNotDet
 
