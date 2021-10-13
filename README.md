@@ -8,6 +8,10 @@ _**v. 0.3** (08/10/2021)_
 ## Descripción
 En este juego web basado en una de los legendarios cortos de _Alfred Hitchcock Presenta_, somos un viejo sepulturero de una cárcel femenina, preparando la huida de una convicta con la que nos hemos aliado. Debemos conseguir lo necesario para poder crear un ataúd, para así poder enterrarla y que pueda escapar, sin que nos pillen los guardias.
 
+## Vista General
+
+![Boceto_Juego](Images/Boceto_juego_fondo.png)
+
 ## Jugabilidad
 ### Mecánicas del personaje
 - **Movimiento:** el personaje será capaz de moverse por el escenario en cualquier dirección.
