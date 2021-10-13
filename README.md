@@ -1,5 +1,5 @@
 # Last Escape GDD
-![nnd488_negate](https://user-images.githubusercontent.com/81875802/134952453-7c453107-a870-46ed-be91-e4a61608e402.png)
+![nnd488_negate](Images/nnd488_negate.png)
 
 Twitter: https://twitter.com/NameNotDet
 
