@@ -28,6 +28,8 @@ En este juego web basado en una de los legendarios cortos de _Alfred Hitchcock P
 #### Enemigos
 - **Guardias:** los guardias patrullan por la cárcel por rutas predefinidas, que no cambian entre noches, y sospecharán (sube la barra de sospecha) del jugador si entra en su cono de visión junto con un objeto grande. Si no lleva nada encima el jugador pasará desapercibido. Los guardias pueden recoger los objetos del suelo si se los encuentran, devolviéndolos a su lugar. Para representarlo en pantalla se quejarán al verlo (saldrá un bocadillo visible siempre, sin tener en cuentar el rango de visión).
 
+Su cono de visión estará representado por la luz de la linterna.
+
 ### Controles
 - **Ratón:**
 LMB para indicar a dónde moverse,
