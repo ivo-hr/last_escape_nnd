@@ -116,5 +116,5 @@ El juego acaba cuando el jugador complete esta lista. Se compone de:
 ### v0.3:
 - Redefined mechanics and dinamics
 - Added items list
-### v0.3:
+### v0.4:
 - Added game image
