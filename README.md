@@ -1,9 +1,10 @@
-# Last Escape GDD
-![nnd488_negate](Images/nnd488_negate.png)
-
-Twitter: https://twitter.com/NameNotDet
-
-_**v. 0.4** (13/10/2021)_
+# Last Escape: the GDD
+<p align="center">  
+<img src= "https://i.ibb.co/S6xNvTN/nnd488-negate.png">
+<p align="center"> 
+![Twitter](https://twitter.com/NameNotDet)
+</p>
+**_v. 0.4** (13/10/2021)_
 
 ## Descripción
 En este juego web basado en una de los legendarios cortos de _Alfred Hitchcock Presenta_, somos un viejo sepulturero de una cárcel femenina, preparando la huida de una convicta con la que nos hemos aliado. Debemos conseguir lo necesario para poder crear un ataúd, para así poder enterrarla y que pueda escapar, sin que nos pillen los guardias.
