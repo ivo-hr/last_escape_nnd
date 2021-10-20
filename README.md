@@ -40,7 +40,7 @@ WASD para moverse,
 Space para coger/dejar un objeto
 
 ### Cámara
-El juego tendrá una perspectiva top down. El mapa ocupa toda la pantalla, sin embargo, el jugador solo verá un área circular que se irá reduciendo.
+El juego tendrá una perspectiva cenital. El mapa ocupa toda la pantalla, sin embargo, el jugador solo verá un área circular que se irá reduciendo.
 
 ### Dinámica
 El objetivo del juego es ir consiguiendo objetos por la prisión para realizar la fuga sin que la barra de sospecha llegue al máximo. Si la barra llega al máximo el jugador es detenido, se le quita el objeto grande que lleve encima y se pasa directamente a la siguiente noche.
