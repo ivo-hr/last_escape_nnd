@@ -13,7 +13,7 @@ En este juego web basado en una de los legendarios cortos de _Alfred Hitchcock P
 ## Vista General
   
 <p align="center">  
-<img src= "/images/Boceto_juego_fondo.png">
+<img src= "/images/Boceto_juego_fondo_blanco.png">
 
 ## Jugabilidad
 ### Mecánicas del personaje
