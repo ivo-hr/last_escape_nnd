@@ -1,6 +1,6 @@
 # Last Escape: the GDD
 <p align="center">  
-<img src= "/images/nnd488-negate.png">
+<img src= "/images/nnd488_negate.png">
   
 [Twitter](https://twitter.com/NameNotDet)
   
