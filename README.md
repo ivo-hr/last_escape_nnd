@@ -1,6 +1,6 @@
 # Last Escape: the GDD
 <p align="center">  
-<img src= "/Images/nnd488-negate.png">
+<img src= "/images/nnd488-negate.png">
   
 [Twitter](https://twitter.com/NameNotDet)
   
@@ -13,7 +13,7 @@ En este juego web basado en una de los legendarios cortos de _Alfred Hitchcock P
 ## Vista General
   
 <p align="center">  
-<img src= "/Images/Boceto_juego_fondo.png">
+<img src= "/images/Boceto_juego_fondo.png">
 
 ## Jugabilidad
 ### Mecánicas del personaje
