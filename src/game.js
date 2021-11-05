@@ -18,6 +18,18 @@ let config = {
     },
     //pixelArt: true,
     scene: [Boot, Level, End],
+
+    physics: {
+        default: 'matter',
+        matter: {
+            gravity: false,
+            setBounds: false,
+            positionsIterations: 4,
+            velocityIterations: 4,
+            timing.timeScale: 1,
+            debug: true,
+        }
+    },
 };
 
 new Phaser.Game(config);
