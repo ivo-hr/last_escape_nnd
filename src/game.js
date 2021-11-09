@@ -22,14 +22,16 @@ let config = {
     physics: {
         default: 'matter',
         matter: {
-            gravity: false,
-            setBounds: false,
-            positionsIterations: 4,
-            velocityIterations: 4,
-            timing.timeScale: 1,
             debug: true,
-        }
+            gravity: {
+                x: 0,
+                y: 0
+            }
+            
+
     },
+
+    
 };
 
 new Phaser.Game(config);
