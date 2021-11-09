@@ -39,6 +39,7 @@ FORMATTING:
 X. typeOfElement
     - element (unitOfUse): definition
         + subElements: definition
+            · subSubElements: definition
         ! warnings
     - element (unitOfUse): definition
 
@@ -67,6 +68,8 @@ I.E.:
     - timing (obj)
         ! careful tryng to...
         + timeScale (Nº): changes...
+            · ...
+                ! ...
             ! don't surpass...
         + timeStamp (Nº): gives...
     - velocityIterations (Nº): to...
@@ -103,7 +106,7 @@ I.E.:
     - velocityIterations (Nº): to limit the times velocities are calculated each update
     - world (composite): contains everything simulated by the current iteration of the engine
 
-3. Events: these are emitted by obj created by the engine and recieved by obj with matter.events on
+3. Events: these are emitted by obj created by the engine and recieved by obj with matter.events.on(engine, "event", callback)
     - afterUpdate: goes after update and ALL collisions. It gives out:
         + event (obj)
         + timeStamp
@@ -150,6 +153,66 @@ I.E.:
     - setPixelRatio
     - stop
     - world
-    
-        
+
+2. Properties: for obj created by Matter.Render.create
+    - bounds (bounds): specifies the drawing region. enables panning and zooming.
+        + needs tho have the canvas size specified by render.options.width/height
+        ! render.options.hasBounds must be enabled
+    - canvas (HTMLCanvasElement): canvas element to render to
+        ! if none specified will create one if render.element is specified
+    - context (CanvasRenderingContext2D)
+    - controller: back-reference to Matter.Render module
+    - element (HTMLElement): reference to where the canvaswil be inserted
+    - engine: reference to the Matter.Engine
+    - mouse: the mouse to render if render.options.showMousePosition is enabled
+    - options
+        + background (string): CSS color string to use when wireframes are disabled
+        + enabled (bool): to activate rendering as a whole
+        + hasBounds (bool): specifies if render.bounds will be used
+        + height (Nº): height in px of the canvas
+        + pixelRatio (Nº): pixel ratio tu use in rendering
+        + showAngleIndicator (bool): shows the body angles
+        + showAxes (bool): shows the body axes
+        + showBounds (bool): shows the body bounds
+        + showBroadPhase (bool): shows the collision broadphases
+        + showCollisions (bool): shows collisions
+        + showConvexHulls (bool)
+        + showDebug (bool): shows everything above, overrules showStats and showPerformance
+        + showIds (bool): shows body and part ids 
+        + showInternalEdges (bool)
+        + showMousePosition (bool)
+        + showPerformance (bool): shows the following, recorded each 60 frames:
+            · avg render freq (fps)
+            · delta time used for last update (ms)
+            · avg engine execution duration (ms)
+            · avg render execution duration (ms)
+            · avg effective player speed (U.DCx)
+        + showPositions (bool)
+        + showSeparations (bool): shows collision separations
+        + showSleeping (bool): indicates sleeping bodies
+        + showStats (bool): shows engine info:
+            · total body parts 
+            · total bodies
+            · total constraints 
+            · total composites
+            · total collision pairs
+        + showVelocity (bool)
+        + showVertexNumbers (bool): shows body vertexes 
+        + width (Nº): width in px of the canva
+        + wireframeBackground (string): CSS color string to use when wireframes are enabled
+        + wireframes (bool): shows wireframes
+    - textures: sprite texture cache
+
+3. Events: these are emitted by obj created by Matter.Render.create and recieved by obj with matter.events.on(render, "event", callback)
+    - afterRender: fired after rendering. It gives out:
+        + event (obj): an event object
+        + timestamp (Nº)
+        + source (obj)
+        + name
+    - beforeRender: fired before rendering. It gives out:
+        + event (obj): an event object
+        + timestamp (Nº)
+        + source (obj)
+        + name
+
         
