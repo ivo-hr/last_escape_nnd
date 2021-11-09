@@ -12,6 +12,7 @@ let config = {
     canvas: document.getElementById("mainCanvas"),
     width:  1000,
     height: 500,
+    backgroundColor: '#708090',
     scale: {
         // mode: Phaser.Scale.FIT,  
         autoCenter: Phaser.Scale.CENTER_HORIZONTALLY
