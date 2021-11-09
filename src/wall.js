@@ -14,17 +14,17 @@ export default class Wall extends Phaser.GameObjects.Sprite {
      * @param {number} _height Alto del muro
      */
     constructor(scene, x, y, _height, _width) {
-      super(scene, x, y, 'wall');
-      this.displayWidth = _width;
-      this.displayHeight = _height;
-      this.scene.add.existing(this);
-      this.scene.matter.add.existing(this, true);
-      
-      this.setBody({
-          type: 'rectangle',
-          width: _width,
-          height: _height,
-      });
+        super(scene, x, y, 'wall');
+        this.displayWidth = _width;
+        this.displayHeight = _height;
+        this.scene.add.existing(this);
+        this.scene.matter.add.gameObject(this);
+
+        this.setBody({
+            type: 'rectangle',
+            width: _width,
+            height: _height,
+        });
     }
   
   }

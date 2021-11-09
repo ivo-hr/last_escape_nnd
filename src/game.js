@@ -1,6 +1,6 @@
 import Boot from './boot.js';
 import End from './end.js';
-import Platform from './platform.js';
+import Wall from './wall.js';
 import Level from './scene.js';
 
 /**
@@ -28,11 +28,9 @@ let config = {
                 x: 0,
                 y: 0
             }
-            
-
+        }
     },
 
-    
 };
 
 new Phaser.Game(config);
