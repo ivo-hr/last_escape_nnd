@@ -18,13 +18,14 @@ export default class Wall extends Phaser.GameObjects.Sprite {
         this.displayWidth = _width;
         this.displayHeight = _height;
         this.scene.add.existing(this);
-        this.scene.matter.add.gameObject(this);
 
+        this.scene.matter.add.gameObject(this); //lo añadimos a la física de matter
+        
+        //le asignamos un collider rectangular
         this.setBody({
             type: 'rectangle',
             width: _width,
             height: _height,
         });
     }
-  
-  }
+}
