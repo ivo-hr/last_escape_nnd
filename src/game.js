@@ -1,6 +1,6 @@
 import Boot from './boot.js';
 import End from './end.js';
-import Platform from './platform.js';
+import Wall from './wall.js';
 import Level from './scene.js';
 
 /**
@@ -12,12 +12,25 @@ let config = {
     canvas: document.getElementById("mainCanvas"),
     width:  1000,
     height: 500,
+    backgroundColor: '#708090',
     scale: {
         // mode: Phaser.Scale.FIT,  
         autoCenter: Phaser.Scale.CENTER_HORIZONTALLY
     },
     //pixelArt: true,
     scene: [Boot, Level, End],
+
+    physics: {
+        default: 'matter',
+        matter: {
+            debug: true,
+            gravity: {
+                x: 0,
+                y: 0
+            }
+        }
+    },
+
 };
 
 new Phaser.Game(config);
