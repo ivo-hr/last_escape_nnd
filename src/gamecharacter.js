@@ -11,9 +11,17 @@ export default class GameCharacter extends Phaser.GameObjects.Sprite {
     constructor(scene, x, y, sprite) {
       super(scene, x, y, sprite);
 
-      //this.score = 0;
       this.scene.add.existing(this);
-      this.speed = 5; //Modificar desde las clases hijas?
+      this.speed = 5;
+
+      this.scene.matter.add.gameObject(this);
+    
+      //collider del character
+      this.setBody({
+        type: 'rectangle',
+        width: this.width,
+        height: this.height,
+      });
 
     }
     
@@ -42,4 +50,5 @@ export default class GameCharacter extends Phaser.GameObjects.Sprite {
     preUpdate(t,dt) {
       super.preUpdate(t,dt);  
     }
+
 }

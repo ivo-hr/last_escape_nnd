@@ -1,12 +1,11 @@
 import GameCharacter from './gamecharacter.js';
 
-//export default class Guard extends Phaser.GameObjects.Sprite {
-  export default class Guard extends GameCharacter {
-  /*
-    Constructor del jugador
-    @param {Phaser.Scene} scene Escena a la que pertenece el jugador
-    @param {number} x Coordenada X
-    @param {number} y Coordenada Y
+export default class Guard extends GameCharacter {
+  /** 
+   * Constructor del jugador
+   * @param {Phaser.Scene} scene Escena a la que pertenece el jugador
+   * @param {number} x Coordenada X
+   * @param {number} y Coordenada Y
    */
   constructor(scene, x, y) {
     
