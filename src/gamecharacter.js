@@ -17,34 +17,29 @@ export default class GameCharacter extends Phaser.GameObjects.Sprite {
 
     }
     
+    /**
+     * Método que mueve al personaje a un punto determinado
+     * @param {number} x Coordenada X del punto destino
+     * @param {number} y Coordenada Y del punto destino
+     */
+    moveTo(x, y) {
+
+      let vectorMov = new Phaser.Math.Vector2(x, y);
+          
+      //si está a menos de 5 de distancia se queda quieto
+      if(vectorMov.length() >= 5) {
+
+      vectorMov.normalize();
+
+      this.x += this.speed * vectorMov.x;
+      this.y += this.speed * vectorMov.y;
+
+      //rotación del sprite
+      this.setRotation(vectorMov.angle() + Phaser.Math.PI2/4);
+      }
+    }
 
     preUpdate(t,dt) {
-        super.preUpdate(t,dt);
-    
-        if(this.pointer.isDown){
-    
-          let x = this.pointer.worldX - this.x;
-          let y = this.pointer.worldY - this.y;
-    
-          //vector desde el jugador al ratón
-          let vectorMov = new Phaser.Math.Vector2(x, y);
-          
-          //si está a menos de 5 de distancia se queda quieto
-          if(vectorMov.length() >= 5){
-          vectorMov.normalize();
-    
-          this.x += this.speed * vectorMov.x;
-          this.y += this.speed * vectorMov.y;
-    
-          //rotación del sprite
-          this.setRotation(vectorMov.angle() + Phaser.Math.PI2/4);
-          }
-        }
-    
-      }
-
-
-
-
-
+      super.preUpdate(t,dt);  
+    }
 }
