@@ -1,5 +1,4 @@
-import Guard from "./guard";
-import Player from "./player";
+
 
 export default class GameCharacter extends Phaser.GameObjects.Sprite {
   
@@ -9,15 +8,12 @@ export default class GameCharacter extends Phaser.GameObjects.Sprite {
      * @param {number} x Coordenada X
      * @param {number} y Coordenada Y
      */
-    constructor(scene, x, y) {
-      super(scene, x, y, 'charactertemp');
-      
-      this.setScale(0.5);
+    constructor(scene, x, y, sprite) {
+      super(scene, x, y, sprite);
+
       //this.score = 0;
       this.scene.add.existing(this);
       this.speed = 5; //Modificar desde las clases hijas?
-
-      
 
     }
     

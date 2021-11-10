@@ -18,7 +18,6 @@ export default class Wall extends Phaser.GameObjects.Sprite {
         this.displayWidth = _width;
         this.displayHeight = _height;
         this.scene.add.existing(this);
-
         this.scene.matter.add.gameObject(this); //lo añadimos a la física de matter
         
         //le asignamos un collider rectangular
@@ -27,5 +26,7 @@ export default class Wall extends Phaser.GameObjects.Sprite {
             width: _width,
             height: _height,
         });
-    }
+        
+        this.scene.matter.body.setStatic(this.body, true);
+    } 
 }

@@ -1,4 +1,3 @@
-import Star from './star.js';
 import GameCharacter from './gamecharacter.js';
 
 //export default class Guard extends Phaser.GameObjects.Sprite {
@@ -10,25 +9,17 @@ import GameCharacter from './gamecharacter.js';
     @param {number} y Coordenada Y
    */
   constructor(scene, x, y) {
-    /*
-    super(scene, x, y, 'playertemp');
-    this.setScale(0.5);
-    this.score = 0;
-    this.scene.add.existing(this);
-    this.speed = 5;*/
     
-    this.cursors = this.scene.input.keyboard.createCursorKeys();
+    super(scene, x, y, 'guardtemp');
 
-    this.pointer = this.scene.input.activePointer;
-
-
+    //this.scene.add.existing(this);
 
 
-    //this.updateScore();
-    let path = new Path2D(10,10);
-    path.lineTo(50, 20);
-    path.lineTo(20, 30);
-    path.lineTo(40, 50);
+    // //this.updateScore();
+    // let path = new Path2D(10,10);
+    // path.lineTo(50, 20);
+    // path.lineTo(20, 30);
+    // path.lineTo(40, 50);
     
   }
   

@@ -14,6 +14,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     super(scene, x, y, 'playertemp');
     this.setScale(0.5);
     this.scene.matter.add.gameObject(this);
+    
     this.setBody({
       type: 'rectangle',
       width: this.width/2,
