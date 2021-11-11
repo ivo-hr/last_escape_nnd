@@ -45,8 +45,8 @@ export default class Player extends GameCharacter {
   preUpdate(t,dt) {
     super.preUpdate(t,dt);
 
-    //si el click esta pulsado el jugador se mueve hacia el cursor
-    if(this.pointer.isDown){
+    //si el click derecho esta pulsado el jugador se mueve hacia el cursor
+    if(this.pointer.rightButtonDown()){
 
       let x = this.pointer.worldX - this.x;
       let y = this.pointer.worldY - this.y;
