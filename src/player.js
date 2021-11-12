@@ -11,8 +11,8 @@ export default class Player extends GameCharacter {
    * @param {number} x Coordenada X
    * @param {number} y Coordenada Y
    */
-  constructor(scene, x, y) {
-    super(scene, x, y, 'playertemp');
+  constructor(scene, wallGroup, x, y) {
+    super(scene, wallGroup, x, y, 'playertemp');
     this.setScale(0.5);
 
     this.score = 0;

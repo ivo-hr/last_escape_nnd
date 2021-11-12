@@ -21,8 +21,8 @@ let config = {
     scene: [Boot, Level, End],
 
     physics: {
-        default: 'matter',
-        matter: {
+        default: 'arcade',
+        arcade: {
             debug: true,
             gravity: {
                 x: 0,

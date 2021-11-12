@@ -5,28 +5,23 @@ export default class GameCharacter extends Phaser.GameObjects.Sprite {
     /**
      * Constructor del jugador y enemigos
      * @param {Phaser.Scene} scene Escena a la que pertenecen los personajes
+     * @param {Phaser.GameObjects.Group} wallGroup Grupo de las paredes
      * @param {number} x Coordenada X
      * @param {number} y Coordenada Y
      */
-    constructor(scene, x, y, sprite) {
+    constructor(scene, wallGroup, x, y, sprite) {
       super(scene, x, y, sprite);
 
       this.scene.add.existing(this);
       this.speed = 5;
 
-      this.scene.matter.add.gameObject(this);
-    
-      //collider del character
-      this.setBody({
-        type: 'rectangle',
-        width: this.width,
-        height: this.height,
-      });
-
+      this.scene.physics.add.existing(this);
+      this.scene.physics.add.collider(this, wallGroup);
+      this.body.setCollideWorldBounds();
     }
     
     /**
-     * Método que mueve al personaje a un punto determinado
+     * Método que mueve al personaje en un vector determinado
      * @param {number} x Coordenada X del punto destino
      * @param {number} y Coordenada Y del punto destino
      */
