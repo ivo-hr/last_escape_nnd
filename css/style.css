@@ -2,11 +2,13 @@ h1 {
     color: rgb(0, 0, 0);
     text-align: center;
     font-size: 50px;
+    font-family: "Help Me", fantasy;
   }
 h2 {
     color: rgb(138, 138, 138);
     text-align:center;
     font-size: 15px;
+    font-style:italic;
     
   }
 h6 {
@@ -15,4 +17,9 @@ h6 {
 .logo{
 
   text-decoration: none;
+}
+
+@font-face {
+  font-family: "Help Me";
+  src: url("..\fonts\HelpMe-owODB.ttf");
 }
