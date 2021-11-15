@@ -1,16 +1,23 @@
 h1 {
-    color: rgb(255, 255, 255);
+    color: ghostwhite;
     text-align: center;
     font-size: 64px;
     font-family: HelpMe, fantasy;
   }
 h2 {
-    color: rgb(138, 138, 138);
+    color:rgb(190, 190, 190);
     text-align:center;
     font-size: 45px;
     font-family: SunD, serif;
     font-style:normal;
   }
+h3{
+  color:aliceblue;
+  text-align: center;
+  font-size: 25px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-style: normal;
+}
 h4{
     color: rgb(255, 255, 255);
       text-align:right;
