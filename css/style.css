@@ -2,18 +2,35 @@ h1 {
     color: rgb(255, 255, 255);
     text-align: center;
     font-size: 64px;
-    font-family: SheilaCrayon, serif;
+    font-family: HelpMe, fantasy;
   }
 h2 {
     color: rgb(138, 138, 138);
     text-align:center;
-    font-size: 30px;
+    font-size: 45px;
     font-family: SunD, serif;
-    font-style:oblique;
+    font-style:normal;
   }
+h4{
+    color: rgb(255, 255, 255);
+      text-align:right;
+      font-size: 30px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+h5{
+    color: rgb(0, 0, 0);
+      text-align:center;
+      font-size: 30px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
 h6 {
-    text-align: center;
+    color: rgb(255, 255, 255);
+    text-align:center;
+    font-size: 30px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
+
 .logo{
 
   text-decoration: none;
@@ -21,7 +38,7 @@ h6 {
 
 /* FONT INCLUSIONS */
 @font-face {
-  font-family: "HelpMe";
+  font-family: HelpMe;
   src: url("../assets/fonts/HelpMe-owODB.ttf");
 }
 @font-face {
@@ -31,4 +48,8 @@ h6 {
 @font-face {
   font-family: SunD;
   src: url("../assets/fonts/SundiaryDemo-2OgdK.ttf");
+}
+@font-face {
+  font-family: Abbeyline;
+  src: url("../assets/fonts/Abbeyline.ttf");
 }
