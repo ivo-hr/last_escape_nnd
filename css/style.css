@@ -53,11 +53,3 @@ h6 {
   font-family: Abbeyline;
   src: url("../assets/fonts/Abbeyline.ttf");
 }
-
-}
-
-html[data-theme='black'] {
-    --background-color: #000000;
-    --text-color: #F7F8F8;
-    --link-color: #828fff;
-}
