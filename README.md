@@ -1,8 +1,7 @@
 # Last Escape: the GDD
 <p align="center">  
-<img src= "/images/nnd488_negate.png">
-  
-[Twitter](https://twitter.com/NameNotDet)
+<a href="https://twitter.com/NameNotDet"><img alt="Twitter" src="/images/nnd_newlogo.png" width="50" height="50"></a>
+
   
 
 _**v. 0.4** (13/10/2021)_
