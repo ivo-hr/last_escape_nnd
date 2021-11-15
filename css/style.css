@@ -1,15 +1,15 @@
 h1 {
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     text-align: center;
-    font-size: 50px;
-    font-family: "Help Me", fantasy;
+    font-size: 64px;
+    font-family: SheilaCrayon, serif;
   }
 h2 {
     color: rgb(138, 138, 138);
     text-align:center;
-    font-size: 15px;
-    font-style:italic;
-    
+    font-size: 30px;
+    font-family: SunD, serif;
+    font-style:oblique;
   }
 h6 {
     text-align: center;
@@ -19,7 +19,16 @@ h6 {
   text-decoration: none;
 }
 
+/* FONT INCLUSIONS */
 @font-face {
-  font-family: "Help Me";
-  src: url("..\fonts\HelpMe-owODB.ttf");
+  font-family: "HelpMe";
+  src: url("../assets/fonts/HelpMe-owODB.ttf");
+}
+@font-face {
+  font-family: SheilaCrayon;
+  src: url("../assets/fonts/SheilaCrayon-1vWg.ttf");
+}
+@font-face {
+  font-family: SunD;
+  src: url("../assets/fonts/SundiaryDemo-2OgdK.ttf");
 }
