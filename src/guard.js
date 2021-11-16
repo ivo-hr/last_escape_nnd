@@ -4,12 +4,13 @@ export default class Guard extends GameCharacter {
   /** 
    * Constructor del jugador
    * @param {Phaser.Scene} scene Escena a la que pertenece el jugador
+   * @param {Phaser.GameObjects.Group} wallGroup Grupo de las paredes
    * @param {number} x Coordenada X
    * @param {number} y Coordenada Y
    */
-  constructor(scene, x, y) {
+  constructor(scene, wallgroup, x, y) {
     
-    super(scene, x, y, 'guardtemp');
+    super(scene, wallgroup, x, y, 'guardtemp');
 
     //this.scene.add.existing(this);
 

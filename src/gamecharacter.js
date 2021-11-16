@@ -1,6 +1,6 @@
 
 
-export default class GameCharacter extends Phaser.GameObjects.Sprite {
+export default class GameCharacter extends Phaser.GameObjects.Container {
   
     /**
      * Constructor del jugador y enemigos
@@ -10,12 +10,17 @@ export default class GameCharacter extends Phaser.GameObjects.Sprite {
      * @param {number} y Coordenada Y
      */
     constructor(scene, wallGroup, x, y, sprite) {
-      super(scene, x, y, sprite);
+      
+      let grafic = scene.add.sprite(0, 0, sprite);
+      super(scene, x, y, grafic);
 
       this.scene.add.existing(this);
       this.speed = 5;
 
       this.scene.physics.add.existing(this);
+      //offset del collider para centrarlo en el sprite
+      this.body.offset = new Phaser.Math.Vector2(-this.body.halfWidth, -this.body.halfHeight);
+      
       this.scene.physics.add.collider(this, wallGroup);
       this.body.setCollideWorldBounds();
     }
@@ -43,7 +48,7 @@ export default class GameCharacter extends Phaser.GameObjects.Sprite {
     }
 
     preUpdate(t,dt) {
-      super.preUpdate(t,dt);  
+      //super.preUpdate(t,dt);
     }
 
 }
