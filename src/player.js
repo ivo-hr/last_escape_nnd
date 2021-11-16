@@ -13,8 +13,8 @@ export default class Player extends GameCharacter {
    * @param {number} x Coordenada X
    * @param {number} y Coordenada Y
    */
-  constructor(scene, wallGroup, x, y) {
-    super(scene, wallGroup, x, y, 'playertemp');
+  constructor(scene, x, y) {
+    super(scene, x, y, 'playertemp');
     this.setScale(0.5);
 
     this.score = 0;
@@ -27,10 +27,15 @@ export default class Player extends GameCharacter {
 
     this.visionRadius = 400;
 
-    // let visionCircle = new VisionCircle(this.scene, this, this.visionRadius);
-    // this.add(visionCircle);
+    let visionCircle = new VisionCircle(this.scene, this, this.visionRadius);
+    this.add(visionCircle);
 
     this.updateScore();
+
+    this.scene.input.on('pointerup', () => {
+      this.body.setVelocityX(0);
+      this.body.setVelocityY(0);
+    });
   }
 
   point() {
@@ -55,13 +60,20 @@ export default class Player extends GameCharacter {
     //si el click derecho esta pulsado el jugador se mueve hacia el cursor
     if(this.pointer.rightButtonDown()){
 
-      let x = this.pointer.worldX - this.x;
-      let y = this.pointer.worldY - this.y;
+      let x = this.pointer.worldX;
+      let y = this.pointer.worldY;
 
-      //llamamos al método de movimiento del padre
-      super.moveTo(x, y);
+      let vector = new Phaser.Math.Vector2(x - this.x, y - this.y);
+
+      this.setRotation(vector.angle() + Phaser.Math.PI2/4);
+      let distance = vector.length();
+
+      if (distance > 5) this.scene.physics.moveTo(this, x, y, 60*this.speed);
+      else {
+        this.body.setVelocityX(0);
+        this.body.setVelocityY(0);
+      }
     }
-
   }
 
 }

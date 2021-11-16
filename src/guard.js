@@ -8,9 +8,9 @@ export default class Guard extends GameCharacter {
    * @param {number} x Coordenada X
    * @param {number} y Coordenada Y
    */
-  constructor(scene, wallgroup, x, y) {
+  constructor(scene, x, y) {
     
-    super(scene, wallgroup, x, y, 'guardtemp');
+    super(scene, x, y, 'guardtemp');
 
     //this.scene.add.existing(this);
 

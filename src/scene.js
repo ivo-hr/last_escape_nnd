@@ -19,7 +19,7 @@ export default class Level extends Phaser.Scene {
    */
   create() {
     this.walls = this.add.group();
-    this.player = new Player(this, this.walls, 100, 300);
+    this.player = new Player(this, 100, 300);
     this.guard = new Guard(this, 100, 200);
     //esto es lo que hace que no haya context menu en el juego al pulsar click derecho
     this.input.mouse.disableContextMenu();
