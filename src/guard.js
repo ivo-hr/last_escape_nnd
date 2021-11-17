@@ -4,23 +4,23 @@ export default class Guard extends GameCharacter {
   /** 
    * Constructor del jugador
    * @param {Phaser.Scene} scene Escena a la que pertenece el jugador
-   * @param {Phaser.GameObjects.Group} wallGroup Grupo de las paredes
    * @param {number} x Coordenada X
    * @param {number} y Coordenada Y
    */
   constructor(scene, x, y) {
     
-    super(scene, x, y, 'guardtemp');
-
-    //this.scene.add.existing(this);
-
-
-    // //this.updateScore();
-    // let path = new Path2D(10,10);
-    // path.lineTo(50, 20);
-    // path.lineTo(20, 30);
-    // path.lineTo(40, 50);
+    super(scene, x, y,'guardtemp');
     
+     this.puntos=[
+      100,50,
+      150,50,
+      150,70,
+      150,50,
+      100,50
+    ]
+    this.i=0;
+    this.scene.physics.moveTo(this,this.puntos[this.i],this.puntos[this.i+1])
+
   }
   
 
@@ -34,33 +34,22 @@ export default class Guard extends GameCharacter {
   preUpdate(t,dt) {
     super.preUpdate(t,dt);
 
-   // if(this.pointer.isDown){
+    let vector = new Phaser.Math.Vector2( this.puntos[this.i] - this.x, this.puntos[this.i+1] - this.y);
+    let distance = vector.length();
 
-      let x = 10;
-      let y = 0;
-
-      //vector desde el jugador al ratón
-      let vectorMov = new Phaser.Math.Vector2(x, y);
-      if(this.x>=300||this.x<=0){
-        x=-x;
+    if(distance<=1){
+      if(this.i<this.puntos.length-2){
+        this.i+=2;
+        this.scene.physics.moveTo(this,this.puntos[this.i],this.puntos[this.i+1]);
       }
-      //si está a menos de 5 de distancia se queda quieto
-      if(vectorMov.length() >= 0){
-      vectorMov.normalize();
-
-      this.x += this.speed * vectorMov.x;
-      this.y += this.speed * vectorMov.y;
-     
-      
-
-      //rotación del sprite
-      this.setRotation(vectorMov.angle() + Phaser.Math.PI2/4);
-      //path.getPoint(this.t,this.dt);
-      
-
+      else{
+      this.i=0;
+      this.scene.physics.moveTo(this,this.puntos[this.i],this.puntos[this.i+1]);
       }
-    //}
+    }
 
+    
+      
   }
   
 }
