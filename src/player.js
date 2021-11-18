@@ -1,5 +1,5 @@
 import GameCharacter from './gamecharacter.js';
-import VisionCircle from './playervisioncircle.js';
+import VisionCircle from './visioncircle.js';
 /**
  * Clase que representa el jugador del juego. El jugador se mueve por el mundo usando los cursores.
  * También almacena la puntuación o número de estrellas que ha recogido hasta el momento.
@@ -27,12 +27,17 @@ export default class Player extends GameCharacter {
 
     this.visionRadius = 400;
 
-    let visionCircle = new VisionCircle(this.scene, this, this.visionRadius);
+    let visionCircle = new VisionCircle(this.scene, this.visionRadius);
     this.add(visionCircle);
 
     this.updateScore();
 
+    //eventos para parar al jugador
     this.scene.input.on('pointerup', () => {
+      this.body.setVelocityX(0);
+      this.body.setVelocityY(0);
+    });
+    this.scene.input.on('pointerupoutside', () => {
       this.body.setVelocityX(0);
       this.body.setVelocityY(0);
     });

@@ -1,4 +1,5 @@
 import GameCharacter from './gamecharacter.js';
+import VisionCircle from './visioncircle.js';
 
 export default class Guard extends GameCharacter {
   /** 
@@ -13,24 +14,36 @@ export default class Guard extends GameCharacter {
     
      this.puntos=[
       100,50,
-      150,50,
-      150,70,
-      150,50,
+      300,50,
+      300,250,
+      300,50,
       100,50
     ]
     this.i=0;
-    this.scene.physics.moveTo(this,this.puntos[this.i],this.puntos[this.i+1])
+    this.scene.physics.moveTo(this,this.puntos[this.i],this.puntos[this.i+1]);
 
+    this.visionRadius = 200;
+
+    this.visionCircle = new VisionCircle(this.scene, this.visionRadius)
+    this.add(this.visionCircle);
+
+    //angulo de vision del guardia
+    this.visionAngle = 60;
+    this.scene.physics.add.overlap(this.visionCircle, this.scene.player, (o1, o2) => {
+
+      //callback que se ejecuta cuando el jugador entra dentro del circulo de vision del guardia
+
+      let vector = new Phaser.Math.Vector2(o2.x - this.x, o2.y - this.y); //vector desde el guardia al jugador
+
+      let angle = Phaser.Math.RadToDeg(vector.angle()) - this.angle; //angulo del vector respecto a la direccion en la que mira el guardia
+
+      //comprueba si está dentro de su angulo de vision
+      if(Math.abs(angle) < this.visionAngle/2 || Math.abs(angle) > 360 - this.visionAngle/2) {
+        console.log("veo al jugador");
+      }
+    });
   }
   
-
-  
-  /**
-   * Métodos preUpdate de Phaser. En este caso solo se encarga del movimiento del jugador.
-   * Como se puede ver, no se tratan las colisiones con las estrellas, ya que estas colisiones 
-   * ya son gestionadas por la estrella (no gestionar las colisiones dos veces)
-   * @override
-   */
   preUpdate(t,dt) {
     super.preUpdate(t,dt);
 
