@@ -13,20 +13,14 @@ export default class Wall extends Phaser.GameObjects.Sprite {
      * @param {number} _width Ancho del muro
      * @param {number} _height Alto del muro
      */
-    constructor(scene, x, y, _height, _width) {
+    constructor(scene, player, x, y, _height, _width) {
         super(scene, x, y, 'wall');
         this.displayWidth = _width;
         this.displayHeight = _height;
         this.scene.add.existing(this);
-        this.scene.matter.add.gameObject(this); //lo añadimos a la física de matter
-        
-        //le asignamos un collider rectangular
-        this.setBody({
-            type: 'rectangle',
-            width: _width,
-            height: _height,
-        });
-        
-        this.scene.matter.body.setStatic(this.body, true);
+        this.scene.physics.add.existing(this, true); //lo añadimos a la física
+        this.scene.walls.add(this); //lo añadimos al grupo de muros
+
+        this.scene.physics.add.collider(this, player, () => { console.log("colision"); }); //collider
     } 
 }

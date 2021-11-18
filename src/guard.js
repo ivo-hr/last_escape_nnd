@@ -1,4 +1,5 @@
 import GameCharacter from './gamecharacter.js';
+import VisionCircle from './visioncircle.js';
 
 export default class Guard extends GameCharacter {
   /** 
@@ -9,57 +10,59 @@ export default class Guard extends GameCharacter {
    */
   constructor(scene, x, y) {
     
-    super(scene, x, y, 'guardtemp');
-
-    //this.scene.add.existing(this);
-
-
-    // //this.updateScore();
-    // let path = new Path2D(10,10);
-    // path.lineTo(50, 20);
-    // path.lineTo(20, 30);
-    // path.lineTo(40, 50);
+    super(scene, x, y,'guardtemp');
     
+     this.puntos=[
+      100,50,
+      300,50,
+      300,250,
+      300,50,
+      100,50
+    ]
+    this.i=0;
+    this.scene.physics.moveTo(this,this.puntos[this.i],this.puntos[this.i+1]);
+
+    this.visionRadius = 200;
+
+    this.visionCircle = new VisionCircle(this.scene, this.visionRadius)
+    this.add(this.visionCircle);
+
+    //angulo de vision del guardia
+    this.visionAngle = 60;
+    this.scene.physics.add.overlap(this.visionCircle, this.scene.player, (o1, o2) => {
+
+      //callback que se ejecuta cuando el jugador entra dentro del circulo de vision del guardia
+
+      let vector = new Phaser.Math.Vector2(o2.x - this.x, o2.y - this.y); //vector desde el guardia al jugador
+
+      let angle = Phaser.Math.RadToDeg(vector.angle()) - this.angle; //angulo del vector respecto a la direccion en la que mira el guardia
+
+      //comprueba si está dentro de su angulo de vision
+      if(Math.abs(angle) < this.visionAngle/2 || Math.abs(angle) > 360 - this.visionAngle/2) {
+        console.log("veo al jugador");
+      }
+    });
   }
   
-
-  
-  /**
-   * Métodos preUpdate de Phaser. En este caso solo se encarga del movimiento del jugador.
-   * Como se puede ver, no se tratan las colisiones con las estrellas, ya que estas colisiones 
-   * ya son gestionadas por la estrella (no gestionar las colisiones dos veces)
-   * @override
-   */
   preUpdate(t,dt) {
     super.preUpdate(t,dt);
 
-   // if(this.pointer.isDown){
+    let vector = new Phaser.Math.Vector2( this.puntos[this.i] - this.x, this.puntos[this.i+1] - this.y);
+    let distance = vector.length();
 
-      let x = 10;
-      let y = 0;
-
-      //vector desde el jugador al ratón
-      let vectorMov = new Phaser.Math.Vector2(x, y);
-      if(this.x>=300||this.x<=0){
-        x=-x;
+    if(distance<=1){
+      if(this.i<this.puntos.length-2){
+        this.i+=2;
+        this.scene.physics.moveTo(this,this.puntos[this.i],this.puntos[this.i+1]);
       }
-      //si está a menos de 5 de distancia se queda quieto
-      if(vectorMov.length() >= 0){
-      vectorMov.normalize();
-
-      this.x += this.speed * vectorMov.x;
-      this.y += this.speed * vectorMov.y;
-     
-      
-
-      //rotación del sprite
-      this.setRotation(vectorMov.angle() + Phaser.Math.PI2/4);
-      //path.getPoint(this.t,this.dt);
-      
-
+      else{
+      this.i=0;
+      this.scene.physics.moveTo(this,this.puntos[this.i],this.puntos[this.i+1]);
       }
-    //}
+    }
 
+    
+      
   }
   
 }
