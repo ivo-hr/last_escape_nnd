@@ -27,6 +27,9 @@ export default class Guard extends GameCharacter {
     this.visionCircle = new VisionCircle(this.scene, this.visionRadius)
     this.add(this.visionCircle);
 
+    this.scene.physics.add.collider(this, this.scene.player);
+    this.body.setImmovable();
+
     //angulo de vision del guardia
     this.visionAngle = 60;
     this.scene.physics.add.overlap(this.visionCircle, this.scene.player, (o1, o2) => {
