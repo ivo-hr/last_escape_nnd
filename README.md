@@ -4,7 +4,7 @@
 
   
 
-_**v. 0.4** (13/10/2021)_
+_**v. 0.5** (19/11/2021)_
 
 ## Descripción
 En este juego web basado en una de los legendarios cortos de _Alfred Hitchcock Presenta_, somos un viejo sepulturero de una cárcel femenina, preparando la huida de una convicta con la que nos hemos aliado. Debemos conseguir lo necesario para poder crear un ataúd, para así poder enterrarla y que pueda escapar, sin que nos pillen los guardias.
@@ -88,6 +88,11 @@ El juego acaba cuando el jugador complete esta lista. Se compone de:
 
 - **Guardias:** son los enemigos del juego. Distintos guardias patrullan la cárcel para impedir que los presos escapen o hagan actividades extrañas. Tienen también en vigilancia siempre al sepulturero, ya que tiene libre acceso a la cárcel.
 
+  
+### UML del juego
+<img src= "/images/diagramaUML.png">
+  
+  
 ## Referencias:
 - **Alfred Hitchcock Presents: Final Escape** _(historia, concepto)_: https://youtu.be/xmSNjhHKtCk
 - **Yumori Forest** _(visuales, mecánicas)_: https://store.steampowered.com/app/911120/Yumori_Forest/
