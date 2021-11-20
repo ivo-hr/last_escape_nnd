@@ -9,7 +9,6 @@ export default class Player extends GameCharacter {
   /**
    * Constructor del jugador
    * @param {Phaser.Scene} scene Escena a la que pertenece el jugador
-   * @param {Phaser.GameObjects.Group} wallGroup Grupo de las paredes
    * @param {number} x Coordenada X
    * @param {number} y Coordenada Y
    */

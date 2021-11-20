@@ -1,6 +1,5 @@
 import Boot from './boot.js';
 import End from './end.js';
-import Wall from './wall.js';
 import Level from './scene.js';
 
 /**
@@ -31,6 +30,15 @@ let config = {
         }
     },
 
+    plugins: {
+        scene: [
+            {
+                key: 'PhaserRaycaster',
+                plugin: PhaserRaycaster,
+                mapping: 'raycasterPlugin'
+            }
+        ]
+    }
 };
 
 new Phaser.Game(config);

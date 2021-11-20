@@ -22,6 +22,10 @@ export default class Guard extends GameCharacter {
     this.i=0;
     this.scene.physics.moveTo(this,this.puntos[this.i],this.puntos[this.i+1]);
 
+    //rotacion del guardia
+    let vector = new Phaser.Math.Vector2( this.puntos[this.i] - this.x, this.puntos[this.i+1] - this.y);
+    this.setRotation(vector.angle());
+
     this.visionRadius = 200;
 
     this.visionCircle = new VisionCircle(this.scene, this.visionRadius)
@@ -42,7 +46,30 @@ export default class Guard extends GameCharacter {
 
       //comprueba si está dentro de su angulo de vision
       if(Math.abs(angle) < this.visionAngle/2 || Math.abs(angle) > 360 - this.visionAngle/2) {
-        console.log("veo al jugador");
+
+        //creamos un rayo con origen en el guardia y que apunte al jugador
+        let ray = this.scene.raycaster.createRay({
+          origin: {
+            x: this.x,
+            y: this.y
+          },
+          angle: vector.angle(),
+          detectionRange: vector.length
+        });
+        //interseccion con el raycast
+        let intersection = ray.cast();
+
+        //si no choca ve al jugador
+        if (!intersection.object || !ray.boundsInRange(intersection.object)) console.log("veo al jugador");
+
+        //debug: dibujamos el rayo en pantalla
+        if (this.scene.DEBUG){
+
+          this.scene.graphics.clear();
+          let line = new Phaser.Geom.Line(ray.origin.x, ray.origin.y, intersection.x, intersection.y);
+          this.scene.graphics.fillPoint(ray.origin.x, ray.origin.y, 3)
+          this.scene.graphics.strokeLineShape(line);
+        }
       }
     });
   }
@@ -57,15 +84,22 @@ export default class Guard extends GameCharacter {
       if(this.i<this.puntos.length-2){
         this.i+=2;
         this.scene.physics.moveTo(this,this.puntos[this.i],this.puntos[this.i+1]);
+        
+        //rotacion del guardia
+        vector = new Phaser.Math.Vector2( this.puntos[this.i] - this.x, this.puntos[this.i+1] - this.y);
+        this.setRotation(vector.angle());
       }
       else{
-      this.i=0;
-      this.scene.physics.moveTo(this,this.puntos[this.i],this.puntos[this.i+1]);
+        this.i=0;
+        this.scene.physics.moveTo(this,this.puntos[this.i],this.puntos[this.i+1]);
+
+        //rotacion del guardia
+        vector = new Phaser.Math.Vector2( this.puntos[this.i] - this.x, this.puntos[this.i+1] - this.y);
+        this.setRotation(vector.angle());
       }
     }
 
-    
-      
+    if (this.scene.DEBUG) this.scene.graphics.clear();
   }
   
 }
