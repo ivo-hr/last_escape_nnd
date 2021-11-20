@@ -1,10 +1,11 @@
+
 /**
  * Clase que representa la barra de sospecha, en forma de sprite
 */
 export default class SuspicionBar extends Phaser.GameObjects.Sprite {
   
     /**
-     * Constructor del Muro
+     * Constructor de la barra
      * @param {Phaser.Scene} scene Escena a la que pertenece la barra
      * @param {number} x Coordenada x
      * @param {number} y Coordenada y
@@ -22,7 +23,9 @@ export default class SuspicionBar extends Phaser.GameObjects.Sprite {
         this.suspicion = 0;
         this.displayWidth = this.suspicion * this._initialWidth / 100;
 
-        this.hsv = Phaser.Display.Color.HSVColorWheel();
+        //this.anchor.set(0, 0);
+
+        //const image = super.add.image(_height, _width, 'susbar');
     } 
 
     SusIncrease(incr){
@@ -32,13 +35,10 @@ export default class SuspicionBar extends Phaser.GameObjects.Sprite {
 
         this.displayWidth = this.suspicion * this._initialWidth / 100;
 
-        this.changeHue();
-        
-    }
+        this.tint = this.suspicion * 3 * 0xffffff;
 
-    changeHue(){
+        console.log("Sus level:" + this.suspicion);
         
-        Sprite.setTint(this.hsv[this.suspicion].Color);
-
+        
     }
 }   
