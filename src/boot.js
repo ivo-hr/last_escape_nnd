@@ -24,6 +24,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('guardtemp', 'player.png');
     this.load.image('playertemp', 'playertemp.png');
     this.load.image('itemtemp', 'itemtemp.png');
+    this.load.image('susbar', 'susbar.png');
   }
 
   /**
