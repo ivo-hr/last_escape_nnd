@@ -2,7 +2,7 @@ import Player from './player.js';
 import Wall from './wall.js';
 import Guard from './guard.js';
 import SuspicionBar from './suspicionbar.js';
-
+import Workshop from './workshop.js';
 /**
  * Escena principal del juego.
  * @extends Phaser.Scene
@@ -27,7 +27,7 @@ export default class Level extends Phaser.Scene {
 
     this.walls = this.add.group();
     this.player = new Player(this, 100, 300);
-    this.guard = new Guard(this, 100, 200);
+    this.guard = new Guard(this, 100, 200, +0.1);
     //esto es lo que hace que no haya context menu en el juego al pulsar click derecho
     this.input.mouse.disableContextMenu();
 
@@ -40,6 +40,8 @@ export default class Level extends Phaser.Scene {
     this.raycaster.mapGameObjects(this.walls.getChildren());
 
     this.susBar = new SuspicionBar(this, 150, 50, 30, 250);
+    this.Workshop = new Workshop(this, this.player, 800, 300, 100, 100, -0.05);
+
   }
 
 }

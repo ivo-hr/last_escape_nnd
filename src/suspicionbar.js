@@ -11,6 +11,7 @@ export default class SuspicionBar extends Phaser.GameObjects.Sprite {
      * @param {number} y Coordenada y
      * @param {number} _width Ancho de la barra
      * @param {number} _height Alto de la barra
+     * @param {number} susVar Alto de la barra
      */
     constructor(scene, x, y, _height, _width) {
         super(scene, x, y, 'susbar');
@@ -22,15 +23,11 @@ export default class SuspicionBar extends Phaser.GameObjects.Sprite {
         this._initialWidth = _width;
         this.suspicion = 0;
         this.displayWidth = this.suspicion * this._initialWidth / 100;
-
-        //this.anchor.set(0, 0);
-
-        //const image = super.add.image(_height, _width, 'susbar');
     } 
 
     SusIncrease(incr){
 
-        if (this.suspicion < 100)
+        if ((incr > 0 && this.suspicion < 100) || (incr < 0 && this.suspicion > 0))
         this.suspicion += incr;
 
         this.displayWidth = this.suspicion * this._initialWidth / 100;
