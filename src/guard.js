@@ -47,9 +47,9 @@ export default class Guard extends GameCharacter {
 
       //comprueba si está dentro de su angulo de vision
       if(Math.abs(angle) < this.visionAngle/2 || Math.abs(angle) > 360 - this.visionAngle/2) {
-        console.log("veo al jugador");
+
         this.scene.susBar.SusIncrease(susVar);
-      }
+      
         //creamos un rayo con origen en el guardia y que apunte al jugador
         let ray = this.scene.raycaster.createRay({
           origin: {
@@ -75,7 +75,7 @@ export default class Guard extends GameCharacter {
         }
 
       }
-    );
+    });
   }
   
   preUpdate(t,dt) {
