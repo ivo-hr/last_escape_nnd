@@ -11,9 +11,13 @@ export default class Item extends Phaser.GameObjects.Sprite {
     constructor(scene, x, y){
         super(scene, x, y, 'itemtemp');
 
+        this.setScale(0.2);
+        this.scene.add.existing(this);
+        this.setInteractive();
+
         this.pointer = this.scene.input.activepointer;
 
-        this.sprite.on('pointerdown', pointer => {
+        this.on('pointerdown', pointer => {
             let vector = new Phaser.Math.Vector2(player.x - this.x, player.y - this.y);
             if(vector.length() <= 10){
                 player.point();
