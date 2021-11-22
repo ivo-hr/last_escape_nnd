@@ -39,7 +39,7 @@ export default class Level extends Phaser.Scene {
     
     this.raycaster.mapGameObjects(this.walls.getChildren());
 
-    this.susBar = new SuspicionBar(this, 150, 50, 30, 250);
+    this.susBar = new SuspicionBar(this, 10, 50, 30, 250);
     this.Workshop = new Workshop(this, this.player, 800, 300, 100, 100, -0.1);
 
   }

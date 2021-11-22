@@ -16,6 +16,8 @@ export default class Player extends GameCharacter {
     super(scene, x, y, 'playertemp');
     this.setScale(0.5);
 
+    //z-index, el jugador se renderiza en el "nivel" 2
+    this.setDepth(2);
     this.score = 0;
 
     // Esta label es la UI en la que pondremos la puntuación del jugador

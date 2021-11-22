@@ -13,7 +13,10 @@ export default class Guard extends GameCharacter {
     
     super(scene, x, y,'guardtemp');
     
-     this.puntos=[
+    //z-index, el guardia se renderiza en el "nivel" 1
+    this.setDepth(1);
+
+    this.puntos=[
       100,50,
       300,50,
       300,250,
@@ -32,6 +35,14 @@ export default class Guard extends GameCharacter {
     this.visionCircle = new VisionCircle(this.scene, this.visionRadius)
     this.add(this.visionCircle);
 
+    let rangeSprite = this.scene.add.sprite(0, 0, 'guardrange');
+    rangeSprite.displayWidth *= 3.5;
+    rangeSprite.displayHeight *= 3.1;
+    rangeSprite.setOrigin(0, 0.5);
+    rangeSprite.setAlpha(0.5);
+    rangeSprite.setDepth(0);
+    this.add(rangeSprite);
+
     this.scene.physics.add.collider(this, this.scene.player);
     this.body.setImmovable();
 
@@ -43,11 +54,20 @@ export default class Guard extends GameCharacter {
 
       let vector = new Phaser.Math.Vector2(o2.x - this.x, o2.y - this.y); //vector desde el guardia al jugador
 
-      let angle = Phaser.Math.RadToDeg(vector.angle()) - this.angle; //angulo del vector respecto a la direccion en la que mira el guardia
+      let vectorAngle = Phaser.Math.RadToDeg(vector.angle());
+      if (vectorAngle > 180) vectorAngle -= 360;
+
+      let guardAngle = this.angle;
+      //corrección de ángulo cuando se acerca a 180 o -180
+      if ((guardAngle + 180 < 5) && vectorAngle > 0) guardAngle = 180;
+      if ((guardAngle + 180 < 5) && vectorAngle < 0) guardAngle = -180;
+      let angle = vectorAngle - guardAngle; //angulo del vector respecto a la direccion en la que mira el guardia
 
       //comprueba si está dentro de su angulo de vision
-      if(Math.abs(angle) < this.visionAngle/2 || Math.abs(angle) > 360 - this.visionAngle/2) {
+      if(Math.abs(angle) < this.visionAngle/2) {
       
+        console.log(this.angle);
+        console.log(Phaser.Math.RadToDeg(vector.angle()));
         //creamos un rayo con origen en el guardia y que apunte al jugador
         let ray = this.scene.raycaster.createRay({
           origin: {
@@ -55,7 +75,7 @@ export default class Guard extends GameCharacter {
             y: this.y
           },
           angle: vector.angle(),
-          detectionRange: vector.length
+          detectionRange: vector.length 
         });
         //interseccion con el raycast
         let intersection = ray.cast();
@@ -68,7 +88,8 @@ export default class Guard extends GameCharacter {
         //debug: dibujamos el rayo en pantalla
         if (this.scene.DEBUG){
 
-          this.scene.graphics.clear();
+          //this.scene.graphics.clear();
+          this.scene.graphics.lineStyle(1, 0x00ff00, 1);
           let line = new Phaser.Geom.Line(ray.origin.x, ray.origin.y, intersection.x, intersection.y);
           this.scene.graphics.fillPoint(ray.origin.x, ray.origin.y, 3)
           this.scene.graphics.strokeLineShape(line);
@@ -103,7 +124,24 @@ export default class Guard extends GameCharacter {
       }
     }
 
+    //this.drawVisionArc();
+
     if (this.scene.DEBUG) this.scene.graphics.clear();
+  }
+
+  /** 
+   * Dibuja el arco de la visión
+   * @param 
+   */
+  drawVisionArc(){
+
+    this.scene.graphics.clear();
+    this.scene.graphics.beginPath();
+    this.scene.graphics.lineStyle(4, 0xff00ff, 1);
+
+    // arc (x, y, radius, startAngle, endAngle, anticlockwise)
+    this.scene.graphics.arc(this.x, this.y, this.visionRadius, Phaser.Math.DegToRad(this.angle + 30), Phaser.Math.DegToRad(this.angle - 30), true);
+    this.scene.graphics.strokePath();
   }
   
 }
