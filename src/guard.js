@@ -59,8 +59,15 @@ export default class Guard extends GameCharacter {
 
       let guardAngle = this.angle;
       //corrección de ángulo cuando se acerca a 180 o -180
-      if ((guardAngle + 180 < 5) && vectorAngle > 0) guardAngle = 180;
-      if ((guardAngle + 180 < 5) && vectorAngle < 0) guardAngle = -180;
+      if (guardAngle > 0) {
+        if ((guardAngle - 180 > -5) && (guardAngle - 180 < 5) && vectorAngle > 0) guardAngle = 180;
+        if ((guardAngle - 180 > -5) && (guardAngle - 180 < 5) && vectorAngle < 0) guardAngle = -180;
+      }
+      if (guardAngle < 0) {
+        
+        if ((guardAngle + 180 > -5) && (guardAngle + 180 < 5) && vectorAngle > 0) guardAngle = 180;
+        if ((guardAngle + 180 > -5) && (guardAngle + 180 < 5) && vectorAngle < 0) guardAngle = -180;
+      }
       let angle = vectorAngle - guardAngle; //angulo del vector respecto a la direccion en la que mira el guardia
 
       //comprueba si está dentro de su angulo de vision
