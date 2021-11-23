@@ -27,7 +27,10 @@ export default class Level extends Phaser.Scene {
     this.graphics = this.add.graphics({ lineStyle: { width: 1, color: 0x00ff00}, fillStyle: { color: 0xff00ff } });
 
     this.walls = this.add.group();
-    this.item = new Item(this, 600, 200);
+    this.items = this.add.group();
+    this.items.add(new Item(this, this.player, 600, 200, 0.2, false));
+    this.items.add(new Item(this, this.player, 600, 100, 0.3, true));
+    this.items.add(new Item(this, this.player, 800, 100, 0.5, true));
     this.player = new Player(this, 100, 300);
     this.guard = new Guard(this, 100, 200, +0.5);
     //esto es lo que hace que no haya context menu en el juego al pulsar click derecho
