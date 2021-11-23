@@ -45,11 +45,19 @@ export default class Item extends Phaser.GameObjects.Sprite {
                         this.picked = true;
                         this.scene.player.carrying();
                     }
-                    else if(this.picked == true && this.scene.player.carry == true){
+                    /*else if(this.picked == true && this.scene.player.carry == true){
                         this.picked = false;
                         this.scene.player.carrying();
-                    }
+                    }*/
                 }
+            }
+        });
+
+        this.scene.input.on('pointerdown', pointer =>{
+            if(this.picked == true && this.scene.player.carry == true && pointer.middleButtonDown()){
+                this.picked = false;
+                this.scene.player.carrying();
+                console.log("DROPPED");
             }
         });
 
