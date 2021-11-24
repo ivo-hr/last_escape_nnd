@@ -90,7 +90,8 @@ export default class Guard extends GameCharacter {
         //si no choca ve al jugador
         if (!intersection.object || !ray.boundsInRange(intersection.object)) {
           console.log("veo al jugador");
-          this.scene.susBar.SusIncrease(susVar);
+
+          if (this.scene.player.carry)this.scene.susBar.SusIncrease(susVar);
         }
         //debug: dibujamos el rayo en pantalla
         if (this.scene.DEBUG){
