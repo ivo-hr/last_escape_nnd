@@ -56,7 +56,7 @@ export default class Player extends GameCharacter {
    * Actualiza la UI con la puntuación actual
    */
   updateScore() {
-    this.label.text = 'Score: ' + this.score;
+    this.label.text = 'Items: ' + this.score;
   }
 
   //Cambia el booleano carrying cuando coge o deja un objeto
