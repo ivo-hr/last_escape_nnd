@@ -9,14 +9,16 @@ export default class Player extends GameCharacter {
   /**
    * Constructor del jugador
    * @param {Phaser.Scene} scene Escena a la que pertenece el jugador
-   * @param {Phaser.GameObjects.Group} wallGroup Grupo de las paredes
    * @param {number} x Coordenada X
    * @param {number} y Coordenada Y
+   * @param {bool} carry Booleano para saber si esta llevando un item encima o no para evitar llevar varios objetos grandes a la vez
    */
   constructor(scene, x, y) {
     super(scene, x, y, 'playertemp');
     this.setScale(0.5);
 
+    //z-index, el jugador se renderiza en el "nivel" 2
+    this.setDepth(2);
     this.score = 0;
 
     // Esta label es la UI en la que pondremos la puntuación del jugador
@@ -31,6 +33,8 @@ export default class Player extends GameCharacter {
     this.add(visionCircle);
 
     this.updateScore();
+
+    this.carry = false;//empieza con el booleano de llevar objetos en falso
 
     //eventos para parar al jugador
     this.scene.input.on('pointerup', () => {
@@ -52,7 +56,18 @@ export default class Player extends GameCharacter {
    * Actualiza la UI con la puntuación actual
    */
   updateScore() {
-    this.label.text = 'Score: ' + this.score;
+    this.label.text = 'Items: ' + this.score;
+  }
+
+  //Cambia el booleano carrying cuando coge o deja un objeto
+  carrying() {
+    if(this.carry == false){
+      this.carry = true;
+    }
+    else if(this.carry == true) {
+      this.carry = false;
+    }
+    console.log("Cambiando el carry")
   }
 
   /**

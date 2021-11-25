@@ -1,6 +1,5 @@
 import Boot from './boot.js';
 import End from './end.js';
-import Wall from './wall.js';
 import Level from './scene.js';
 
 /**
@@ -10,8 +9,8 @@ import Level from './scene.js';
 let config = {
     type: Phaser.CANVAS,
     canvas: document.getElementById("mainCanvas"),
-    width:  1000,
-    height: 500,
+    width:  1420,
+    height: 800,
     backgroundColor: '#708090',
     scale: {
         // mode: Phaser.Scale.FIT,  
@@ -31,6 +30,15 @@ let config = {
         }
     },
 
+    plugins: {
+        scene: [
+            {
+                key: 'PhaserRaycaster',
+                plugin: PhaserRaycaster,
+                mapping: 'raycasterPlugin'
+            }
+        ]
+    }
 };
 
 new Phaser.Game(config);
