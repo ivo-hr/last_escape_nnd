@@ -17,11 +17,11 @@ export default class Guard extends GameCharacter {
     this.setDepth(1);
 
     this.puntos=[
-      100,50,
-      300,50,
-      300,250,
-      300,50,
-      100,50
+      75,50,
+      650,50,
+      650,720,
+      75,720,
+      75,50
     ]
     this.i=0;
     this.scene.physics.moveTo(this,this.puntos[this.i],this.puntos[this.i+1]);
@@ -73,8 +73,6 @@ export default class Guard extends GameCharacter {
       //comprueba si está dentro de su angulo de vision
       if(Math.abs(angle) < this.visionAngle/2) {
       
-        console.log(this.angle);
-        console.log(Phaser.Math.RadToDeg(vector.angle()));
         //creamos un rayo con origen en el guardia y que apunte al jugador
         let ray = this.scene.raycaster.createRay({
           origin: {
@@ -96,7 +94,7 @@ export default class Guard extends GameCharacter {
         //debug: dibujamos el rayo en pantalla
         if (this.scene.DEBUG){
 
-          //this.scene.graphics.clear();
+          this.scene.graphics.clear();
           this.scene.graphics.lineStyle(1, 0x00ff00, 1);
           let line = new Phaser.Geom.Line(ray.origin.x, ray.origin.y, intersection.x, intersection.y);
           this.scene.graphics.fillPoint(ray.origin.x, ray.origin.y, 3)
