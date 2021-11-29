@@ -1,8 +1,8 @@
 import GameCharacter from './gamecharacter.js';
 import VisionCircle from './visioncircle.js';
 /**
- * Clase que representa el jugador del juego. El jugador se mueve por el mundo usando los cursores.
- * También almacena la puntuación o número de estrellas que ha recogido hasta el momento.
+ * Clase que representa el jugador del juego. El jugador se mueve por el mundo con el click derecho del ratón.
+ * También almacena el número de objetos conseguidos.
  */
 export default class Player extends GameCharacter {
   
@@ -21,7 +21,7 @@ export default class Player extends GameCharacter {
     this.setDepth(2);
     this.score = 0;
 
-    // Esta label es la UI en la que pondremos la puntuación del jugador
+    // Esta label es la UI en la que pondremos el número de objetos pequeños del jugador
     this.label = this.scene.add.text(10, 10, "");
     
     //this.cursors = this.scene.input.keyboard.createCursorKeys();
@@ -29,12 +29,13 @@ export default class Player extends GameCharacter {
 
     this.visionRadius = 400;
 
+    //círculo de visión del jugador
     let visionCircle = new VisionCircle(this.scene, this.visionRadius);
     this.add(visionCircle);
 
     this.updateScore();
 
-    this.carry = false;//empieza con el booleano de llevar objetos en falso
+    this.carrying = false;//empieza con el booleano de llevar objetos en falso
 
     //eventos para parar al jugador
     this.scene.input.on('pointerup', () => {
@@ -47,6 +48,9 @@ export default class Player extends GameCharacter {
     });
   }
 
+  /**
+   * Suma 1 a la score y la actualiza
+   */
   point() {
     this.score++;
     this.updateScore();
@@ -59,20 +63,29 @@ export default class Player extends GameCharacter {
     this.label.text = 'Items: ' + this.score;
   }
 
-  //Cambia el booleano carrying cuando coge o deja un objeto
-  carrying() {
-    if(this.carry == false){
-      this.carry = true;
-    }
-    else if(this.carry == true) {
-      this.carry = false;
-    }
-    console.log("Cambiando el carry")
+  /**
+   * Cambia el booleano carrying cuando coge o deja un objeto
+   */
+  toggleCarrying() {
+
+    this.carrying = !this.carrying;
+
+    if (this.scene.DEBUG) console.log("Cambiando el carrying")
   }
 
   /**
-   * Métodos preUpdate de Phaser. En este caso solo se encarga del movimiento del jugador.
-   * @override
+   * Método que devuelve si el jugador esta cargando un objeto
+   * @returns {boolean} Si lleva (true) o no (false) un objeto grande
+   */
+  isCarrying(){
+
+    return this.carrying;
+  }
+
+  /**
+   * Métodos preUpdate de Phaser. Se encarga del movimiento del jugador y rotar su sprite en la direccion del movimiento.
+   * @param {*} t 
+   * @param {*} dt 
    */
   preUpdate(t,dt) {
     super.preUpdate(t,dt);
@@ -80,14 +93,20 @@ export default class Player extends GameCharacter {
     //si el click derecho esta pulsado el jugador se mueve hacia el cursor
     if(this.pointer.rightButtonDown()){
 
+      //coordenadas del puntero
       let x = this.pointer.worldX;
       let y = this.pointer.worldY;
 
+      //vector de movimiento
       let vector = new Phaser.Math.Vector2(x - this.x, y - this.y);
 
+      //rotación del sprite
       this.setRotation(vector.angle() + Phaser.Math.PI2/4);
+      
+      //distancia hasta el cursor
       let distance = vector.length();
 
+      //si la distancia es mayor a 5 se mueve, si no para
       if (distance > 5) this.scene.physics.moveTo(this, x, y, 60*this.speed);
       else {
         this.body.setVelocityX(0);

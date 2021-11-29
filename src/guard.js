@@ -1,6 +1,9 @@
 import GameCharacter from './gamecharacter.js';
 import VisionCircle from './visioncircle.js';
 
+/**
+ * Clase del guardia, realiza una patrulla determinada y aumenta la sospecha si ve al jugador llevando un objeto grande
+ */
 export default class Guard extends GameCharacter {
   /** 
    * Constructor del jugador
@@ -25,7 +28,7 @@ export default class Guard extends GameCharacter {
       75,50
     ]
     this.i=0; //índice que recorre los puntos de la patrulla
-    
+
     //movimiento hacia el primer punto
     this.scene.physics.moveTo(this,this.puntos[this.i],this.puntos[this.i+1]);
 
@@ -67,7 +70,8 @@ export default class Guard extends GameCharacter {
 
         //si no choca ve al jugador
         if (!intersection.object || !ray.boundsInRange(intersection.object)) {
-          console.log("veo al jugador");
+          //debug
+          if (this.scene.DEBUG) console.log("veo al jugador");
 
           if (this.scene.player.carry)this.scene.susBar.SusIncrease(susVar);
         }

@@ -14,30 +14,35 @@ export default class SuspicionBar extends Phaser.GameObjects.Sprite {
      */
     constructor(scene, x, y, _height, _width) {
         super(scene, x, y, 'susbar');
+
         this.displayWidth = _width;
         this.displayHeight = _height;
+
         this.setDepth(10);
         this.setOrigin(0, 0.5);
+
         this.scene.add.existing(this);
 
-        this._initialWidth = _width;
-        this.suspicion = 0;
-        this.displayWidth = this.suspicion * this._initialWidth / 100;
+        this._initialWidth = _width; //ancho completo de la barra
+        this.suspicion = 0; //sospecha (valor de 0 a 100)
+        this.displayWidth = this.suspicion * this._initialWidth / 100; //ajusta el ancho para que sea relativo a la sospecha
     } 
 
     /**
      * Incrementa la sospecha según un incremento dado
-     * @param {number} incr Incremento de la barra
+     * @param {number} incr Incremento de la sospecha
      */
     SusIncrease(incr){
 
         if ((incr > 0 && this.suspicion < 100) || (incr < 0 && this.suspicion > 0))
         this.suspicion += incr;
 
-        this.displayWidth = this.suspicion * this._initialWidth / 100;
+        this.displayWidth = this.suspicion * this._initialWidth / 100;  //ajusta el ancho para que sea relativo a la sospecha
 
+        //cambio de tinte de la barra (WIP)
         //this.tint = this.tint + this.suspicion * 0.01 * 0x00ff00;
 
-        console.log("Sus level:" + this.suspicion);
+        //debug
+        if (this.scene.DEBUG) console.log("Sus level:" + this.suspicion);
     }
 }   

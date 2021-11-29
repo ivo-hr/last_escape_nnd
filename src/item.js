@@ -41,9 +41,9 @@ export default class Item extends Phaser.GameObjects.Sprite {
                 //tambien proponer que cuando se recoja el objeto que en vez de estar moviendose con el jugador que en el HUD se
                 //muestre el objeto que lleva o cambiar el sprite del jugador a uno que lleva algo que represente un objeto generico
                 else if(bigItem == true){
-                    if(this.picked == false && this.scene.player.carry == false){
+                    if(this.picked == false && !this.player.isCarrying()){
                         this.picked = true;
-                        this.scene.player.carrying();
+                        this.scene.player.toggleCarrying();
                     }
                     /*else if(this.picked == true && this.scene.player.carry == true){
                         this.picked = false;
@@ -54,9 +54,9 @@ export default class Item extends Phaser.GameObjects.Sprite {
         });
 
         this.scene.input.on('pointerdown', pointer =>{
-            if(this.picked == true && this.scene.player.carry == true && pointer.middleButtonDown()){
+            if(this.picked == true && this.player.isCarrying() && pointer.middleButtonDown()){
                 this.picked = false;
-                this.scene.player.carrying();
+                this.scene.player.toggleCarrying();
                 console.log("DROPPED");
             }
         });
