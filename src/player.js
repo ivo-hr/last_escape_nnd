@@ -11,7 +11,6 @@ export default class Player extends GameCharacter {
    * @param {Phaser.Scene} scene Escena a la que pertenece el jugador
    * @param {number} x Coordenada X
    * @param {number} y Coordenada Y
-   * @param {bool} carry Booleano para saber si esta llevando un item encima o no para evitar llevar varios objetos grandes a la vez
    */
   constructor(scene, x, y) {
     super(scene, x, y, 'playertemp');
