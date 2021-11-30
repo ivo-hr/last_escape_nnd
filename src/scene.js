@@ -39,7 +39,6 @@ export default class Level extends Phaser.Scene {
     //esto es lo que hace que no haya context menu en el juego al pulsar click derecho
     this.input.mouse.disableContextMenu();
 
-
     //walls
     this.walls.add(new Wall(this, this.player, 300, 200, 100, 300));
     this.walls.add(new Wall(this, this.player, 500, 400, 500, 100));
@@ -49,9 +48,13 @@ export default class Level extends Phaser.Scene {
     this.walls.add(new Wall(this, this.player, 900, 400, 500, 100));
     this.walls.add(new Wall(this, this.player, 1100, 600, 100, 300));
 
+    //creación del raycaster
     this.raycaster = this.raycasterPlugin.createRaycaster();
     
-    this.raycaster.mapGameObjects(this.walls.getChildren());
+    //mapeo del raycaster: los muros del juego y el jugador
+    let array = this.walls.getChildren();
+    array[array.length] = this.player;
+    this.raycaster.mapGameObjects(array, true);
 
     this.susBar = new SuspicionBar(this, 10, 50, 30, 250);
     this.Workshop = new Workshop(this, this.player, 1100, 400, 300, 300, -0.1);
