@@ -1,5 +1,8 @@
 import Player from "./player.js";
 
+/**
+ * Clase que representa los objetos del juego. Pueden ser grandes o pequeños, siendo los grandes transportables
+ */
 export default class Item extends Phaser.GameObjects.Sprite {
     /** 
    * Constructor del item
@@ -16,7 +19,6 @@ export default class Item extends Phaser.GameObjects.Sprite {
 
         this.player = _player;
         this.picked = false;
-        //this.setScale(0.2);
         this.setScale(scale);
         this.scene.add.existing(this);
         this.setInteractive();//esto hace que pueda recibir eventos del raton
@@ -26,16 +28,20 @@ export default class Item extends Phaser.GameObjects.Sprite {
 
         //esto es lo que hace cuando se pulsa un boton del raton
         this.on('pointerdown', pointer => {
+            
             //hacemos este vector para saber la distancia entre el jugador y el item
             let vector = new Phaser.Math.Vector2(this.player.x - this.x, this.player.y - this.y);
-            //pointer.leftButtonDown() comprueba que el boton que se ha pulsado es el click izquierdo del raton
+            
+            //comprueba que el boton que se ha pulsado es el click izquierdo del raton
             if(vector.length() <= 50 && pointer.leftButtonDown()){
+                
                 //si el objeto no es grande de momento se suma puntos al score y se elimina el item
                 //cuando este creada la lista de objetos en el juego se marcara el objeto pequeño recogido
                 if(bigItem == false){
                     this.player.point();
                     this.destroy();
                 }
+
                 //si el objeto es grande se modificara el booleano picked para que lo lleve el jugador o lo suelte 
                 //nota: proponer una mejor manera para dropear el item ya que es complicado coger los pequeños sin soltar el grande
                 //en el proceso, ¿Usar barra espaciadora, pulsar la rueda del raton o hacer un boton en la escena para soltarlo?
@@ -46,14 +52,11 @@ export default class Item extends Phaser.GameObjects.Sprite {
                         this.picked = true;
                         this.player.toggleCarrying();
                     }
-                    /*else if(this.picked == true && this.scene.player.carry == true){
-                        this.picked = false;
-                        this.scene.player.carrying();
-                    }*/
                 }
             }
         });
 
+        //evento para soltar el objeto
         this.scene.input.on('pointerdown', pointer =>{
             if(this.picked == true && this.player.isCarrying() && pointer.middleButtonDown()){
                 this.picked = false;
@@ -64,6 +67,11 @@ export default class Item extends Phaser.GameObjects.Sprite {
 
     }
     
+    /**
+     * Método preUpdate de Phaser. En este caso controla el movimiento del objeto para que vaya con el jugador
+     * @param {*} t 
+     * @param {*} dt 
+     */
     preUpdate(t, dt){
         super.preUpdate(t, dt);
 

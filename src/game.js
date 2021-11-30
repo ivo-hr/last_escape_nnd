@@ -19,6 +19,7 @@ let config = {
     //pixelArt: true,
     scene: [Boot, Level, End],
 
+    //configuracion de fisicas arcade
     physics: {
         default: 'arcade',
         arcade: {
@@ -30,6 +31,7 @@ let config = {
         }
     },
 
+    //plugin que permite usar el raycast
     plugins: {
         scene: [
             {
