@@ -8,12 +8,16 @@ import Item from './item.js';
  * Escena principal del juego.
  * @extends Phaser.Scene
  */
-export default class Level extends Phaser.Scene {
+export default class Night1 extends Phaser.Scene {
   /**
    * Constructor de la escena
    */
   constructor() {
-    super({ key: 'level' });
+    super({ key: 'night1' });
+  }
+
+  init(datos) {
+    this.noche = datos.noche;
   }
 
   /**
@@ -59,6 +63,19 @@ export default class Level extends Phaser.Scene {
     this.susBar = new SuspicionBar(this, 10, 50, 30, 250);
     this.Workshop = new Workshop(this, this.player, 1100, 400, 300, 300, -0.1);
 
+    let timer = this.time.addEvent({
+      delay: 180000, //3 min
+      callback: this.nightEnd,
+      callbackScope: this 
+});
   }
 
+  //cambia la noche
+  nightEnd() {
+        
+    console.log("acaba la noche");
+    
+    this.noche++;
+    this.scene.start('nightchange', { noche: this.noche });
+  }
 }
