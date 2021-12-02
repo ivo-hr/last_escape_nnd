@@ -1,5 +1,5 @@
 /**
- * Escena principal del juego.
+ * Escena que se usa para cambiar de noche en el juego.
  * @extends Phaser.Scene
  */
 export default class NightChange extends Phaser.Scene {
@@ -14,7 +14,7 @@ export default class NightChange extends Phaser.Scene {
     this.noche = datos.noche;
   }
 /**
-   * Creación de la escena. Tan solo contiene el texto que indica la noche que toca
+   * Creación de la escena. Tan solo contiene el texto que indica la noche que toca a continuación
    * @override
    */
   create() {
@@ -30,6 +30,9 @@ export default class NightChange extends Phaser.Scene {
     });
   }
 
+  /**
+   * Método llamado desde el evento del timer que activa el listener pasado medio segundo
+   */
   activateListener(){
 
     this.input.keyboard.on('keydown', function (event) { 

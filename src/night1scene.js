@@ -70,7 +70,9 @@ export default class Night1 extends Phaser.Scene {
 });
   }
 
-  //cambia la noche
+  /**
+   * Método que cambia de noche a la siguiente
+   */
   nightEnd() {
         
     console.log("acaba la noche");
