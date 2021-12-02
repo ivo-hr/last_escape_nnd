@@ -1,5 +1,6 @@
-
-
+/**
+ * Clase que hace de base para los personajes del juego: los guardias y el jugador. Es un contenedor para poder añadir objetos.
+ */
 export default class GameCharacter extends Phaser.GameObjects.Container {
   
     /**
@@ -18,6 +19,7 @@ export default class GameCharacter extends Phaser.GameObjects.Container {
       this.speed = 5;
 
       this.scene.physics.add.existing(this);
+
       //offset del collider para centrarlo en el sprite
       this.body.offset = new Phaser.Math.Vector2(-this.body.halfWidth, -this.body.halfHeight);
       
@@ -25,7 +27,7 @@ export default class GameCharacter extends Phaser.GameObjects.Container {
     }
 
     preUpdate(t,dt) {
-      //super.preUpdate(t,dt);
+      //posiblemente innecesario
     }
 
 }

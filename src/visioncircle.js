@@ -1,5 +1,5 @@
 /**
- * Clase que contiene el círculo usado para implementar la visión del jugador
+ * Clase que contiene el círculo usado para implementar la visión del jugador y guardia
 */
 export default class VisionCircle extends Phaser.GameObjects.Sprite {
   
