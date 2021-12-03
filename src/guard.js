@@ -69,15 +69,24 @@ export default class Guard extends GameCharacter {
         let intersection = ray.cast();
 
         //si el rayo colisiona con el jugador lo esta viendo
-        if (intersection.object == this.scene.player) {
+        if (intersection.object === this.scene.player) {
           //debug
-          if (this.scene.DEBUG) console.log("veo al jugador");
+          if (this.scene.DEBUG) {
 
-          if (this.scene.player.isCarrying())this.scene.susBar.SusIncrease(susVar);
+            console.log("veo al jugador");
+          }
+
+          if (this.scene.player.isCarrying()) {
+
+            this.scene.susBar.SusIncrease(susVar);
+          }
         }
 
         //debug: dibujamos el rayo en pantalla
-        if (this.scene.DEBUG) this.drawRaycast(ray, intersection);
+        if (this.scene.DEBUG) {
+
+          this.drawRaycast(ray, intersection);
+        }
       }
     });
   }

@@ -25,9 +25,4 @@ export default class GameCharacter extends Phaser.GameObjects.Container {
       
       this.body.setCollideWorldBounds();
     }
-
-    preUpdate(t,dt) {
-      //posiblemente innecesario
-    }
-
 }

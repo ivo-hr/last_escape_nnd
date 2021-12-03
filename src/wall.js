@@ -19,8 +19,6 @@ export default class Wall extends Phaser.GameObjects.Sprite {
         this.displayHeight = _height;
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this, true); //lo añadimos a la física
-        this.scene.walls.add(this); //lo añadimos al grupo de muros
-
-        this.scene.physics.add.collider(this, player, () => { console.log("colision"); }); //collider
+        this.scene.walls.add(this); //lo añadimos al grupo de muro
     } 
 }
