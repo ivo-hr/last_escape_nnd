@@ -44,8 +44,8 @@ export default class Boot extends Phaser.Scene {
       tileWidth: 45, 
       tileHeight: 45
     });
-    const tileset1 = this.map.addTilesetImage('Suelo', '1');
-    const tileset2 = this.map.addTilesetImage('Pared', '2');
+    const tileset1 = this.map.addTilesetImage('carceltile', '1');
+    const tileset2 = this.map.addTilesetImage('carceltile', '2');
 
     this.groundLayer=this.map.createLayer('Entorno',[tileset1,tileset2]);
     //groundLayer.setCollisionByProperty({ Colision: true });
