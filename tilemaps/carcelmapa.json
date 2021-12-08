@@ -46,8 +46,17 @@
  "tileheight":45,
  "tilesets":[
         {
+         "columns":6,
          "firstgid":1,
-         "source":"carceltile.tsx"
+         "image":"carceltile.png",
+         "imageheight":225,
+         "imagewidth":270,
+         "margin":0,
+         "name":"carceltile",
+         "spacing":0,
+         "tilecount":30,
+         "tileheight":45,
+         "tilewidth":45
         }],
  "tilewidth":45,
  "type":"map",
