@@ -25,6 +25,19 @@ export default class Night1 extends Phaser.Scene {
    */
   create() {
 
+    //tilemap
+    this.map=this.make.tilemap({ 
+      key: 'carcelmapa', 
+      tileWidth: 45, 
+      tileHeight: 45
+    });
+    const tileset1 = this.map.addTilesetImage('carceltile', 'carceltile');
+
+    this.backgroundLayer=this.map.createLayer('Suelo',[tileset1]);
+    this.groundLayer=this.map.createLayer('Pared',[tileset1]);
+
+    //groundLayer.setCollisionByProperty({ Colision: true });
+
     //bool que indica si el juego esta en debug
     this.DEBUG = true;
 
@@ -43,14 +56,14 @@ export default class Night1 extends Phaser.Scene {
     //esto es lo que hace que no haya context menu en el juego al pulsar click derecho
     this.input.mouse.disableContextMenu();
 
-    //walls
-    this.walls.add(new Wall(this, this.player, 300, 200, 100, 300));
-    this.walls.add(new Wall(this, this.player, 500, 400, 500, 100));
-    this.walls.add(new Wall(this, this.player, 300, 600, 100, 300));
+    //walls (temporal hasta tener colisiones de tilemap)
+    // this.walls.add(new Wall(this, this.player, 300, 200, 100, 300));
+    // this.walls.add(new Wall(this, this.player, 500, 400, 500, 100));
+    // this.walls.add(new Wall(this, this.player, 300, 600, 100, 300));
 
-    this.walls.add(new Wall(this, this.player, 1100, 200, 100, 300));
-    this.walls.add(new Wall(this, this.player, 900, 400, 500, 100));
-    this.walls.add(new Wall(this, this.player, 1100, 600, 100, 300));
+    // this.walls.add(new Wall(this, this.player, 1100, 200, 100, 300));
+    // this.walls.add(new Wall(this, this.player, 900, 400, 500, 100));
+    // this.walls.add(new Wall(this, this.player, 1100, 600, 100, 300));
 
     //creación del raycaster
     this.raycaster = this.raycasterPlugin.createRaycaster();

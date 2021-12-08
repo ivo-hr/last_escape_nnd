@@ -24,6 +24,7 @@ export default class Boot extends Phaser.Scene {
     this.load.setPath('assets/sprites/');
 
     this.load.image('carceltile','carceltile.png');
+    
     this.load.image('wall', 'platform.png');
     this.load.image('guardtemp', 'guard.png');
     this.load.image('playertemp', 'playertemp.png');
@@ -37,19 +38,7 @@ export default class Boot extends Phaser.Scene {
    * nivel del juego
    */
   create() {
+    
     this.scene.start('nightchange', { noche: 1 });
-
-    this.map=this.make.tilemap({ 
-      key: 'carcelmapa', 
-      tileWidth: 45, 
-      tileHeight: 45
-    });
-    const tileset1 = this.map.addTilesetImage('carceltile', 'carceltile');
-    //const tileset2 = this.map.addTilesetImage('carceltile', 'carceltile');
-
-    //this.groundLayer=this.map.createLayer('Pared',[tileset2]);
-    this.backgroundLayer=this.map.createLayer('Suelo',[tileset1]);
-
-    //groundLayer.setCollisionByProperty({ Colision: true });
   }
 }
