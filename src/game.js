@@ -8,7 +8,7 @@ import NightChange from './nightchangescene.js';
  * la clase Game de Phaser, encargada de crear e iniciar el juego.
  */
 let config = {
-    type: Phaser.CANVAS,
+    type: Phaser.WEBGL,
     canvas: document.getElementById("mainCanvas"),
     width:  1420,
     height: 800,

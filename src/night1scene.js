@@ -25,18 +25,7 @@ export default class Night1 extends Phaser.Scene {
    */
   create() {
 
-    //tilemap
-    this.map=this.make.tilemap({ 
-      key: 'carcelmapa', 
-      tileWidth: 45, 
-      tileHeight: 45
-    });
-    const tileset1 = this.map.addTilesetImage('carceltile', 'carceltile');
-
-    this.backgroundLayer=this.map.createLayer('Suelo',[tileset1]);
-    this.groundLayer=this.map.createLayer('Pared',[tileset1]);
-
-    //groundLayer.setCollisionByProperty({ Colision: true });
+    this.createTilemap();
 
     //bool que indica si el juego esta en debug
     this.DEBUG = true;
@@ -76,11 +65,58 @@ export default class Night1 extends Phaser.Scene {
     this.susBar = new SuspicionBar(this, 10, 50, 30, 250);
     this.Workshop = new Workshop(this, this.player, 1100, 400, 300, 300, -0.1);
 
+    this.createRenderTexture();
+
     let timer = this.time.addEvent({
       delay: 180000, //3 min
       callback: this.nightEnd,
       callbackScope: this 
 });
+  }
+
+  /**
+   * Método que crea el tilemap y las capas de este
+   */
+  createTilemap(){
+
+    this.map=this.make.tilemap({ 
+      key: 'carcelmapa', 
+      tileWidth: 45, 
+      tileHeight: 45
+    });
+    const tileset1 = this.map.addTilesetImage('carceltile', 'carceltile');
+
+    this.backgroundLayer = this.map.createLayer('Suelo', [tileset1]);
+    this.groundLayer = this.map.createLayer('Pared', [tileset1]);
+
+    //groundLayer.setCollisionByProperty({ Colision: true });
+  }
+
+  /**
+   * Método que crea el Render Texture usado para el efecto de niebla de guerra
+   */
+  createRenderTexture(){
+
+    let width = this.scale.width;
+	  let height = this.scale.height;
+
+    let renderTexture = this.make.renderTexture({
+      width,
+      height
+    }, true);
+
+    // fill it with black
+    renderTexture.fill(0x000000, 1);
+
+    // draw the floorLayer into it
+    renderTexture.draw(this.backgroundLayer);
+    renderTexture.draw(this.groundLayer);
+
+    // set a dark blue tint
+    renderTexture.setTint(0x0b0b45);
+  
+    renderTexture.mask = new Phaser.Display.Masks.BitmapMask(this, this.player.spotlight);
+    renderTexture.mask.invertAlpha = true;
   }
 
   /**
