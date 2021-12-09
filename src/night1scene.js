@@ -4,6 +4,8 @@ import Guard from './guard.js';
 import SuspicionBar from './suspicionbar.js';
 import Workshop from './workshop.js';
 import Item from './item.js';
+
+import BlurPostFX from '../assets/pipelines/BlurPostFX.js';
 /**
  * Escena principal del juego.
  * @extends Phaser.Scene
@@ -93,7 +95,7 @@ export default class Night1 extends Phaser.Scene {
   }
 
   /**
-   * Método que crea el Render Texture usado para el efecto de niebla de guerra
+   * Método que crea el Render Texture usado para el efecto de la visión
    */
   createRenderTexture(){
 
@@ -105,16 +107,20 @@ export default class Night1 extends Phaser.Scene {
       height
     }, true);
 
-    // fill it with black
-    renderTexture.fill(0x000000, 1);
+    //lo creamos un nivel encima del resto de objetos
+    renderTexture.setDepth(2);
 
-    // draw the floorLayer into it
+    //dibujamos el mapa vacío en el redertexture
     renderTexture.draw(this.backgroundLayer);
     renderTexture.draw(this.groundLayer);
 
-    // set a dark blue tint
-    renderTexture.setTint(0x0b0b45);
+    //cambiamos el tinte a uno mas oscuro
+    renderTexture.setTint(0xa0a0dd);
   
+    //filtro
+    //this.cameras.main.setPostPipeline(BlurPostFX);
+
+    //máscara
     renderTexture.mask = new Phaser.Display.Masks.BitmapMask(this, this.player.spotlight);
     renderTexture.mask.invertAlpha = true;
   }

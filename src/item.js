@@ -17,6 +17,9 @@ export default class Item extends Phaser.GameObjects.Sprite {
     constructor(scene, _player, x, y, scale, bigItem){
         super(scene, x, y, 'itemtemp');
 
+        //está por encima de la máscara de visión
+        this.setDepth(3);
+
         this.player = _player;
         this.picked = false;
         this.setScale(scale);
