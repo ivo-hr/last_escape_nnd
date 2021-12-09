@@ -32,6 +32,17 @@ export default class Player extends GameCharacter {
     let visionCircle = new VisionCircle(this.scene, this.visionRadius);
     this.add(visionCircle);
 
+    this.spotlight = this.scene.make.image({
+      x: this.x,
+      y: this.y,
+      key: 'mask',
+      add: false
+    });
+
+    this.spotlight.setOrigin(0.5);
+
+    this.spotlight.scale = 2.5;
+
     this.updateScore();
 
     this.carrying = false;//empieza con el booleano de llevar objetos en falso
@@ -112,6 +123,10 @@ export default class Player extends GameCharacter {
         this.body.setVelocityY(0);
       }
     }
+
+    //movimiento del círculo de visión
+    this.spotlight.x = this.x;
+    this.spotlight.y = this.y;
   }
 
 }

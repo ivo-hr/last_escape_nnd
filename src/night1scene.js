@@ -4,6 +4,8 @@ import Guard from './guard.js';
 import SuspicionBar from './suspicionbar.js';
 import Workshop from './workshop.js';
 import Item from './item.js';
+
+import BlurPostFX from '../assets/pipelines/BlurPostFX.js';
 /**
  * Escena principal del juego.
  * @extends Phaser.Scene
@@ -25,6 +27,8 @@ export default class Night1 extends Phaser.Scene {
    */
   create() {
 
+    this.createTilemap();
+
     //bool que indica si el juego esta en debug
     this.DEBUG = true;
 
@@ -43,14 +47,14 @@ export default class Night1 extends Phaser.Scene {
     //esto es lo que hace que no haya context menu en el juego al pulsar click derecho
     this.input.mouse.disableContextMenu();
 
-    //walls
-    this.walls.add(new Wall(this, this.player, 300, 200, 100, 300));
-    this.walls.add(new Wall(this, this.player, 500, 400, 500, 100));
-    this.walls.add(new Wall(this, this.player, 300, 600, 100, 300));
+    //walls (temporal hasta tener colisiones de tilemap)
+    // this.walls.add(new Wall(this, this.player, 300, 200, 100, 300));
+    // this.walls.add(new Wall(this, this.player, 500, 400, 500, 100));
+    // this.walls.add(new Wall(this, this.player, 300, 600, 100, 300));
 
-    this.walls.add(new Wall(this, this.player, 1100, 200, 100, 300));
-    this.walls.add(new Wall(this, this.player, 900, 400, 500, 100));
-    this.walls.add(new Wall(this, this.player, 1100, 600, 100, 300));
+    // this.walls.add(new Wall(this, this.player, 1100, 200, 100, 300));
+    // this.walls.add(new Wall(this, this.player, 900, 400, 500, 100));
+    // this.walls.add(new Wall(this, this.player, 1100, 600, 100, 300));
 
     //creación del raycaster
     this.raycaster = this.raycasterPlugin.createRaycaster();
@@ -63,11 +67,62 @@ export default class Night1 extends Phaser.Scene {
     this.susBar = new SuspicionBar(this, 10, 50, 30, 250);
     this.Workshop = new Workshop(this, this.player, 1100, 400, 300, 300, -0.1);
 
+    this.createRenderTexture();
+
     let timer = this.time.addEvent({
       delay: 180000, //3 min
       callback: this.nightEnd,
       callbackScope: this 
 });
+  }
+
+  /**
+   * Método que crea el tilemap y las capas de este
+   */
+  createTilemap(){
+
+    this.map=this.make.tilemap({ 
+      key: 'carcelmapa', 
+      tileWidth: 45, 
+      tileHeight: 45
+    });
+    const tileset1 = this.map.addTilesetImage('carceltile', 'carceltile');
+
+    this.backgroundLayer = this.map.createLayer('Suelo', [tileset1]);
+    this.groundLayer = this.map.createLayer('Pared', [tileset1]);
+
+    //groundLayer.setCollisionByProperty({ Colision: true });
+  }
+
+  /**
+   * Método que crea el Render Texture usado para el efecto de la visión
+   */
+  createRenderTexture(){
+
+    let width = this.scale.width;
+	  let height = this.scale.height;
+
+    let renderTexture = this.make.renderTexture({
+      width,
+      height
+    }, true);
+
+    //lo creamos un nivel encima del resto de objetos
+    renderTexture.setDepth(2);
+
+    //dibujamos el mapa vacío en el redertexture
+    renderTexture.draw(this.backgroundLayer);
+    renderTexture.draw(this.groundLayer);
+
+    //cambiamos el tinte a uno mas oscuro
+    renderTexture.setTint(0xa0a0dd);
+  
+    //filtro
+    //this.cameras.main.setPostPipeline(BlurPostFX);
+
+    //máscara
+    renderTexture.mask = new Phaser.Display.Masks.BitmapMask(this, this.player.spotlight);
+    renderTexture.mask.invertAlpha = true;
   }
 
   /**

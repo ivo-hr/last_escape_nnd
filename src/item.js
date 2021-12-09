@@ -12,11 +12,15 @@ export default class Item extends Phaser.GameObjects.Sprite {
    * @param {number} y Coordenada Y
    * @param {number} scale Para saber la escala del item para que se puedan diferenciar los grandes y pequeños de momento
    * @param {boolean} bigItem booleano para saber si es item grande o no
-   * @param {boolean} picked booleano para saber si el objeto ha sido recogido por el jugador
+   * @param {boolean} picked booleano para saber si el objeto ha sido recogido por el jugador 
    */
     constructor(scene, _player, x, y, scale, bigItem){
         super(scene, x, y, 'itemtemp');
 
+        //está por encima de la máscara de visión
+        this.setDepth(3);
+
+        //@param {Workshop} workShop El taller
         this.player = _player;
         this.picked = false;
         this.setScale(scale);
@@ -25,7 +29,7 @@ export default class Item extends Phaser.GameObjects.Sprite {
         this.scene.items.add(this);//lo añade al grupo de items de la escena
 
         this.pointer = this.scene.input.activepointer;
-
+        
         //esto es lo que hace cuando se pulsa un boton del raton
         this.on('pointerdown', pointer => {
             
@@ -37,20 +41,19 @@ export default class Item extends Phaser.GameObjects.Sprite {
                 
                 //si el objeto no es grande de momento se suma puntos al score y se elimina el item
                 //cuando este creada la lista de objetos en el juego se marcara el objeto pequeño recogido
-                if(bigItem == false){
+                if(!bigItem){
                     this.player.point();
                     this.destroy();
                 }
 
-                //si el objeto es grande se modificara el booleano picked para que lo lleve el jugador o lo suelte 
-                //nota: proponer una mejor manera para dropear el item ya que es complicado coger los pequeños sin soltar el grande
-                //en el proceso, ¿Usar barra espaciadora, pulsar la rueda del raton o hacer un boton en la escena para soltarlo?
-                //tambien proponer que cuando se recoja el objeto que en vez de estar moviendose con el jugador que en el HUD se
-                //muestre el objeto que lleva o cambiar el sprite del jugador a uno que lleva algo que represente un objeto generico
-                else if(bigItem == true){
-                    if(this.picked == false && !this.player.isCarrying()){
+                //si el objeto es grande se modificara el booleano picked para que lo lleve el jugador
+                else if(bigItem){
+                    if(!this.picked && !this.player.isCarrying()){
                         this.picked = true;
                         this.player.toggleCarrying();
+                        //con esto se añade al container del jugador para que lo lleve
+                        this.player.add(this);
+                        this.setPosition(0, 0);
                     }
                 }
             }
@@ -58,27 +61,26 @@ export default class Item extends Phaser.GameObjects.Sprite {
 
         //evento para soltar el objeto
         this.scene.input.on('pointerdown', pointer =>{
-            if(this.picked == true && this.player.isCarrying() && pointer.middleButtonDown()){
+            if(this.picked && this.player.isCarrying() && pointer.middleButtonDown()){
                 this.picked = false;
                 this.player.toggleCarrying();
+                //con esto se quita del container del jugador y se pone en la posicion del jugador
+                this.player.remove(this);
+                this.setPosition(this.player.x, this.player.y);
                 console.log("DROPPED");
+                let vector = new Phaser.Math.Vector2(this.scene.Workshop.x - this.x, this.scene.Workshop.y - this.y);
+                //si esta dentro del workshop suma puntos de momento y se elimina 
+                //nota por alguna razon no se droppea en los extremos del workshop aunque deberia
+                if(vector.length() <= this.scene.Workshop.width){
+                    this.player.point();
+                    this.destroy();
+                }
             }
         });
 
+
     }
     
-    /**
-     * Método preUpdate de Phaser. En este caso controla el movimiento del objeto para que vaya con el jugador
-     * @param {*} t 
-     * @param {*} dt 
-     */
-    preUpdate(t, dt){
-        super.preUpdate(t, dt);
-
-        //si el objeto ha sido cogido entonces se ira moviendo con el jugador hasta que lo suelte el jugador
-        if(this.picked == true){
-            this.setPosition(this.player.x, this.player.y);
-        }
-    }
+    
     
 }

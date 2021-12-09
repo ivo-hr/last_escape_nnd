@@ -18,13 +18,21 @@ export default class Boot extends Phaser.Scene {
    */
   preload() {
     // Con setPath podemos establecer el prefijo que se añadirá a todos los load que aparecen a continuación
+
+    this.load.tilemapTiledJSON('carcelmapa','tilemaps/carcelmapa.json');
+
     this.load.setPath('assets/sprites/');
+
+    this.load.image('carceltile','carceltile.png');
+    
     this.load.image('wall', 'platform.png');
     this.load.image('guardtemp', 'guard.png');
     this.load.image('playertemp', 'playertemp.png');
     this.load.image('itemtemp', 'itemtemp.png');
     this.load.image('susbar', 'susbar.png');
     this.load.image('guardrange', 'guardrangetemp.png');
+
+    this.load.image('mask', 'mask1.png');
   }
 
   /**
@@ -32,6 +40,7 @@ export default class Boot extends Phaser.Scene {
    * nivel del juego
    */
   create() {
+    
     this.scene.start('nightchange', { noche: 1 });
   }
 }
