@@ -12,7 +12,7 @@ export default class SuspicionBar extends Phaser.GameObjects.Sprite {
      * @param {number} _width Ancho de la barra
      * @param {number} _height Alto de la barra
      */
-    constructor(scene, x, y, _height, _width) {
+    constructor(scene, x, y, _height, _width) {
         super(scene, x, y, 'susbar');
 
         this.displayWidth = _width;
@@ -36,7 +36,8 @@ export default class SuspicionBar extends Phaser.GameObjects.Sprite {
 
         if ((incr > 0 && this.suspicion < 100) || (incr < 0 && this.suspicion > 0))
         this.suspicion += incr;
-
+        else if (this.suspicion >= 100)
+        this.scene.lostNight();
         this.displayWidth = this.suspicion * this._initialWidth / 100;  //ajusta el ancho para que sea relativo a la sospecha
 
         //cambio de tinte de la barra (WIP)
