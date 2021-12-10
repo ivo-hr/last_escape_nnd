@@ -34,10 +34,13 @@ export default class SuspicionBar extends Phaser.GameObjects.Sprite {
      */
     SusIncrease(incr){
 
-        if ((incr > 0 && this.suspicion < 100) || (incr < 0 && this.suspicion > 0))
-        this.suspicion += incr;
-        else if (this.suspicion >= 100)
-        this.scene.lostNight();
+        if ((incr > 0 && this.suspicion < 100) || (incr < 0 && this.suspicion > 0)) {
+            this.suspicion += incr;
+        }
+        else if (this.suspicion >= 100) {
+            //this.scene.lostNight();
+            this.scene.nightEnd();
+        }
         this.displayWidth = this.suspicion * this._initialWidth / 100;  //ajusta el ancho para que sea relativo a la sospecha
 
         //cambio de tinte de la barra (WIP)
