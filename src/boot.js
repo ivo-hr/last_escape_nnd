@@ -19,7 +19,7 @@ export default class Boot extends Phaser.Scene {
   preload() {
     // Con setPath podemos establecer el prefijo que se añadirá a todos los load que aparecen a continuación
 
-    this.load.tilemapTiledJSON('carcelmapa','tilemaps/carcelmapa.json');
+    this.load.tilemapTiledJSON('carcelmapa','assets/tilemaps/carcelmapa.json');
 
     this.load.setPath('assets/sprites/');
 
