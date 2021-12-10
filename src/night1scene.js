@@ -30,7 +30,7 @@ export default class Night1 extends Phaser.Scene {
     this.createTilemap();
 
     //bool que indica si el juego esta en debug
-    this.DEBUG = true;
+    this.DEBUG = false;
 
     this.graphics = this.add.graphics({ lineStyle: { width: 1, color: 0x00ff00}, fillStyle: { color: 0xff00ff } });
 
