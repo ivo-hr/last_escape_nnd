@@ -69,20 +69,17 @@ export default class Item extends Phaser.GameObjects.Sprite {
                 this.player.remove(this);
                 this.setPosition(this.player.x, this.player.y);
                 console.log("DROPPED");
-                // let vector = new Phaser.Math.Vector2(this.scene.Workshop.x - this.x, this.scene.Workshop.y - this.y);
-                // //si esta dentro del workshop suma puntos de momento y se elimina 
-                // //nota por alguna razon no se droppea en los extremos del workshop aunque deberia
-                // if(vector.length() <= this.scene.Workshop.width){
-                //     this.player.point();
-                //     this.destroy();
-                // }
-
-                this.scene.physics.add.overlap(this, this.scene.workshop, () => { 
-                    console.log("item dropped in base"); 
+                //si esta dentro del workshop suma puntos de momento y se elimina 
+                this.scene.physics.add.overlap(this, this.scene.Workshop, () => { 
+                    if(!this.picked){
+                        console.log("item dropped in base"); 
+                        this.player.point();
+                        this.destroy();
+                    }
                 });
             }
         });
-
+        
 
     }
     
