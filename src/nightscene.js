@@ -10,12 +10,13 @@ import BlurPostFX from '../assets/pipelines/BlurPostFX.js';
  * Escena principal del juego.
  * @extends Phaser.Scene
  */
-export default class Night1 extends Phaser.Scene {
+export default class NightScene extends Phaser.Scene {
   /**
    * Constructor de la escena
+   * @param {string} scenceKey Key de la escena a construir
    */
-  constructor() {
-    super({ key: 'night1' });
+  constructor(scenceKey) {
+    super({ key: scenceKey });
   }
 
   init(datos) {
@@ -32,6 +33,7 @@ export default class Night1 extends Phaser.Scene {
     //bool que indica si el juego esta en debug
     this.DEBUG = false;
 
+    //graphics usados para el debug del raycast
     this.graphics = this.add.graphics({ lineStyle: { width: 1, color: 0x00ff00}, fillStyle: { color: 0xff00ff } });
 
     this.walls = this.add.group();
@@ -47,15 +49,6 @@ export default class Night1 extends Phaser.Scene {
     //esto es lo que hace que no haya context menu en el juego al pulsar click derecho
     this.input.mouse.disableContextMenu();
 
-    //walls (temporal hasta tener colisiones de tilemap)
-    // this.walls.add(new Wall(this, this.player, 300, 200, 100, 300));
-    // this.walls.add(new Wall(this, this.player, 500, 400, 500, 100));
-    // this.walls.add(new Wall(this, this.player, 300, 600, 100, 300));
-
-    // this.walls.add(new Wall(this, this.player, 1100, 200, 100, 300));
-    // this.walls.add(new Wall(this, this.player, 900, 400, 500, 100));
-    // this.walls.add(new Wall(this, this.player, 1100, 600, 100, 300));
-
     //creación del raycaster
     this.raycaster = this.raycasterPlugin.createRaycaster();
     
@@ -69,6 +62,7 @@ export default class Night1 extends Phaser.Scene {
 
     this.createRenderTexture();
 
+    //timer de la noche
     let timer = this.time.addEvent({
       delay: 180000, //3 min
       callback: this.nightEnd,

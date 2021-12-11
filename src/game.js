@@ -1,6 +1,6 @@
 import Boot from './boot.js';
 import End from './end.js';
-import Night1 from './night1scene.js';
+import Night1 from './night1.js';
 import NightChange from './nightchangescene.js';
 
 /**
