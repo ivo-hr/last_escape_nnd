@@ -49,46 +49,13 @@ export default class Guard extends GameCharacter {
     this.scene.physics.add.collider(this, this.scene.player);
     this.body.setImmovable();
 
+    //bool que indica si el guardia ha detectado al jugador
+    this.playerIsDetected = false;
+
+    this.susIncrement = susVar;
     //angulo de vision del guardia
     this.visionAngle = 60;
-    this.scene.physics.add.overlap(this.visionCircle, this.scene.player, (o1, o2) => {
-
-      //callback que se ejecuta cuando el jugador entra dentro del circulo de vision del guardia
-
-      let vector = new Phaser.Math.Vector2(o2.x - this.x, o2.y - this.y); //vector desde el guardia al jugador
-
-      //ángulo del jugador respecto al guardia
-      let playerAngle = this.overlapAngle(vector, this);
-
-      //comprueba si está dentro de su angulo de vision
-      if(Math.abs(playerAngle) < this.visionAngle/2) {
-      
-        let ray = this.createRaycast(vector.angle(), vector.lenght);
-        
-        //interseccion con el raycast
-        let intersection = ray.cast();
-
-        //si el rayo colisiona con el jugador lo esta viendo
-        if (intersection.object === this.scene.player) {
-          //debug
-          if (this.scene.DEBUG) {
-
-            console.log("veo al jugador");
-          }
-
-          if (this.scene.player.isCarrying()) {
-
-            this.scene.susBar.SusIncrease(susVar);
-          }
-        }
-
-        //debug: dibujamos el rayo en pantalla
-        if (this.scene.DEBUG) {
-
-          this.drawRaycast(ray, intersection);
-        }
-      }
-    });
+    this.scene.physics.add.overlap(this.visionCircle, this.scene.player, (o1, o2) => { this.checkPlayerInRange(o1, o2) });
   }
   
   /**
@@ -121,6 +88,17 @@ export default class Guard extends GameCharacter {
         vector = new Phaser.Math.Vector2( this.puntos[this.i] - this.x, this.puntos[this.i+1] - this.y);
         this.setRotation(vector.angle());
       }
+    }
+
+    if(this.playerIsDetected && !this.scene.physics.overlap(this, this.player)) {
+      
+      let timer = this.scene.time.addEvent({
+        delay: 2000, //2s
+        callback: this.continuePatrol,
+        callbackScope: this 
+      });
+
+      this.playerIsDetected = false;
     }
 
     //this.drawVisionArc();
@@ -221,5 +199,70 @@ export default class Guard extends GameCharacter {
     visionConeSprite.setDepth(0); //se dibuja bajo el guardia
     
     guard.add(visionConeSprite);
+  }
+
+  /**
+   * Comprueba si el jugador esta en el rango de vision
+   * @param {Phaser.GameObjects} o1 
+   * @param {Phaser.GameObjects} o2 
+   */
+  checkPlayerInRange(o1, o2) {
+
+    let vector = new Phaser.Math.Vector2(o2.x - this.x, o2.y - this.y); //vector desde el guardia al jugador
+
+    //ángulo del jugador respecto al guardia
+    let playerAngle = this.overlapAngle(vector, this);
+
+    //comprueba si está dentro de su angulo de vision
+    if(Math.abs(playerAngle) < this.visionAngle/2) {
+    
+      let ray = this.createRaycast(vector.angle(), vector.lenght);
+      
+      //interseccion con el raycast
+      let intersection = ray.cast();
+
+      //si el rayo colisiona con el jugador lo esta viendo
+      if (intersection.object === this.scene.player) {
+        //debug
+        if (this.scene.DEBUG) {
+
+          console.log("veo al jugador");
+        }
+
+        if (this.scene.player.isCarrying()) {
+
+          this.playerDetected();
+        }
+      }
+
+      //debug: dibujamos el rayo en pantalla
+      if (this.scene.DEBUG) {
+
+        this.drawRaycast(ray, intersection);
+      }
+    }
+  }
+
+  playerDetected(){
+
+    if (!this.playerIsDetected) {
+      
+      this.playerIsDetected = true;
+    }
+    
+    this.stop();
+
+    this.scene.susBar.SusIncrease(this.susIncrement);
+  }
+
+  stop(){
+
+    this.body.setVelocityX(0);
+    this.body.setVelocityY(0);
+  }
+
+  continuePatrol(){
+
+    this.scene.physics.moveTo(this,this.puntos[this.i],this.puntos[this.i+1]);
   }
 }
