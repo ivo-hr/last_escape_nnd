@@ -299,8 +299,6 @@ export default class Guard extends GameCharacter {
    */
   continuePatrol(){
 
-    if (!this.scene.DEBUG) console.log("reanudada la patrulla");
-
     this.interrogation.setVisible(false);
     this.interrogationIsPlaying = false;
     this.susIncreaseEnabled = false;
@@ -327,7 +325,7 @@ export default class Guard extends GameCharacter {
       paused: false
     });
 
-    interrogationTween.on('stop', this.activateSusIncrease);
+    interrogationTween.on('complete', this.activateSusIncrease, this);
   }
 
   /**
@@ -336,5 +334,7 @@ export default class Guard extends GameCharacter {
   activateSusIncrease(){
 
     this.susIncreaseEnabled = true;
+
+    console.log("tween completado");
   }
 }
