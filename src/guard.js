@@ -103,7 +103,7 @@ export default class Guard extends GameCharacter {
       }
     }
 
-    if(this.playerIsDetected && (!this.playerIsInRange || !this.scene.physics.overlap(this.visionAngle, this.scene.player))) {
+    if(this.playerIsDetected && (!this.playerIsInRange || !this.scene.physics.overlap(this.visionCircle, this.scene.player))) {
       
       let timer = this.scene.time.addEvent({
         delay: 2000, //2s
