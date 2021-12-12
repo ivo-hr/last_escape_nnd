@@ -4,6 +4,7 @@ import Guard from './guard.js';
 import SuspicionBar from './suspicionbar.js';
 import Workshop from './workshop.js';
 import Item from './item.js';
+import ItemList from './itemList.js';
 
 import BlurPostFX from '../assets/pipelines/BlurPostFX.js';
 /**
@@ -46,6 +47,7 @@ export default class NightScene extends Phaser.Scene {
     this.items.add(new Item(this, this.player, 700, 400, 0.3, true));
     this.items.add(new Item(this, this.player, 300, 400, 0.5, true));
 
+    this.itemList = new ItemList(this, 2000, 1000, 400, 700, 400);
     //esto es lo que hace que no haya context menu en el juego al pulsar click derecho
     this.input.mouse.disableContextMenu();
 
