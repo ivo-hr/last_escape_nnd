@@ -52,10 +52,23 @@ export default class Guard extends GameCharacter {
     //bool que indica si el guardia ha detectado al jugador
     this.playerIsDetected = false;
 
+    this.playerIsInRange = false;
+
+    this.susIncreaseEnabled = false;
     this.susIncrement = susVar;
+
     //angulo de vision del guardia
     this.visionAngle = 60;
     this.scene.physics.add.overlap(this.visionCircle, this.scene.player, (o1, o2) => { this.checkPlayerInRange(o1, o2) });
+
+    this.interrogation = this.scene.add.image(this.x, this.y, 'interrogacion', 0);
+    this.interrogation.setOrigin(0.5, 1);
+    this.interrogation.setScale(4);
+    this.interrogation.setDepth(4);
+
+    this.interrogationIsPlaying = false;
+
+    this.interrogation.setVisible(false);
   }
   
   /**
@@ -90,7 +103,7 @@ export default class Guard extends GameCharacter {
       }
     }
 
-    if(this.playerIsDetected && !this.scene.physics.overlap(this, this.player)) {
+    if(this.playerIsDetected && (!this.playerIsInRange || !this.scene.physics.overlap(this.visionAngle, this.scene.player))) {
       
       let timer = this.scene.time.addEvent({
         delay: 2000, //2s
@@ -98,6 +111,7 @@ export default class Guard extends GameCharacter {
         callbackScope: this 
       });
 
+      this.playerIsInRange = false;
       this.playerIsDetected = false;
     }
 
@@ -216,6 +230,8 @@ export default class Guard extends GameCharacter {
     //comprueba si está dentro de su angulo de vision
     if(Math.abs(playerAngle) < this.visionAngle/2) {
     
+      this.playerIsInRange = true;
+
       let ray = this.createRaycast(vector.angle(), vector.lenght);
       
       //interseccion con el raycast
@@ -232,7 +248,7 @@ export default class Guard extends GameCharacter {
         if (this.scene.player.isCarrying()) {
 
           this.playerDetected();
-        }
+        } 
       }
 
       //debug: dibujamos el rayo en pantalla
@@ -241,8 +257,13 @@ export default class Guard extends GameCharacter {
         this.drawRaycast(ray, intersection);
       }
     }
+    
+    else this.playerIsInRange = false;
   }
 
+  /**
+   * Método que sube la sospecha cuando el jugador es detectado y activa el tween de la interrogacion
+   */
   playerDetected(){
 
     if (!this.playerIsDetected) {
@@ -252,17 +273,68 @@ export default class Guard extends GameCharacter {
     
     this.stop();
 
-    this.scene.susBar.SusIncrease(this.susIncrement);
+    if (!this.interrogationIsPlaying) {
+      
+      this.activateInterrogationTween();
+      this.interrogationIsPlaying = true;
+    }
+
+    if (this.susIncreaseEnabled) {
+      
+      this.scene.susBar.SusIncrease(this.susIncrement);
+    }
   }
 
+  /**
+   * Método que para al guardia
+   */
   stop(){
 
     this.body.setVelocityX(0);
     this.body.setVelocityY(0);
   }
 
+  /**
+   * Método que reanuda la patrulla del guardia
+   */
   continuePatrol(){
 
+    if (!this.scene.DEBUG) console.log("reanudada la patrulla");
+
+    this.interrogation.setVisible(false);
+    this.interrogationIsPlaying = false;
+    this.susIncreaseEnabled = false;
+
     this.scene.physics.moveTo(this,this.puntos[this.i],this.puntos[this.i+1]);
+  }
+
+  /**
+   * 
+   */
+  activateInterrogationTween(){
+
+    this.interrogation.x = this.x;
+    this.interrogation.y = this.y + 30;
+
+    this.interrogation.setVisible(true);
+    
+    //tween que se reproduce al aparecer la interrogacion cuando el guardia ve al jugador
+    let interrogationTween = this.scene.tweens.add({
+      targets: [ this.interrogation ],
+      y: this.interrogation.y - 50,
+      duration: 100,
+      ease: 'Back.easeOut',
+      paused: false
+    });
+
+    interrogationTween.on('stop', this.activateSusIncrease);
+  }
+
+  /**
+   * Método que permite que el guardia suba la barra de sospecha
+   */
+  activateSusIncrease(){
+
+    this.susIncreaseEnabled = true;
   }
 }
