@@ -81,13 +81,15 @@ export default class NightScene extends Phaser.Scene {
 
     this.map=this.make.tilemap({ 
       key: 'carcelmapa', 
-      tileWidth: 45, 
-      tileHeight: 45
+      tileWidth: 8, 
+      tileHeight: 8
     });
     const tileset1 = this.map.addTilesetImage('carceltile', 'carceltile');
 
     this.backgroundLayer = this.map.createLayer('Suelo', [tileset1]);
-    this.groundLayer = this.map.createLayer('Pared', [tileset1]);
+    this.groundLayer = this.map.createLayer('Paredes', [tileset1]);
+    this.backgroundLayer.scale=4
+    this.groundLayer.scale=4;
 
     //groundLayer.setCollisionByProperty({ Colision: true });
   }
