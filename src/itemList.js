@@ -39,14 +39,14 @@ export default class ItemList extends Phaser.GameObjects.Sprite {
 
         this.items = {tablas: 0, cruz: false, pala: false, sierra: false, clavos: false, martillo: false, bisagras: false};
         
-        let show = this.scene.tweens.add({
+        this.show = this.scene.tweens.add({
             targets: this,
             x: sx,
             ease: 'Back',
             easeParams: [1.5],
             delay: 500
             })
-        let hide = this.scene.tweens.add({
+        this.hide = this.scene.tweens.add({
             targets: this,
             x: hx,
             ease: 'Back',
@@ -62,10 +62,10 @@ export default class ItemList extends Phaser.GameObjects.Sprite {
             this.opened = !this.opened;
             if (this.opened){
                 
-                show.restart();
+                this.show.restart();
             }
             else{
-                hide.on;
+                this.hide.on;
             }
         }
     }
@@ -75,11 +75,11 @@ export default class ItemList extends Phaser.GameObjects.Sprite {
         this.opened = !this.opened;
             if (this.opened){
                 console.log("opening menu");
-                show.restart();
+                this.show.restart();
             }
             else{
                 console.log("closing menu");
-                hide.on;
+                this.hide.restart();
             }
     }
 }   
