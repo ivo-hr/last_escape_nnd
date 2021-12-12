@@ -307,7 +307,7 @@ export default class Guard extends GameCharacter {
   }
 
   /**
-   * 
+   * Método que crea el tween de la interrogacion y hace que la interrogación aparezca sobre el guardia
    */
   activateInterrogationTween(){
 
