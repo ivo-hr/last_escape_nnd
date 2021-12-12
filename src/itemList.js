@@ -1,9 +1,9 @@
 //import Item from "./item";
 
 /**
- * Clase que representa la barra de sospecha, en forma de sprite
+ * Clase que representa la lista de objetos
 */
-export default class ItemList extends Phaser.GameObjects.Container {
+export default class ItemList extends Phaser.GameObjects.Sprite {
   
     /**
      * Constructor de la barra
@@ -16,9 +16,9 @@ export default class ItemList extends Phaser.GameObjects.Container {
      * @param {object} items Items recogidos y por recoger
      */
     constructor(scene, hx, sx, y, _height, _width) {
-        super(scene, hx, y);
+        super(scene, hx, y, 'itemlist');
 
-        this.sprite = new Phaser.GameObjects.Sprite(scene, 0, 0, 'itemlist');
+        //this.sprite = new Phaser.GameObjects.Sprite(scene, 0, 0, 'itemlist');
         this.text = new Phaser.GameObjects.Text(scene, 0, 0, ' ');
         
         this.displayWidth = _width;
@@ -28,25 +28,25 @@ export default class ItemList extends Phaser.GameObjects.Container {
         //this.setOrigin(0, 0.5);
 
 
-        this.add(this.sprite);
-        this.add(this.text);
-        this.scene.add.existing(this);
+        //this.scene.add(this.sprite);
+        //this.scene.add(this.text);
+        //this.scene.add.existing(this);
 
         
 
-        this.tab = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+        
         this.opened = false;
 
         this.items = {tablas: 0, cruz: false, pala: false, sierra: false, clavos: false, martillo: false, bisagras: false};
         
-        let show = this.tweens.add({
+        let show = this.scene.tweens.add({
             targets: this,
             x: sx,
             ease: 'Back',
             easeParams: [1.5],
             delay: 500
             })
-        let hide = this.tweens.add({
+        let hide = this.scene.tweens.add({
             targets: this,
             x: hx,
             ease: 'Back',
@@ -54,31 +54,32 @@ export default class ItemList extends Phaser.GameObjects.Container {
             delay: 500
         })
 
-        if (Phaser.Input.Keyboard.JustDown(this.tab))
+        let input = this.scene.input.keyboard.addKey('L');
+
+        if (input.isDown)
         {
             console.log("Tab pressed!");
             this.opened = !this.opened;
             if (this.opened){
                 
-                show.on;
+                show.restart();
             }
             else{
-                hide;
+                hide.on;
             }
         }
     }
 
     ShowItemList()
     {
-        console.log("opening menu");
-        this.opened = !this.opened;
         this.opened = !this.opened;
             if (this.opened){
-                
-                this.show();
+                console.log("opening menu");
+                show.restart();
             }
             else{
-                this.hide
+                console.log("closing menu");
+                hide.on;
             }
     }
 }   

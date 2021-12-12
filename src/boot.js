@@ -36,6 +36,7 @@ export default class Boot extends Phaser.Scene {
 
     this.load.image('mask', 'mask1.png');
     this.load.image('susOverlay', 'susbarOverlay.png');
+    this.load.image('clock', 'clock.png');
   }
 
   /**

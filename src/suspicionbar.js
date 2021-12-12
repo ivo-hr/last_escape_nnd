@@ -18,11 +18,13 @@ export default class SuspicionBar extends Phaser.GameObjects.Sprite {
         this.displayWidth = _width;
         this.displayHeight = _height;
 
-        this.overlay = new Phaser.GameObjects.Sprite(scene, 0, 0, 'susOverlay');
+        this.overlay = this.scene.add.image(this.x, this.y, 'susOverlay', 0);
         this.overlay.displayHeight = _height;
         this.overlay.displayWidth = this._initialWidth;
-        
-        this.setDepth(100);
+        this.overlay.setVisible(true);
+        this.overlay.setDepth(11);
+        this.overlay.scene.add.existing(this);
+        this.setDepth(10);
         this.setOrigin(0, 0.5);
 
         this.scene.add.existing(this);
@@ -30,8 +32,7 @@ export default class SuspicionBar extends Phaser.GameObjects.Sprite {
         this._initialWidth = _width; //ancho completo de la barra
         this.suspicion = 0; //sospecha (valor de 0 a 100)
         this.displayWidth = this.suspicion * this._initialWidth / 100; //ajusta el ancho para que sea relativo a la sospecha
-    } 
-    overlay
+    }
     /**
      * Incrementa la sospecha según un incremento dado
      * @param {number} incr Incremento de la sospecha

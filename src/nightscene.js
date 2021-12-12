@@ -5,7 +5,7 @@ import SuspicionBar from './suspicionbar.js';
 import Workshop from './workshop.js';
 import Item from './item.js';
 import ItemList from './itemList.js';
-
+import Clock from './clock.js';
 import BlurPostFX from '../assets/pipelines/BlurPostFX.js';
 /**
  * Escena principal del juego.
@@ -47,7 +47,7 @@ export default class NightScene extends Phaser.Scene {
     this.items.add(new Item(this, this.player, 700, 400, 0.3, true));
     this.items.add(new Item(this, this.player, 300, 400, 0.5, true));
 
-    //this.itemList = new ItemList(this, 2000, 1000, 400, 700, 400);
+    this.itemList = new ItemList(this, 2000, 1000, 400, 700, 400);
     //esto es lo que hace que no haya context menu en el juego al pulsar click derecho
     this.input.mouse.disableContextMenu();
 
@@ -61,7 +61,7 @@ export default class NightScene extends Phaser.Scene {
 
     this.susBar = new SuspicionBar(this, 10, 50, 30, 250);
     this.Workshop = new Workshop(this, this.player, 1100, 400, 300, 300, -0.1);
-
+    this.clock = new Clock(this, 0, 0, 100, 100);
     this.createRenderTexture();
 
     //timer de la noche
@@ -69,7 +69,9 @@ export default class NightScene extends Phaser.Scene {
       delay: 180000, //3 min
       callback: this.nightEnd,
       callbackScope: this 
-});
+    });
+
+    this.clock.ClockTime(timer, 180000);
   }
 
   /**
