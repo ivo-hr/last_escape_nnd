@@ -61,7 +61,7 @@ export default class NightScene extends Phaser.Scene {
 
     this.susBar = new SuspicionBar(this, 10, 50, 30, 250);
     this.Workshop = new Workshop(this, this.player, 1100, 400, 300, 300, -0.1);
-    this.clock = new Clock(this, 1000, 800, 100, 100);
+    this.clock = new Clock(this, 1000, 800, 150, 150);
     this.createRenderTexture();
 
     //timer de la noche

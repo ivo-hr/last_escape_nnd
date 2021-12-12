@@ -17,19 +17,20 @@ export default class SuspicionBar extends Phaser.GameObjects.Sprite {
 
         this.displayWidth = _width;
         this.displayHeight = _height;
+        this._initialWidth = _width; //ancho completo de la barra
 
         this.overlay = this.scene.add.image(this.x, this.y, 'susOverlay', 0);
-        this.overlay.displayHeight = _height;
-        this.overlay.displayWidth = this._initialWidth;
+        this.overlay.setOrigin(0, 0.5);
+        this.overlay.displayHeight = _height + 10;
+        this.overlay.displayWidth = this._initialWidth + 5;
         this.overlay.setVisible(true);
         this.overlay.setDepth(11);
-        this.overlay.scene.add.existing(this);
         this.setDepth(10);
         this.setOrigin(0, 0.5);
 
         this.scene.add.existing(this);
 
-        this._initialWidth = _width; //ancho completo de la barra
+        
         this.suspicion = 0; //sospecha (valor de 0 a 100)
         this.displayWidth = this.suspicion * this._initialWidth / 100; //ajusta el ancho para que sea relativo a la sospecha
     }
@@ -40,7 +41,7 @@ export default class SuspicionBar extends Phaser.GameObjects.Sprite {
     SusIncrease(incr){
 
         if ((incr > 0 && this.suspicion < 100) || (incr < 0 && this.suspicion > 0)) {
-            this.suspicion += incr;
+            this.suspicion += incr * 10/(this.suspicion + 1);
         }
         else if (this.suspicion >= 100) {
             //this.scene.lostNight();
@@ -49,7 +50,10 @@ export default class SuspicionBar extends Phaser.GameObjects.Sprite {
         this.displayWidth = this.suspicion * this._initialWidth / 100;  //ajusta el ancho para que sea relativo a la sospecha
 
         //cambio de tinte de la barra (WIP)
-        //this.tint = this.tint + this.suspicion * 0.01 * 0x00ff00;
+        this.tintBottomLeft = 0x00ff00;
+        this.tintBottomRight = 0xff0000;
+        this.tintTopLeft = 0x00ff00;
+        this.tintTopRight = 0xff0000;
 
         //debug
         if (this.scene.DEBUG) console.log("Sus level:" + this.suspicion);
