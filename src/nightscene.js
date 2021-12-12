@@ -47,7 +47,7 @@ export default class NightScene extends Phaser.Scene {
     this.items.add(new Item(this, this.player, 700, 400, 0.3, true));
     this.items.add(new Item(this, this.player, 300, 400, 0.5, true));
 
-    this.itemList = new ItemList(this, 2000, 1000, 400, 700, 400);
+    //this.itemList = new ItemList(this, 2000, 1000, 400, 700, 400);
     //esto es lo que hace que no haya context menu en el juego al pulsar click derecho
     this.input.mouse.disableContextMenu();
 
@@ -79,13 +79,15 @@ export default class NightScene extends Phaser.Scene {
 
     this.map=this.make.tilemap({ 
       key: 'carcelmapa', 
-      tileWidth: 45, 
-      tileHeight: 45
+      tileWidth: 8, 
+      tileHeight: 8
     });
     const tileset1 = this.map.addTilesetImage('carceltile', 'carceltile');
 
     this.backgroundLayer = this.map.createLayer('Suelo', [tileset1]);
-    this.groundLayer = this.map.createLayer('Pared', [tileset1]);
+    this.groundLayer = this.map.createLayer('Paredes', [tileset1]);
+    this.backgroundLayer.scale=4
+    this.groundLayer.scale=4;
 
     //groundLayer.setCollisionByProperty({ Colision: true });
   }

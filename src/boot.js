@@ -23,7 +23,7 @@ export default class Boot extends Phaser.Scene {
 
     this.load.setPath('assets/sprites/');
 
-    this.load.image('carceltile','carceltile.png');
+    this.load.image('carceltile','jawbreaker_tiles.png');
     
     this.load.image('wall', 'platform.png');
     this.load.image('guardtemp', 'guard.png');
