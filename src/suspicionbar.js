@@ -19,6 +19,7 @@ export default class SuspicionBar extends Phaser.GameObjects.Sprite {
         this.displayHeight = _height;
         this._initialWidth = _width; //ancho completo de la barra
 
+        //El sprite que se dibuja por encima para mejor UI
         this.overlay = this.scene.add.image(this.x, this.y, 'susOverlay', 0);
         this.overlay.setOrigin(0, 0.5);
         this.overlay.displayHeight = _height + 10;
@@ -49,7 +50,7 @@ export default class SuspicionBar extends Phaser.GameObjects.Sprite {
         }
         this.displayWidth = this.suspicion * this._initialWidth / 100;  //ajusta el ancho para que sea relativo a la sospecha
 
-        //cambio de tinte de la barra (WIP)
+        //cambio de tinte de la barra
         this.tintBottomLeft = 0x00ff00;
         this.tintBottomRight = 0xff0000;
         this.tintTopLeft = 0x00ff00;

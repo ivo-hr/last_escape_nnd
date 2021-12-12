@@ -31,12 +31,16 @@ export default class Clock extends Phaser.GameObjects.Sprite {
     {
         
     }
-
+    /**
+     * Actualiza la rotación del reloj en función del tiempo transcurrido en escena
+     * @param {*} t 
+     * @param {*} dt 
+     */
     preUpdate(t, dt){
         super.preUpdate(t, dt);
-
+        
         let movPercent = (this.scene.timer.getElapsed()/180000) * 100;
-
+        //Cambio del ángulo en función del porcentaje de tiempo transcurrido
         this.angle = movPercent * 100/45 + 100;
 
         if (this.scene.DEBUG) console.log ("clockrotation: " + this.angle);
