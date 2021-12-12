@@ -16,16 +16,16 @@ export default class ItemList extends Phaser.GameObjects.Container {
      * @param {object} items Items recogidos y por recoger
      */
     constructor(scene, hx, sx, y, _height, _width) {
-        super(scene, sx, y);
+        super(scene, hx, y);
 
         this.sprite = new Phaser.GameObjects.Sprite(scene, 0, 0, 'itemlist');
-        this.text = new Phaser.GameObjects.text(scene, 0, 0, ' ');
+        this.text = new Phaser.GameObjects.Text(scene, 0, 0, ' ');
         
         this.displayWidth = _width;
         this.displayHeight = _height;
 
         this.setDepth(10);
-        this.setOrigin(0, 0.5);
+        //this.setOrigin(0, 0.5);
 
 
         this.add(this.sprite);
@@ -39,46 +39,46 @@ export default class ItemList extends Phaser.GameObjects.Container {
 
         this.items = {tablas: 0, cruz: false, pala: false, sierra: false, clavos: false, martillo: false, bisagras: false};
         
-        
+        let show = this.tweens.add({
+            targets: this,
+            x: sx,
+            ease: 'Back',
+            easeParams: [1.5],
+            delay: 500
+            })
+        let hide = this.tweens.add({
+            targets: this,
+            x: hx,
+            ease: 'Back',
+            easeParams: [1.5],
+            delay: 500
+        })
 
-        if (Phaser.Input.Keyboard.JustDown(tab))
+        if (Phaser.Input.Keyboard.JustDown(this.tab))
         {
             console.log("Tab pressed!");
             this.opened = !this.opened;
             if (this.opened){
-                this.tweens.add({
-                    targets: this,
-                    x: sx,
-                    ease: 'Back',
-                    easeParams: [1.5],
-                    delay: 500
-                })
+                
+                show.on;
             }
             else{
-                this.tweens.add({
-                    targets: this,
-                    x: hx,
-                    ease: 'Back',
-                    easeParams: [1.5],
-                    delay: 500
-                })
+                hide;
             }
         }
+    }
 
-        ShowItemList()
-        {
-            console.log("Tab pressed!");
-            this.opened = !this.opened;
-            
-                this.tweens.add({
-                    targets: this,
-                    x: sx,
-                    ease: 'Back',
-                    easeParams: [1.5],
-                    delay: 500
+    ShowItemList()
+    {
+        console.log("opening menu");
+        this.opened = !this.opened;
+        this.opened = !this.opened;
+            if (this.opened){
                 
-            })
-            
-        }
+                this.show();
+            }
+            else{
+                this.hide
+            }
     }
 }   

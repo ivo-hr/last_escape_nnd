@@ -17,7 +17,7 @@ let config = {
         // mode: Phaser.Scale.FIT,  
         autoCenter: Phaser.Scale.CENTER_HORIZONTALLY
     },
-    //pixelArt: true,
+    pixelArt: true,
     scene: [Boot, Night1, NightChange],
 
     //configuracion de fisicas arcade
