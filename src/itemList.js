@@ -72,14 +72,15 @@ export default class ItemList extends Phaser.GameObjects.Sprite {
 
     ShowItemList()
     {
+        this.show.resume();
         this.opened = !this.opened;
             if (this.opened){
                 console.log("opening menu");
-                this.show.restart();
+                //this.show.restart();
             }
             else{
                 console.log("closing menu");
-                this.hide.restart();
+                //this.hide.restart();
             }
     }
 }   

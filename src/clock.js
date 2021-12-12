@@ -19,7 +19,7 @@ export default class Clock extends Phaser.GameObjects.Sprite {
         this.displayHeight = _height;
 
         this.setDepth(10);
-        this.angle = 90;
+        this.angle = 45;
         this.scene.add.existing(this);
     }
     /**
@@ -29,9 +29,15 @@ export default class Clock extends Phaser.GameObjects.Sprite {
      */
     ClockTime(currTime, nightDur)
     {
-        let movPercent = (currTime/nightDur) * 100;
+        
+    }
 
-        this.angle = movPercent * 100/180;
+    preUpdate(t, dt){
+        super.preUpdate(t, dt);
+
+        let movPercent = (this.scene.timer.getElapsed()/180000) * 100;
+
+        this.angle = movPercent * 100/45 + 100;
 
         if (this.scene.DEBUG) console.log ("clockrotation: " + this.angle);
     }

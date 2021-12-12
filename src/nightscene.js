@@ -61,18 +61,21 @@ export default class NightScene extends Phaser.Scene {
 
     this.susBar = new SuspicionBar(this, 10, 50, 30, 250);
     this.Workshop = new Workshop(this, this.player, 1100, 400, 300, 300, -0.1);
-    this.clock = new Clock(this, 0, 0, 100, 100);
+    this.clock = new Clock(this, 1000, 800, 100, 100);
     this.createRenderTexture();
 
     //timer de la noche
-    let timer = this.time.addEvent({
+    this.timer = this.time.addEvent({
       delay: 180000, //3 min
+      
       callback: this.nightEnd,
       callbackScope: this 
     });
 
-    this.clock.ClockTime(timer, 180000);
+    
   }
+
+
 
   /**
    * Método que crea el tilemap y las capas de este
