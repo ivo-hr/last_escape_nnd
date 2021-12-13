@@ -32,7 +32,7 @@ export default class Guard extends GameCharacter {
     //movimiento hacia el primer punto
     this.scene.physics.moveTo(this,this.puntos[this.i],this.puntos[this.i+1]);
 
-    //rotacion del guardia
+    //rotación del guardia
     let vector = new Phaser.Math.Vector2( this.puntos[this.i] - this.x, this.puntos[this.i+1] - this.y);
     this.setRotation(vector.angle());
 
@@ -97,7 +97,7 @@ export default class Guard extends GameCharacter {
         this.i+=2;
         this.scene.physics.moveTo(this,this.puntos[this.i],this.puntos[this.i+1]);
         
-        //rotacion del guardia
+        //rotación del guardia
         vector = new Phaser.Math.Vector2( this.puntos[this.i] - this.x, this.puntos[this.i+1] - this.y);
         this.setRotation(vector.angle());
       }
@@ -105,7 +105,7 @@ export default class Guard extends GameCharacter {
         this.i=0;
         this.scene.physics.moveTo(this,this.puntos[this.i],this.puntos[this.i+1]);
 
-        //rotacion del guardia
+        //rotación del guardia
         vector = new Phaser.Math.Vector2( this.puntos[this.i] - this.x, this.puntos[this.i+1] - this.y);
         this.setRotation(vector.angle());
       }
@@ -199,7 +199,7 @@ export default class Guard extends GameCharacter {
         if ((guardAngle + 180 > -5) && (guardAngle + 180 < 5) && vectorAngle > 0) guardAngle = 180;
         if ((guardAngle + 180 > -5) && (guardAngle + 180 < 5) && vectorAngle < 0) guardAngle = -180;
       }
-      let angle = vectorAngle - guardAngle; //angulo del vector respecto a la direccion del objeto de origen
+      let angle = vectorAngle - guardAngle; //angulo del vector respecto a la dirección del objeto de origen
 
       return angle;
   }
@@ -242,7 +242,7 @@ export default class Guard extends GameCharacter {
 
       let ray = this.createRaycast(vector.angle(), vector.lenght);
       
-      //interseccion con el raycast
+      //intersección con el raycast
       let intersection = ray.cast();
 
       //si el rayo colisiona con el objeto lo esta viendo
@@ -268,7 +268,7 @@ export default class Guard extends GameCharacter {
             console.log("veo un item");
           }
 
-          //metodo ver objeto
+          this.itemDetected();
         }
       }
 
@@ -283,7 +283,7 @@ export default class Guard extends GameCharacter {
   }
 
   /**
-   * Método que sube la sospecha cuando el jugador es detectado y activa el tween de la interrogacion
+   * Método que sube la sospecha cuando el jugador es detectado y activa el tween de la interrogación
    */
   playerDetected(){
 
@@ -303,6 +303,20 @@ export default class Guard extends GameCharacter {
     if (this.susIncreaseEnabled) {
       
       this.scene.susBar.SusIncrease(this.susIncrement);
+    }
+  }
+
+  /**
+   * Método que devuelve el item a su lugar al ser detectado y activa el tween de la exclamación
+   */
+  itemDetected(){
+
+    this.stop();
+
+    if (!this.exclamationIsPlaying){
+
+      this.activateExclamationTween();
+      this.exclamationIsPlaying = true;
     }
   }
 
@@ -328,7 +342,7 @@ export default class Guard extends GameCharacter {
   }
 
   /**
-   * Método que crea el tween de la interrogacion y hace que la interrogación aparezca sobre el guardia
+   * Método que crea el tween de la interrogación y hace que la interrogación aparezca sobre el guardia
    */
   activateInterrogationTween(){
 
@@ -337,7 +351,7 @@ export default class Guard extends GameCharacter {
 
     this.interrogation.setVisible(true);
     
-    //tween que se reproduce al aparecer la interrogacion cuando el guardia ve al jugador
+    //tween que se reproduce al aparecer la interrogación cuando el guardia ve al jugador
     let interrogationTween = this.scene.tweens.add({
       targets: [ this.interrogation ],
       y: this.interrogation.y - 50,
