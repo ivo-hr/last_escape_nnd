@@ -43,6 +43,6 @@ export default class Clock extends Phaser.GameObjects.Sprite {
         //Cambio del ángulo en función del porcentaje de tiempo transcurrido
         this.angle = movPercent * 100/45 + 100;
 
-        if (this.scene.DEBUG) console.log ("clockrotation: " + this.angle);
+        //if (this.scene.DEBUG) console.log ("clockrotation: " + this.angle);
     }
 }   

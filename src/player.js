@@ -13,8 +13,7 @@ export default class Player extends GameCharacter {
    * @param {number} y Coordenada Y
    */
   constructor(scene, x, y) {
-    super(scene, x, y, 'playertemp');
-    this.setScale(0.5);
+    super(scene, x, y, 'player');
 
     //z-index, el jugador se renderiza en el "nivel" 2
     this.setDepth(2);
@@ -26,7 +25,7 @@ export default class Player extends GameCharacter {
     //this.cursors = this.scene.input.keyboard.createCursorKeys();
     this.pointer = this.scene.input.activePointer;
 
-    this.visionRadius = 400;
+    this.visionRadius = 200;
 
     //círculo de visión del jugador
     let visionCircle = new VisionCircle(this.scene, this.visionRadius);
@@ -41,7 +40,7 @@ export default class Player extends GameCharacter {
 
     this.spotlight.setOrigin(0.5);
 
-    this.spotlight.scale = 2.5;
+    this.spotlight.scale = 5;
 
     this.updateScore();
 

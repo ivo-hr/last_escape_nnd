@@ -32,7 +32,7 @@ export default class NightScene extends Phaser.Scene {
     this.createTilemap();
 
     //bool que indica si el juego esta en debug
-    this.DEBUG = false;
+    this.DEBUG = true;
 
     //graphics usados para el debug del raycast
     this.graphics = this.add.graphics({ lineStyle: { width: 1, color: 0x00ff00}, fillStyle: { color: 0xff00ff } });
@@ -55,7 +55,7 @@ export default class NightScene extends Phaser.Scene {
     this.raycaster = this.raycasterPlugin.createRaycaster();
     
     //mapeo del raycaster: los muros del juego y el jugador
-    let array = this.walls.getChildren();
+    let array = this.items.getChildren();
     array[array.length] = this.player;
     this.raycaster.mapGameObjects(array, true);
 

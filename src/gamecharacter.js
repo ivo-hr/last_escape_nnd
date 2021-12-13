@@ -12,7 +12,9 @@ export default class GameCharacter extends Phaser.GameObjects.Container {
      */
     constructor(scene, x, y, sprite) {
       
-      let grafic = scene.add.sprite(0, 0, sprite);
+      let grafic = scene.add.sprite(0, 0, sprite, 0);
+      grafic.displayWidth = 20;
+      grafic.displayHeight = 20;
       super(scene, x, y, grafic);
 
       this.scene.add.existing(this);
@@ -20,8 +22,10 @@ export default class GameCharacter extends Phaser.GameObjects.Container {
 
       this.scene.physics.add.existing(this);
 
+      this.body.width = 20;
+      this.body.height = 20;
       //offset del collider para centrarlo en el sprite
-      this.body.offset = new Phaser.Math.Vector2(-this.body.halfWidth, -this.body.halfHeight);
+      this.body.offset = new Phaser.Math.Vector2(-this.body.width/2, -this.body.height/2);
       
       this.body.setCollideWorldBounds();
     }

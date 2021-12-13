@@ -26,13 +26,14 @@ export default class Boot extends Phaser.Scene {
     this.load.image('carceltile','jawbreaker_tiles.png');
     
     this.load.image('wall', 'platform.png');
-    this.load.image('guardtemp', 'guard.png');
-    this.load.image('playertemp', 'playertemp.png');
+    this.load.spritesheet('guard', 'guardia.png', { frameWidth: 4, frameHeight: 4 });
+    this.load.spritesheet('player', 'enterrador.png', { frameWidth: 4, frameHeight: 4 });
     this.load.image('itemtemp', 'itemtemp.png');
     this.load.image('susbar', 'susbar.png');
     this.load.image('guardrange', 'guardrangetemp.png');
     this.load.image('itemlist', 'itemlist.png');
     this.load.image('interrogacion', 'interrogacion.png');
+    this.load.image('exclamacion', 'exclamacion.png');
     this.load.image('mask', 'mask1.png');
     this.load.image('susOverlay', 'susbarOverlay.png');
     this.load.image('clock', 'clock.png');

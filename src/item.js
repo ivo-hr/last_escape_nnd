@@ -83,6 +83,14 @@ export default class Item extends Phaser.GameObjects.Sprite {
 
     }
     
+    /**
+     * Método que devuelve si el item está siendo llevado por el jugador
+     * @returns {boolean} Si el jugador lleva el item
+     */
+    isPicked(){
+
+        return this.picked;
+    }
     
     
 }
