@@ -28,6 +28,7 @@ export default class NightScene extends Phaser.Scene {
    */
   create() {
 
+    this.canvas = document.getElementById("mainCanvas");
     this.createTilemap();
 
     //bool que indica si el juego esta en debug
@@ -82,11 +83,11 @@ export default class NightScene extends Phaser.Scene {
 
     this.backgroundLayer = this.map.createLayer('Suelo', [tileset1]);
     this.groundLayer = this.map.createLayer('Paredes', [tileset1]);
-    
-    this.backgroundLayer.displayWidth = document.getElementById("mainCanvas").width;
-    this.backgroundLayer.displayHeight = document.getElementById("mainCanvas").height;
-    this.groundLayer.displayWidth = document.getElementById("mainCanvas").width;
-    this.groundLayer.displayHeight = document.getElementById("mainCanvas").height;
+
+    this.backgroundLayer.displayWidth = this.canvas.width;
+    this.backgroundLayer.displayHeight = this.canvas.height;
+    this.groundLayer.displayWidth = this.canvas.width;
+    this.groundLayer.displayHeight = this.canvas.height;
 
     this.groundLayer.setCollisionByProperty({ colisiona: true });
   }
