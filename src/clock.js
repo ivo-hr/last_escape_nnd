@@ -3,7 +3,7 @@
  * Clase que representa el reloj, en forma de sprite
 */
 export default class Clock extends Phaser.GameObjects.Sprite {
-  
+
     /**
      * Constructor de la barra
      * @param {Phaser.Scene} scene Escena a la que pertenece el reloj
@@ -22,26 +22,18 @@ export default class Clock extends Phaser.GameObjects.Sprite {
         this.angle = 45;
         this.scene.add.existing(this);
     }
-    /**
-     * Rotará el reloj en función del tiempo
-     * @param {number} currTime Tiempo actual
-     * @param {number} nightDur Duración de la noche
-     */
-    ClockTime(currTime, nightDur)
-    {
-        
-    }
+
     /**
      * Actualiza la rotación del reloj en función del tiempo transcurrido en escena
      * @param {*} t 
      * @param {*} dt 
      */
-    preUpdate(t, dt){
+    preUpdate(t, dt) {
         super.preUpdate(t, dt);
-        
-        let movPercent = (this.scene.timer.getElapsed()/180000) * 100;
+        //Porcentaje del tiempo transcurrido de la noche
+        let nightPercent = (this.scene.timer.getElapsed() / 180000) * 100;
         //Cambio del ángulo en función del porcentaje de tiempo transcurrido
-        this.angle = movPercent * 100/45 + 100;
+        this.angle = nightPercent * 100 / 45 + 100;
 
         //if (this.scene.DEBUG) console.log ("clockrotation: " + this.angle);
     }
