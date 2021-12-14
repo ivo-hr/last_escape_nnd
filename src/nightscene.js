@@ -82,8 +82,11 @@ export default class NightScene extends Phaser.Scene {
 
     this.backgroundLayer = this.map.createLayer('Suelo', [tileset1]);
     this.groundLayer = this.map.createLayer('Paredes', [tileset1]);
-    this.backgroundLayer.scale=4
-    this.groundLayer.scale=4;
+    
+    this.backgroundLayer.displayWidth = document.getElementById("mainCanvas").width;
+    this.backgroundLayer.displayHeight = document.getElementById("mainCanvas").height;
+    this.groundLayer.displayWidth = document.getElementById("mainCanvas").width;
+    this.groundLayer.displayHeight = document.getElementById("mainCanvas").height;
 
     this.groundLayer.setCollisionByProperty({ colisiona: true });
   }
