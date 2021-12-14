@@ -147,41 +147,6 @@ export default class Guard extends GameCharacter {
   }
 
   /**
-   * Método que crea un raycast dado un ángulo y el rango de detección de este
-   * @param {number} _angle Ángulo que tendrá el raycast, en radianes
-   * @param {number} _detectionRange Radio del cículo de detección del raycast
-   * @returns {Raycaster.Ray} Raycast creado
-   */
-  createRaycast(_angle, _detectionRange) {
-
-    //creamos un rayo con origen en el guardia y que apunte al jugador
-    let ray = this.scene.raycaster.createRay({
-      origin: {
-        x: this.x,
-        y: this.y
-      },
-      angle: _angle,
-      detectionRange: _detectionRange
-    });
-
-    return ray
-  }
-
-  /**
-   * Dibuja el raycast dado este y su intersección
-   * @param {Raycaster.Ray} ray Rayo a dibujar
-   * @param {Phaser.Geom.Point} intersection Punto de intersección del rayo
-   */
-  drawRaycast(ray, intersection) {
-
-    this.scene.graphics.clear();
-    this.scene.graphics.lineStyle(1, 0x00ff00, 1);
-    let line = new Phaser.Geom.Line(ray.origin.x, ray.origin.y, intersection.x, intersection.y);
-    this.scene.graphics.fillPoint(ray.origin.x, ray.origin.y, 3)
-    this.scene.graphics.strokeLineShape(line);
-  }
-
-  /**
    * Método que calcula el ángulo de un vector de forma relativa a la dirección de un objeto dado, en grados
    * @param {Phaser.Math.Vector2} vector Vector del que se quiere calcular el ángulo
    * @param {Phaser.GameObjects} origin Objeto origen respecto al que calcular el ángulo
@@ -242,22 +207,23 @@ export default class Guard extends GameCharacter {
     //comprueba si está dentro de su angulo de vision
     if (Math.abs(playerAngle) < this.visionAngle / 2) {
 
-      this.playerIsInRange = true;
-
       if (o2 === this.scene.player) {
+        
+        this.playerIsInRange = true;
+        
         //debug
         if (this.scene.DEBUG) {
 
           console.log("veo al jugador");
         }
 
-        if (this.scene.player.isCarrying()) {
+        if (this.scene.player.isCarrying() && !this.playerIsDetected) {
 
           this.playerDetected();
         }
       }
 
-      else if (!o2.isPicked()) {
+      else if (!o2.isPicked() && !this.exclamationIsPlaying) {
         //debug
         if (this.scene.DEBUG) {
 
@@ -268,7 +234,7 @@ export default class Guard extends GameCharacter {
       }
     }
 
-    else this.playerIsInRange = false;
+    else if (o2 === this.scene.player) this.playerIsInRange = false;
   }
 
   /**

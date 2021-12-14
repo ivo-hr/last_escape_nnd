@@ -101,6 +101,5 @@ export default class Item extends Phaser.GameObjects.Sprite {
 
         this.x = this.iniX;
         this.y = this.iniY;
-        console.log('hello');
     }
 }
