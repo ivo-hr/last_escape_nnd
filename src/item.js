@@ -14,13 +14,15 @@ export default class Item extends Phaser.GameObjects.Sprite {
    * @param {boolean} bigItem booleano para saber si es item grande o no
    * @param {boolean} picked booleano para saber si el objeto ha sido recogido por el jugador 
    */
-    constructor(scene, _player, x, y, scale, bigItem){
+    constructor(scene, _player, x, y, scale, bigItem) {
         super(scene, x, y, 'itemtemp');
 
         //está por encima de la máscara de visión
         this.setDepth(3);
 
-        //@param {Workshop} workShop El taller
+        this.iniX = this.x;
+        this.iniY = this.y;
+
         this.player = _player;
         this.picked = false;
         this.setScale(scale);
@@ -30,26 +32,26 @@ export default class Item extends Phaser.GameObjects.Sprite {
         this.scene.physics.add.existing(this);
 
         this.pointer = this.scene.input.activepointer;
-        
+
         //esto es lo que hace cuando se pulsa un boton del raton
         this.on('pointerdown', pointer => {
-            
+
             //hacemos este vector para saber la distancia entre el jugador y el item
             let vector = new Phaser.Math.Vector2(this.player.x - this.x, this.player.y - this.y);
-            
+
             //comprueba que el boton que se ha pulsado es el click izquierdo del raton
-            if(vector.length() <= 50 && pointer.leftButtonDown()){
-                
+            if (vector.length() <= 50 && pointer.leftButtonDown()) {
+
                 //si el objeto no es grande de momento se suma puntos al score y se elimina el item
                 //cuando este creada la lista de objetos en el juego se marcara el objeto pequeño recogido
-                if(!bigItem){
+                if (!bigItem) {
                     this.player.point();
                     this.destroy();
                 }
 
                 //si el objeto es grande se modificara el booleano picked para que lo lleve el jugador
-                else if(bigItem){
-                    if(!this.picked && !this.player.isCarrying()){
+                else if (bigItem) {
+                    if (!this.picked && !this.player.isCarrying()) {
                         this.picked = true;
                         this.player.toggleCarrying();
                         //con esto se añade al container del jugador para que lo lleve
@@ -61,8 +63,8 @@ export default class Item extends Phaser.GameObjects.Sprite {
         });
 
         //evento para soltar el objeto
-        this.scene.input.on('pointerdown', pointer =>{
-            if(this.picked && this.player.isCarrying() && pointer.middleButtonDown()){
+        this.scene.input.on('pointerdown', pointer => {
+            if (this.picked && this.player.isCarrying() && pointer.middleButtonDown()) {
                 this.picked = false;
                 this.player.toggleCarrying();
                 //con esto se quita del container del jugador y se pone en la posicion del jugador
@@ -70,27 +72,35 @@ export default class Item extends Phaser.GameObjects.Sprite {
                 this.setPosition(this.player.x, this.player.y);
                 console.log("DROPPED");
                 //si esta dentro del workshop suma puntos de momento y se elimina 
-                this.scene.physics.add.overlap(this, this.scene.Workshop, () => { 
-                    if(!this.picked){
-                        console.log("item dropped in base"); 
+                this.scene.physics.add.overlap(this, this.scene.Workshop, () => {
+                    if (!this.picked) {
+                        console.log("item dropped in base");
                         this.player.point();
                         this.destroy();
                     }
                 });
             }
         });
-        
+
 
     }
-    
+
     /**
      * Método que devuelve si el item está siendo llevado por el jugador
      * @returns {boolean} Si el jugador lleva el item
      */
-    isPicked(){
+    isPicked() {
 
         return this.picked;
     }
-    
-    
+
+    /**
+     * Método que devuelve el item a su posición incial
+     */
+    returnItemToIni() {
+
+        this.x = this.iniX;
+        this.y = this.iniY;
+        console.log('hello');
+    }
 }

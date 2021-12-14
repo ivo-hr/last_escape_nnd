@@ -13,28 +13,27 @@ export default class Guard extends GameCharacter {
    * @param {number} susVar Variación de sospecha
    */
   constructor(scene, x, y, susVar) {
-    
-    super(scene, x, y,'guard');
-    
+
+    super(scene, x, y, 'guard');
+
     //z-index, el guardia se renderiza en el "nivel" 1
     this.setDepth(1);
 
     //array de puntos de la patrulla del guardia
-    this.puntos=[
-      75,50,
-      650,50,
-      650,720,
-      75,720,
-      75,50
+    this.puntos = [
+      75, 50,
+      650, 50,
+      650, 720,
+      75, 720,
+      75, 50
     ]
-    this.i=0; //índice que recorre los puntos de la patrulla
+    this.i = 0; //índice que recorre los puntos de la patrulla
 
     //movimiento hacia el primer punto
-    this.scene.physics.moveTo(this,this.puntos[this.i],this.puntos[this.i+1]);
+    this.scene.physics.moveTo(this, this.puntos[this.i], this.puntos[this.i + 1]);
 
     //rotación del guardia
-    let vector = new Phaser.Math.Vector2( this.puntos[this.i] - this.x, this.puntos[this.i+1] - this.y);
-    this.setRotation(vector.angle());
+    this.ajustGuardRotation();
 
     //radio de visión del guardia
     this.visionRadius = 100;
@@ -78,7 +77,7 @@ export default class Guard extends GameCharacter {
     this.interrogation.setVisible(false);
     this.exclamation.setVisible(false);
   }
-  
+
   /**
    * Método preUpdate de Phaser. En este caso se encarga de controlar que el guardia llegue a su punto destino 
    * para cambiar al siguiente de la guardia.
@@ -86,37 +85,33 @@ export default class Guard extends GameCharacter {
    * @param {*} t 
    * @param {*} dt 
    */
-  preUpdate(t,dt) {
-    super.preUpdate(t,dt);
+  preUpdate(t, dt) {
+    super.preUpdate(t, dt);
 
-    let vector = new Phaser.Math.Vector2( this.puntos[this.i] - this.x, this.puntos[this.i+1] - this.y);
+    let vector = new Phaser.Math.Vector2(this.puntos[this.i] - this.x, this.puntos[this.i + 1] - this.y);
     let distance = vector.length();
 
-    if(distance<=1){
-      if(this.i<this.puntos.length-2){
-        this.i+=2;
-        this.scene.physics.moveTo(this,this.puntos[this.i],this.puntos[this.i+1]);
-        
-        //rotación del guardia
-        vector = new Phaser.Math.Vector2( this.puntos[this.i] - this.x, this.puntos[this.i+1] - this.y);
-        this.setRotation(vector.angle());
-      }
-      else{
-        this.i=0;
-        this.scene.physics.moveTo(this,this.puntos[this.i],this.puntos[this.i+1]);
+    if (distance <= 1) {
+      if (this.i < this.puntos.length - 2) {
+        this.i += 2;
+        this.scene.physics.moveTo(this, this.puntos[this.i], this.puntos[this.i + 1]);
 
-        //rotación del guardia
-        vector = new Phaser.Math.Vector2( this.puntos[this.i] - this.x, this.puntos[this.i+1] - this.y);
-        this.setRotation(vector.angle());
+        this.ajustGuardRotation();
+      }
+      else {
+        this.i = 0;
+        this.scene.physics.moveTo(this, this.puntos[this.i], this.puntos[this.i + 1]);
+
+        this.ajustGuardRotation();
       }
     }
 
-    if(this.playerIsDetected && (!this.playerIsInRange || !this.scene.physics.overlap(this.visionCircle, this.scene.player))) {
-      
+    if (this.playerIsDetected && (!this.playerIsInRange || !this.scene.physics.overlap(this.visionCircle, this.scene.player))) {
+
       let timer = this.scene.time.addEvent({
         delay: 2000, //2s
         callback: this.continuePatrol,
-        callbackScope: this 
+        callbackScope: this
       });
 
       this.playerIsInRange = false;
@@ -129,9 +124,18 @@ export default class Guard extends GameCharacter {
   }
 
   /**
+   * Corrige la rotación del guardia para que mire a la dirección de su destino
+   */
+  ajustGuardRotation() {
+
+    let vector = new Phaser.Math.Vector2(this.puntos[this.i] - this.x, this.puntos[this.i + 1] - this.y);
+    this.setRotation(vector.angle());
+  }
+
+  /**
    * Dibuja el arco de la visión (para ajustar sprites)
    */
-  drawVisionArc(){
+  drawVisionArc() {
 
     this.scene.graphics.clear();
     this.scene.graphics.beginPath();
@@ -148,7 +152,7 @@ export default class Guard extends GameCharacter {
    * @param {number} _detectionRange Radio del cículo de detección del raycast
    * @returns {Raycaster.Ray} Raycast creado
    */
-  createRaycast(_angle, _detectionRange){
+  createRaycast(_angle, _detectionRange) {
 
     //creamos un rayo con origen en el guardia y que apunte al jugador
     let ray = this.scene.raycaster.createRay({
@@ -162,13 +166,13 @@ export default class Guard extends GameCharacter {
 
     return ray
   }
-  
+
   /**
    * Dibuja el raycast dado este y su intersección
    * @param {Raycaster.Ray} ray Rayo a dibujar
    * @param {Phaser.Geom.Point} intersection Punto de intersección del rayo
    */
-  drawRaycast(ray, intersection){
+  drawRaycast(ray, intersection) {
 
     this.scene.graphics.clear();
     this.scene.graphics.lineStyle(1, 0x00ff00, 1);
@@ -183,43 +187,43 @@ export default class Guard extends GameCharacter {
    * @param {Phaser.GameObjects} origin Objeto origen respecto al que calcular el ángulo
    * @returns {number} Ángulo calculado
    */
-  overlapAngle(vector, origin){
+  overlapAngle(vector, origin) {
 
     let vectorAngle = Phaser.Math.RadToDeg(vector.angle());
-      if (vectorAngle > 180) vectorAngle -= 360;
+    if (vectorAngle > 180) vectorAngle -= 360;
 
-      let guardAngle = origin.angle;
-      //corrección de ángulo cuando se acerca a 180 o -180
-      if (guardAngle > 0) {
-        if ((guardAngle - 180 > -5) && (guardAngle - 180 < 5) && vectorAngle > 0) guardAngle = 180;
-        if ((guardAngle - 180 > -5) && (guardAngle - 180 < 5) && vectorAngle < 0) guardAngle = -180;
-      }
-      if (guardAngle < 0) {
-        
-        if ((guardAngle + 180 > -5) && (guardAngle + 180 < 5) && vectorAngle > 0) guardAngle = 180;
-        if ((guardAngle + 180 > -5) && (guardAngle + 180 < 5) && vectorAngle < 0) guardAngle = -180;
-      }
-      let angle = vectorAngle - guardAngle; //angulo del vector respecto a la dirección del objeto de origen
+    let guardAngle = origin.angle;
+    //corrección de ángulo cuando se acerca a 180 o -180
+    if (guardAngle > 0) {
+      if ((guardAngle - 180 > -5) && (guardAngle - 180 < 5) && vectorAngle > 0) guardAngle = 180;
+      if ((guardAngle - 180 > -5) && (guardAngle - 180 < 5) && vectorAngle < 0) guardAngle = -180;
+    }
+    if (guardAngle < 0) {
 
-      return angle;
+      if ((guardAngle + 180 > -5) && (guardAngle + 180 < 5) && vectorAngle > 0) guardAngle = 180;
+      if ((guardAngle + 180 > -5) && (guardAngle + 180 < 5) && vectorAngle < 0) guardAngle = -180;
+    }
+    let angle = vectorAngle - guardAngle; //angulo del vector respecto a la dirección del objeto de origen
+
+    return angle;
   }
 
   /**
    * Método que crea el sprite del cono de visión del guardia, realiza sus ajustes y lo añade a su contenedor
    * @param {Phaser.GameObjects.Container} guard Guardia al que añadir el sprite
    */
-  createVisionConeSprite(guard){
+  createVisionConeSprite(guard) {
 
     let visionConeSprite = this.scene.add.sprite(0, 0, 'guardrange');
 
     //ajustes de escala
     visionConeSprite.displayWidth *= 1.6;
     visionConeSprite.displayHeight *= 1.5;
-    
+
     visionConeSprite.setOrigin(0, 0.5); //origen en el centro-izquierda
     visionConeSprite.setAlpha(0.5);
     visionConeSprite.setDepth(0); //se dibuja bajo el guardia
-    
+
     guard.add(visionConeSprite);
   }
 
@@ -236,18 +240,18 @@ export default class Guard extends GameCharacter {
     let playerAngle = this.overlapAngle(vector, this);
 
     //comprueba si está dentro de su angulo de vision
-    if(Math.abs(playerAngle) < this.visionAngle/2) {
-    
+    if (Math.abs(playerAngle) < this.visionAngle / 2) {
+
       this.playerIsInRange = true;
 
       let ray = this.createRaycast(vector.angle(), vector.lenght);
-      
+
       //intersección con el raycast
       let intersection = ray.cast();
 
       //si el rayo colisiona con el objeto lo esta viendo
       if (intersection.object === o2) {
-        
+
         if (o2 === this.scene.player) {
           //debug
           if (this.scene.DEBUG) {
@@ -258,7 +262,7 @@ export default class Guard extends GameCharacter {
           if (this.scene.player.isCarrying()) {
 
             this.playerDetected();
-          } 
+          }
         }
 
         else if (!o2.isPicked()) {
@@ -268,7 +272,7 @@ export default class Guard extends GameCharacter {
             console.log("veo un item");
           }
 
-          this.itemDetected();
+          this.itemDetected(o2);
         }
       }
 
@@ -278,44 +282,45 @@ export default class Guard extends GameCharacter {
         this.drawRaycast(ray, intersection);
       }
     }
-    
+
     else this.playerIsInRange = false;
   }
 
   /**
    * Método que sube la sospecha cuando el jugador es detectado y activa el tween de la interrogación
    */
-  playerDetected(){
+  playerDetected() {
 
     if (!this.playerIsDetected) {
-      
+
       this.playerIsDetected = true;
     }
-    
+
     this.stop();
 
     if (!this.interrogationIsPlaying) {
-      
+
       this.activateInterrogationTween();
       this.interrogationIsPlaying = true;
     }
 
     if (this.susIncreaseEnabled) {
-      
+
       this.scene.susBar.SusIncrease(this.susIncrement);
     }
   }
 
   /**
    * Método que devuelve el item a su lugar al ser detectado y activa el tween de la exclamación
+   * @param {Item} item Objeto que será devuelto a su lugar inicial
    */
-  itemDetected(){
+  itemDetected(item) {
 
     this.stop();
 
-    if (!this.exclamationIsPlaying){
+    if (!this.exclamationIsPlaying) {
 
-      this.activateExclamationTween();
+      this.activateExclamationTween(item);
       this.exclamationIsPlaying = true;
     }
   }
@@ -323,7 +328,7 @@ export default class Guard extends GameCharacter {
   /**
    * Método que para al guardia
    */
-  stop(){
+  stop() {
 
     this.body.setVelocityX(0);
     this.body.setVelocityY(0);
@@ -332,28 +337,28 @@ export default class Guard extends GameCharacter {
   /**
    * Método que reanuda la patrulla del guardia
    */
-  continuePatrol(){
+  continuePatrol() {
 
     this.interrogation.setVisible(false);
     this.interrogationIsPlaying = false;
     this.susIncreaseEnabled = false;
 
-    this.scene.physics.moveTo(this,this.puntos[this.i],this.puntos[this.i+1]);
+    this.scene.physics.moveTo(this, this.puntos[this.i], this.puntos[this.i + 1]);
   }
 
   /**
    * Método que crea el tween de la interrogación y hace que la interrogación aparezca sobre el guardia
    */
-  activateInterrogationTween(){
+  activateInterrogationTween() {
 
     this.interrogation.x = this.x;
     this.interrogation.y = this.y + 30;
 
     this.interrogation.setVisible(true);
-    
+
     //tween que se reproduce al aparecer la interrogación cuando el guardia ve al jugador
     let interrogationTween = this.scene.tweens.add({
-      targets: [ this.interrogation ],
+      targets: [this.interrogation],
       y: this.interrogation.y - 50,
       duration: 100,
       ease: 'Back.easeOut',
@@ -364,32 +369,40 @@ export default class Guard extends GameCharacter {
   }
 
   /**
-   * Método que crea el tween de la exclamación y hace que la exclamación aparezca sobre el guardia
+   * Método que crea el tween de la exclamación y devuelve el item especificado a su posición inicial cuando acaba el tween
+   * @param {Item} item Objeto que será devuelto a su lugar inicial
    */
-   activateExclamationTween(){
+  activateExclamationTween(item) {
 
     this.exclamation.x = this.x;
     this.exclamation.y = this.y + 30;
 
     this.exclamation.setVisible(true);
-    
+
     //tween que se reproduce al aparecer la exclamación cuando el guardia ve un objeto
     let exclamationTween = this.scene.tweens.add({
-      targets: [ this.exclamation ],
+      targets: [this.exclamation],
       y: this.exclamation.y - 50,
       duration: 100,
       ease: 'Back.easeOut',
       paused: false
     });
 
-    //exclamationTween.on('complete', this.activateSusIncrease, this);
+    exclamationTween.on('complete', item.returnItemToIni, item);
   }
 
   /**
    * Método que permite que el guardia suba la barra de sospecha
    */
-  activateSusIncrease(){
+  activateSusIncrease() {
 
     this.susIncreaseEnabled = true;
+  }
+
+  returnItemToIni(item) {
+
+    //item.returnItemToIni();
+
+    console.log("item devuelto");
   }
 }
