@@ -40,7 +40,7 @@ export default class Player extends GameCharacter {
 
     this.spotlight.setOrigin(0.5);
 
-    this.spotlight.scale = 5;
+    this.spotlight.scale = 3.5;
 
     this.updateScore();
 

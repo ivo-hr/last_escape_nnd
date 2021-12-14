@@ -113,7 +113,7 @@ export default class NightScene extends Phaser.Scene {
     renderTexture.draw(this.groundLayer);
 
     //cambiamos el tinte a uno mas oscuro
-    renderTexture.setTint(0xa0a0dd);
+    renderTexture.setTint(0x5050b0);
   
     //filtro
     //this.cameras.main.setPostPipeline(BlurPostFX);
