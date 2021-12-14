@@ -83,7 +83,9 @@ export default class NightScene extends Phaser.Scene {
     this.backgroundLayer.scale=4
     this.groundLayer.scale=4;
 
-    //groundLayer.setCollisionByProperty({ Colision: true });
+    /*this.groundLayer.setCollisionByProperty({ colisiona: true });
+
+    this.physics.add.collider(this.player,this.groundLayer);*/
   }
 
   /**
