@@ -42,6 +42,8 @@ export default class NightScene extends Phaser.Scene {
     this.player = new Player(this, 100, 300);
     this.guard = new Guard(this, 75, 200, +0.3);
 
+    this.physics.add.collider(this.player, this.groundLayer);
+
     this.items.add(new Item(this, this.player, 700, 100, 0.2, false));
     this.items.add(new Item(this, this.player, 700, 400, 0.3, true));
     this.items.add(new Item(this, this.player, 300, 400, 0.5, true));
@@ -83,9 +85,7 @@ export default class NightScene extends Phaser.Scene {
     this.backgroundLayer.scale=4
     this.groundLayer.scale=4;
 
-    /*this.groundLayer.setCollisionByProperty({ colisiona: true });
-
-    this.physics.add.collider(this.player,this.groundLayer);*/
+    this.groundLayer.setCollisionByProperty({ colisiona: true });
   }
 
   /**
