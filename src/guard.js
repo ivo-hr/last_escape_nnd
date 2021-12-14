@@ -217,20 +217,25 @@ export default class Guard extends GameCharacter {
           console.log("veo al jugador");
         }
 
-        if (this.scene.player.isCarrying() && !this.playerIsDetected) {
+        if (this.scene.player.isCarrying()) {
 
           this.playerDetected();
         }
       }
 
-      else if (!o2.isPicked() && !this.exclamationIsPlaying) {
+      else if (!o2.isPicked()) {
         //debug
         if (this.scene.DEBUG) {
 
           console.log("veo un item");
         }
 
-        this.itemDetected(o2);
+        if (!this.playerIsDetected){
+          
+          this.itemDetected(o2);
+        }
+
+        else this.playerDetected();
       }
     }
 
@@ -358,12 +363,5 @@ export default class Guard extends GameCharacter {
   activateSusIncrease() {
 
     this.susIncreaseEnabled = true;
-  }
-
-  returnItemToIni(item) {
-
-    //item.returnItemToIni();
-
-    console.log("item devuelto");
   }
 }
