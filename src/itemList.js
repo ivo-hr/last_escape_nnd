@@ -1,48 +1,86 @@
+//import Item from "./item";
 
 /**
- * Clase que representa la barra de sospecha, en forma de sprite
+ * Clase que representa la lista de objetos
 */
-export default class SuspicionBar extends Phaser.GameObjects.Sprite {
+export default class ItemList extends Phaser.GameObjects.Sprite {
   
     /**
      * Constructor de la barra
      * @param {Phaser.Scene} scene Escena a la que pertenece la barra
-     * @param {number} x Coordenada x
+     * @param {number} hx Coordenada x escondida (hiddenX)
+     * @param {number} sx Coordenada x mostrada (shownX)
      * @param {number} y Coordenada y
-     * @param {number} _width Ancho de la barra
-     * @param {number} _height Alto de la barra
+     * @param {number} _width Ancho de la lista
+     * @param {number} _height Alto de la lista
+     * @param {object} items Items recogidos y por recoger
      */
-    constructor(scene, x, y, _height, _width) {
-        super(scene, x, y, 'susbar');
+    constructor(scene, hx, sx, y, _height, _width) {
+        super(scene, hx, y, 'itemlist');
 
+        //this.sprite = new Phaser.GameObjects.Sprite(scene, 0, 0, 'itemlist');
+        this.text = new Phaser.GameObjects.Text(scene, 0, 0, ' ');
+        
         this.displayWidth = _width;
         this.displayHeight = _height;
 
         this.setDepth(10);
-        this.setOrigin(0, 0.5);
+        //this.setOrigin(0, 0.5);
 
-        this.scene.add.existing(this);
 
-        this._initialWidth = _width; //ancho completo de la barra
-        this.suspicion = 0; //sospecha (valor de 0 a 100)
-        this.displayWidth = this.suspicion * this._initialWidth / 100; //ajusta el ancho para que sea relativo a la sospecha
-    } 
+        //this.scene.add(this.sprite);
+        //this.scene.add(this.text);
+        //this.scene.add.existing(this);
 
-    /**
-     * Incrementa la sospecha según un incremento dado
-     * @param {number} incr Incremento de la sospecha
-     */
-    SusIncrease(incr){
+        
 
-        if ((incr > 0 && this.suspicion < 100) || (incr < 0 && this.suspicion > 0))
-        this.suspicion += incr;
+        
+        this.opened = false;
 
-        this.displayWidth = this.suspicion * this._initialWidth / 100;  //ajusta el ancho para que sea relativo a la sospecha
+        this.items = {tablas: 0, cruz: false, pala: false, sierra: false, clavos: false, martillo: false, bisagras: false};
+        
+        this.show = this.scene.tweens.add({
+            targets: this,
+            x: sx,
+            ease: 'Back',
+            easeParams: [1.5],
+            delay: 500
+            })
+        this.hide = this.scene.tweens.add({
+            targets: this,
+            x: hx,
+            ease: 'Back',
+            easeParams: [1.5],
+            delay: 500
+        })
 
-        //cambio de tinte de la barra (WIP)
-        //this.tint = this.tint + this.suspicion * 0.01 * 0x00ff00;
+        let input = this.scene.input.keyboard.addKey('L');
 
-        //debug
-        if (this.scene.DEBUG) console.log("Sus level:" + this.suspicion);
+        if (input.isDown)
+        {
+            console.log("Tab pressed!");
+            this.opened = !this.opened;
+            if (this.opened){
+                
+                this.show.restart();
+            }
+            else{
+                this.hide.on;
+            }
+        }
+    }
+
+    ShowItemList()
+    {
+        this.show.resume();
+        this.opened = !this.opened;
+            if (this.opened){
+                console.log("opening menu");
+                //this.show.restart();
+            }
+            else{
+                console.log("closing menu");
+                //this.hide.restart();
+            }
     }
 }   

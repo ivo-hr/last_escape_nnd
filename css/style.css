@@ -43,6 +43,13 @@ h6 {
   text-decoration: none;
 }
 
+canvas {
+  width: 95%;
+  height: 95%;
+  margin: 0;
+}
+
+
 /* FONT INCLUSIONS */
 @font-face {
   font-family: HelpMe;

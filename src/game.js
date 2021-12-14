@@ -1,6 +1,6 @@
 import Boot from './boot.js';
 import End from './end.js';
-import Night1 from './night1scene.js';
+import Night1 from './night1.js';
 import NightChange from './nightchangescene.js';
 
 /**
@@ -17,7 +17,7 @@ let config = {
         // mode: Phaser.Scale.FIT,  
         autoCenter: Phaser.Scale.CENTER_HORIZONTALLY
     },
-    //pixelArt: true,
+    pixelArt: true,
     scene: [Boot, Night1, NightChange],
 
     //configuracion de fisicas arcade
@@ -30,17 +30,6 @@ let config = {
                 y: 0
             }
         }
-    },
-
-    //plugin que permite usar el raycast
-    plugins: {
-        scene: [
-            {
-                key: 'PhaserRaycaster',
-                plugin: PhaserRaycaster,
-                mapping: 'raycasterPlugin'
-            }
-        ]
     }
 };
 
