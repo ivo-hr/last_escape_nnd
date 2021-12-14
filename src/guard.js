@@ -20,17 +20,17 @@ export default class Guard extends GameCharacter {
     this.setDepth(1);
 
     //array de puntos de la patrulla del guardia
-    this.puntos = [
+    this.patrolPoints = [
       75, 50,
       650, 50,
       650, 720,
       75, 720,
       75, 50
     ]
-    this.i = 0; //índice que recorre los puntos de la patrulla
+    this.patrolIndex = 0; //índice que recorre los puntos de la patrulla
 
     //movimiento hacia el primer punto
-    this.scene.physics.moveTo(this, this.puntos[this.i], this.puntos[this.i + 1]);
+    this.scene.physics.moveTo(this, this.patrolPoints[this.patrolIndex], this.patrolPoints[this.patrolIndex + 1]);
 
     //rotación del guardia
     this.ajustGuardRotation();
@@ -61,21 +61,30 @@ export default class Guard extends GameCharacter {
     this.scene.physics.add.overlap(this.visionCircle, this.scene.player, (o1, o2) => { this.checkInRange(o1, o2) });
     this.scene.physics.add.overlap(this.visionCircle, this.scene.items, (o1, o2) => { this.checkInRange(o1, o2) });
 
-    this.interrogation = this.scene.add.image(this.x, this.y, 'interrogacion');
-    this.interrogation.setOrigin(0.5, 1);
-    this.interrogation.setScale(4);
-    this.interrogation.setDepth(4);
+    this.interrogation = this.createTweenImage('interrogacion');
 
-    this.exclamation = this.scene.add.image(this.x, this.y, 'exclamacion');
-    this.exclamation.setOrigin(0.5, 1);
-    this.exclamation.setScale(4);
-    this.exclamation.setDepth(4);
+    this.exclamation = this.createTweenImage('exclamacion');
 
     this.interrogationIsPlaying = false;
     this.exclamationIsPlaying = false;
+  }
 
-    this.interrogation.setVisible(false);
-    this.exclamation.setVisible(false);
+  /**
+   * Método que crea una imagen usada para el tween de detección del guardia dado el nombre del sprite y ajusta sus parámetros
+   * @param {string} spriteName Nombre del sprite con el que se creará la imagen
+   * @returns {Phaser.GameObjects.Image} Imagen creada y ajustada
+   */
+  createTweenImage(spriteName) {
+
+    let image = this.scene.add.image(this.x, this.y, spriteName);
+
+    image.setOrigin(0.5, 1);
+    image.setScale(4);
+    image.setDepth(4);
+
+    image.setVisible(false);
+
+    return image;
   }
 
   /**
@@ -88,19 +97,19 @@ export default class Guard extends GameCharacter {
   preUpdate(t, dt) {
     super.preUpdate(t, dt);
 
-    let vector = new Phaser.Math.Vector2(this.puntos[this.i] - this.x, this.puntos[this.i + 1] - this.y);
+    let vector = new Phaser.Math.Vector2(this.patrolPoints[this.patrolIndex] - this.x, this.patrolPoints[this.patrolIndex + 1] - this.y);
     let distance = vector.length();
 
     if (distance <= 1) {
-      if (this.i < this.puntos.length - 2) {
-        this.i += 2;
-        this.scene.physics.moveTo(this, this.puntos[this.i], this.puntos[this.i + 1]);
+      if (this.patrolIndex < this.patrolPoints.length - 2) {
+        this.patrolIndex += 2;
+        this.scene.physics.moveTo(this, this.patrolPoints[this.patrolIndex], this.patrolPoints[this.patrolIndex + 1]);
 
         this.ajustGuardRotation();
       }
       else {
-        this.i = 0;
-        this.scene.physics.moveTo(this, this.puntos[this.i], this.puntos[this.i + 1]);
+        this.patrolIndex = 0;
+        this.scene.physics.moveTo(this, this.patrolPoints[this.patrolIndex], this.patrolPoints[this.patrolIndex + 1]);
 
         this.ajustGuardRotation();
       }
@@ -128,7 +137,7 @@ export default class Guard extends GameCharacter {
    */
   ajustGuardRotation() {
 
-    let vector = new Phaser.Math.Vector2(this.puntos[this.i] - this.x, this.puntos[this.i + 1] - this.y);
+    let vector = new Phaser.Math.Vector2(this.patrolPoints[this.patrolIndex] - this.x, this.patrolPoints[this.patrolIndex + 1] - this.y);
     this.setRotation(vector.angle());
   }
 
@@ -208,9 +217,9 @@ export default class Guard extends GameCharacter {
     if (Math.abs(playerAngle) < this.visionAngle / 2) {
 
       if (o2 === this.scene.player) {
-        
+
         this.playerIsInRange = true;
-        
+
         //debug
         if (this.scene.DEBUG) {
 
@@ -230,8 +239,8 @@ export default class Guard extends GameCharacter {
           console.log("veo un item");
         }
 
-        if (!this.playerIsDetected){
-          
+        if (!this.playerIsDetected) {
+
           this.itemDetected(o2);
         }
 
@@ -302,7 +311,7 @@ export default class Guard extends GameCharacter {
     this.exclamation.setVisible(false);
     this.exclamationIsPlaying = false;
 
-    this.scene.physics.moveTo(this, this.puntos[this.i], this.puntos[this.i + 1]);
+    this.scene.physics.moveTo(this, this.patrolPoints[this.patrolIndex], this.patrolPoints[this.patrolIndex + 1]);
   }
 
   /**
@@ -353,7 +362,7 @@ export default class Guard extends GameCharacter {
 
       delay: 1000, //1s
       callback: this.continuePatrol,
-      callbackScope: this 
+      callbackScope: this
     });
   }
 

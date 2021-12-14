@@ -20,8 +20,7 @@ export default class Item extends Phaser.GameObjects.Sprite {
         //está por encima de la máscara de visión
         this.setDepth(3);
 
-        this.iniX = this.x;
-        this.iniY = this.y;
+        this.saveInitialPosition();
 
         this.player = _player;
         this.picked = false;
@@ -81,8 +80,14 @@ export default class Item extends Phaser.GameObjects.Sprite {
                 });
             }
         });
+    }
 
-
+    /**
+     * Método que guarda la posición inicial del objeto en 2 variables
+     */
+    saveInitialPosition() {
+        this.iniX = this.x;
+        this.iniY = this.y;
     }
 
     /**
