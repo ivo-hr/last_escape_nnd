@@ -244,42 +244,27 @@ export default class Guard extends GameCharacter {
 
       this.playerIsInRange = true;
 
-      let ray = this.createRaycast(vector.angle(), vector.lenght);
+      if (o2 === this.scene.player) {
+        //debug
+        if (this.scene.DEBUG) {
 
-      //intersección con el raycast
-      let intersection = ray.cast();
-
-      //si el rayo colisiona con el objeto lo esta viendo
-      if (intersection.object === o2) {
-
-        if (o2 === this.scene.player) {
-          //debug
-          if (this.scene.DEBUG) {
-
-            console.log("veo al jugador");
-          }
-
-          if (this.scene.player.isCarrying()) {
-
-            this.playerDetected();
-          }
+          console.log("veo al jugador");
         }
 
-        else if (!o2.isPicked()) {
-          //debug
-          if (this.scene.DEBUG) {
+        if (this.scene.player.isCarrying()) {
 
-            console.log("veo un item");
-          }
-
-          this.itemDetected(o2);
+          this.playerDetected();
         }
       }
 
-      //debug: dibujamos el rayo en pantalla
-      if (this.scene.DEBUG) {
+      else if (!o2.isPicked()) {
+        //debug
+        if (this.scene.DEBUG) {
 
-        this.drawRaycast(ray, intersection);
+          console.log("veo un item");
+        }
+
+        this.itemDetected(o2);
       }
     }
 
@@ -343,6 +328,9 @@ export default class Guard extends GameCharacter {
     this.interrogationIsPlaying = false;
     this.susIncreaseEnabled = false;
 
+    this.exclamation.setVisible(false);
+    this.exclamationIsPlaying = false;
+
     this.scene.physics.moveTo(this, this.puntos[this.i], this.puntos[this.i + 1]);
   }
 
@@ -389,6 +377,13 @@ export default class Guard extends GameCharacter {
     });
 
     exclamationTween.on('complete', item.returnItemToIni, item);
+
+    let timer = this.scene.time.addEvent({
+
+      delay: 1000, //1s
+      callback: this.continuePatrol,
+      callbackScope: this 
+    });
   }
 
   /**

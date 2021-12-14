@@ -30,17 +30,6 @@ let config = {
                 y: 0
             }
         }
-    },
-
-    //plugin que permite usar el raycast
-    plugins: {
-        scene: [
-            {
-                key: 'PhaserRaycaster',
-                plugin: PhaserRaycaster,
-                mapping: 'raycasterPlugin'
-            }
-        ]
     }
 };
 

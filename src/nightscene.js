@@ -1,5 +1,4 @@
 import Player from './player.js';
-import Wall from './wall.js';
 import Guard from './guard.js';
 import SuspicionBar from './suspicionbar.js';
 import Workshop from './workshop.js';
@@ -51,14 +50,6 @@ export default class NightScene extends Phaser.Scene {
     //esto es lo que hace que no haya context menu en el juego al pulsar click derecho
     this.input.mouse.disableContextMenu();
 
-    //creación del raycaster
-    this.raycaster = this.raycasterPlugin.createRaycaster();
-    
-    //mapeo del raycaster: los muros del juego y el jugador
-    let array = this.items.getChildren();
-    array[array.length] = this.player;
-    this.raycaster.mapGameObjects(array, true);
-
     this.susBar = new SuspicionBar(this, 10, 50, 30, 250);
     this.Workshop = new Workshop(this, this.player, 1100, 400, 300, 300, -0.1);
     this.clock = new Clock(this, 1000, 800, 150, 150);
@@ -71,8 +62,6 @@ export default class NightScene extends Phaser.Scene {
       callback: this.nightEnd,
       callbackScope: this 
     });
-
-    
   }
 
 
