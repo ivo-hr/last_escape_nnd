@@ -13,7 +13,11 @@ export default class Player extends GameCharacter {
    * @param {number} y Coordenada Y
    */
   constructor(scene, x, y) {
+    //let spritePlayer = scene.add.sprite(20, 20, 'player')
+    
     super(scene, x, y, 'player');
+    //super(scene, x, y, spritePlayer)
+    //let spritePlayer = this.giveSprite();
 
     //z-index, el jugador se renderiza en el "nivel" 2
     this.setDepth(2);
@@ -45,6 +49,19 @@ export default class Player extends GameCharacter {
     this.updateScore();
 
     this.carrying = false;//empieza con el booleano de llevar objetos en falso
+
+    //creamos las animaciones del jugador
+    scene.anims.create({
+      key: 'idle',
+      frames: scene.anims.generateFrameNumbers('player', { start: 0, end: 0 }),
+      repeat: 0
+    });
+    scene.anims.create({
+      key: 'moving',
+      frames: scene.anims.generateFrameNumbers('player', { start: 1, end: 4 }),
+      frameRate: 7,
+      repeat: -1
+    });
 
     //eventos para parar al jugador
     this.scene.input.on('pointerup', () => {
@@ -91,6 +108,16 @@ export default class Player extends GameCharacter {
     return this.carrying;
   }
 
+  //falta definir lo que esta unido a play porque no encuentro la manera de accerer al sprite de gamecharacter
+  /*animsManager(){
+    if(this.body.newVelocity.x == 0 && this.body.newVelocity.y == 0){
+      .play('idle', true);
+    }
+    else{
+      .play('moving', true);
+    }
+  }*/
+
   /**
    * Métodos preUpdate de Phaser. Se encarga del movimiento del jugador y rotar su sprite en la direccion del movimiento.
    * @param {*} t 
@@ -116,7 +143,11 @@ export default class Player extends GameCharacter {
       let distance = vector.length();
 
       //si la distancia es mayor a 5 se mueve, si no para
-      if (distance > 5) this.scene.physics.moveTo(this, x, y, 60*this.speed);
+      if (distance > 5){ 
+        this.scene.physics.moveTo(this, x, y, 60*this.speed);
+        //this.play('moving', true);
+        //this.spritePlayer.play('moving', true);
+      }
       else {
         this.body.setVelocityX(0);
         this.body.setVelocityY(0);
@@ -126,6 +157,9 @@ export default class Player extends GameCharacter {
     //movimiento del círculo de visión
     this.spotlight.x = this.x;
     this.spotlight.y = this.y;
+
+    //comprobacion de las animaciones
+    //animsManager();
   }
 
 }

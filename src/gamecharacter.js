@@ -29,7 +29,10 @@ export default class GameCharacter extends Phaser.GameObjects.Container {
       
       this.body.setCollideWorldBounds();
     }
-
+    //no funciona o lo estoy haciendo mal
+    giveSprite(){
+      return this.grafic;
+    }
 
     preUpdate(t, dt){
 
