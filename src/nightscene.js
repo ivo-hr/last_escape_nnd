@@ -2,10 +2,17 @@ import Player from './player.js';
 import Guard from './guard.js';
 import SuspicionBar from './suspicionbar.js';
 import Workshop from './workshop.js';
-import Item from './item.js';
 import ItemList from './itemList.js';
 import Clock from './clock.js';
 import BlurPostFX from '../assets/pipelines/BlurPostFX.js';
+
+import Hammer from './items/hammer.js';
+import Saw from './items/saw.js';
+import Plank from './items/plank.js';
+import Cross from './items/cross.js';
+import Nails from './items/nails.js';
+import Hinge from './items/hinge.js';
+import Shovel from './items/shovel.js';
 /**
  * Escena principal del juego.
  * @extends Phaser.Scene
@@ -45,9 +52,9 @@ export default class NightScene extends Phaser.Scene {
 
     this.physics.add.collider(this.player, this.groundLayer);
 
-    this.items.add(new Item(this, this.player, 700, 100, 0.2, false));
-    this.items.add(new Item(this, this.player, 700, 400, 0.3, true));
-    this.items.add(new Item(this, this.player, 300, 400, 0.5, true));
+    this.items.add(new Hammer(this, this.player, 700, 100));
+    this.items.add(new Saw(this, this.player, 700, 400));
+    this.items.add(new Hammer(this, this.player, 300, 400));
 
     this.itemList = new ItemList(this, 2000, 1000, 400, 700, 400);
     //esto es lo que hace que no haya context menu en el juego al pulsar click derecho

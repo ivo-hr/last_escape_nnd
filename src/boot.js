@@ -24,7 +24,6 @@ export default class Boot extends Phaser.Scene {
 
     this.load.setPath('assets/sprites/');
     
-    this.load.image('wall', 'platform.png');
     this.load.spritesheet('guard', 'guardia.png', { frameWidth: 4, frameHeight: 4 });
     this.load.spritesheet('player', 'enterrador.png', { frameWidth: 4, frameHeight: 4 });
     this.load.image('itemtemp', 'itemtemp.png');
@@ -36,6 +35,13 @@ export default class Boot extends Phaser.Scene {
     this.load.image('mask', 'mask1.png');
     this.load.image('susOverlay', 'susbarOverlay.png');
     this.load.image('clock', 'clock.png');
+    this.load.image('sierra', 'sierra2.png');
+    this.load.image('bisagra', 'bisagra1.png');
+    this.load.image('clavos', 'cajaclavos.png');
+    this.load.image('cruz', 'cruz.png');
+    this.load.image('martillo', 'martillo.png');
+    this.load.image('pala', 'pala.png');
+    this.load.image('tabla', 'tabla.png');  
   }
 
   /**

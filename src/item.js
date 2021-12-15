@@ -10,12 +10,11 @@ export default class Item extends Phaser.GameObjects.Sprite {
    * @param {Player} _player el jugador
    * @param {number} x Coordenada X
    * @param {number} y Coordenada Y
-   * @param {number} scale Para saber la escala del item para que se puedan diferenciar los grandes y pequeños de momento
    * @param {boolean} bigItem booleano para saber si es item grande o no
-   * @param {boolean} picked booleano para saber si el objeto ha sido recogido por el jugador 
+   * @param {string} sprite Sprite que usa el item
    */
-    constructor(scene, _player, x, y, scale, bigItem) {
-        super(scene, x, y, 'itemtemp');
+    constructor(scene, _player, x, y, bigItem, sprite) {
+        super(scene, x, y, sprite);
 
         //está por encima de la máscara de visión
         this.setDepth(3);
@@ -25,7 +24,6 @@ export default class Item extends Phaser.GameObjects.Sprite {
         this.isBig = bigItem;
         this.player = _player;
         this.picked = false;
-        this.setScale(scale);
         this.scene.add.existing(this);
         this.setInteractive();//esto hace que pueda recibir eventos del raton
         this.scene.items.add(this);//lo añade al grupo de items de la escena
