@@ -51,10 +51,8 @@ export default class SuspicionBar extends Phaser.GameObjects.Sprite {
         this.displayWidth = this.suspicion * this._initialWidth / 100;  //ajusta el ancho para que sea relativo a la sospecha
 
         //cambio de tinte de la barra
-        this.tintBottomLeft = 0x00ff00;
-        this.tintBottomRight = 0xff0000;
-        this.tintTopLeft = 0x00ff00;
-        this.tintTopRight = 0xff0000;
+        this.tint = 0x00ff00;
+        
 
         //debug
         if (this.scene.DEBUG) console.log("Sus level:" + this.suspicion);
