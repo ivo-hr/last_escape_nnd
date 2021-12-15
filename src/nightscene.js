@@ -56,7 +56,14 @@ export default class NightScene extends Phaser.Scene {
     this.items.add(new Saw(this, this.player, 700, 400));
     this.items.add(new Hammer(this, this.player, 300, 400));
 
-    this.itemList = new ItemList(this, 2000, 1000, 400, 700, 400);
+    let listConfig = {
+      shownX: this.canvas.width/2,
+      hiddenX: this.canvas.width * 1.5,
+      y: this.canvas.height/2,
+      height: 700,
+      width: 500
+    };
+    this.itemList = new ItemList(this, listConfig);
     //esto es lo que hace que no haya context menu en el juego al pulsar click derecho
     this.input.mouse.disableContextMenu();
 

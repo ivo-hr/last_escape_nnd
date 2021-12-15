@@ -6,66 +6,97 @@
 export default class ItemList extends Phaser.GameObjects.Sprite {
 
     /**
-     * Constructor de la barra
+     * Constructor de la lista de objetos
      * @param {Phaser.Scene} scene Escena a la que pertenece la barra
-     * @param {number} hx Coordenada x escondida (hiddenX)
-     * @param {number} sx Coordenada x mostrada (shownX)
+     * @param {number} hiddenX Coordenada x escondida
+     * @param {number} shownX Coordenada x mostrada
      * @param {number} y Coordenada y
      * @param {number} _width Ancho de la lista
      * @param {number} _height Alto de la lista
      * @param {object} items Items recogidos y por recoger
      */
-    constructor(scene, hx, sx, y, _height, _width) {
-        super(scene, hx, y, 'itemlist');
+    constructor(scene, listConfig) {
 
-        //this.sprite = new Phaser.GameObjects.Sprite(scene, 0, 0, 'itemlist');
-        this.text = new Phaser.GameObjects.Text(scene, 0, 0, ' ');
+        super(scene, listConfig.hiddenX, listConfig.y, 'itemlist');
 
-        this.displayWidth = _width;
-        this.displayHeight = _height;
+        this.scene.add.existing(this);
 
-        this.hiddenX = hx;
-        this.shownX = sx
+        this.text = new Phaser.GameObjects.Text(scene, 0, 0, 'pito');
+
+        this.displayWidth = listConfig.width;
+        this.displayHeight = listConfig.height;
+
+        this.hiddenX = listConfig.hiddenX;
+        this.shownX = listConfig.shownX;
 
         this.setDepth(10);
 
         this.opened = false;
+        
+        this.playingTween = false;
 
         this.items = { tablas: 0, cruz: false, pala: false, sierra: false, clavos: false, martillo: false, bisagras: false };
 
         this.input = this.scene.input.keyboard.addKey('L');
 
-        this.input.on('down', this.ShowItemList, this);
-        this.input.on('up', this.ShowItemList, this);
+        this.input.on('down', this.toggleList, this);
     }
 
-    ShowItemList() {
+    toggleList(){
+
+        if(!this.playingTween){
+
+            if(this.opened) this.hideItemList();
+            else this.showItemList();
+        }
+    };
+
+    /**
+     * Método que muestra la lista en pantalla y reproduce el tween de esta
+     */
+    showItemList() {
+
+        this.playingTween = true;
 
         let show = this.scene.tweens.add({
-            targets: [this],
+            targets: [this, this.text],
             x: this.shownX,
-            duration: 100,
+            duration: 800,
             ease: 'Back.easeOut',
             paused: false
         });
 
+        show.on('complete', this.hasStoppedPlaying, this);
+
         this.opened = true;
 
-        if (this.scene.DEBUG) console.log("opening menu");
+        if (this.scene.DEBUG) console.log("opening list");
     }
 
-    HideItemList() {
+    /**
+     * Método que oculta la lista y reproduce el tween de esta
+     */
+    hideItemList() {
+
+        this.playingTween = true;
 
         let hide = this.scene.tweens.add({
             targets: [this],
             x: this.hiddenX,
-            duration: 100,
+            duration: 600,
             ease: 'Back.easeOut',
             paused: false
         });
 
+        hide.on('complete', this.hasStoppedPlaying, this);
+
         this.opened = false;
 
-        if (this.scene.DEBUG) console.log("closing menu");
+        if (this.scene.DEBUG) console.log("closing list");
+    }
+
+    hasStoppedPlaying(){
+
+        this.playingTween = false;
     }
 }   
