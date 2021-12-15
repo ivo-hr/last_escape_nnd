@@ -19,11 +19,10 @@ export default class Boot extends Phaser.Scene {
   preload() {
     // Con setPath podemos establecer el prefijo que se añadirá a todos los load que aparecen a continuación
 
+    this.load.image('carceltile','assets/tilesets/jawbreaker_tiles.png');
     this.load.tilemapTiledJSON('carcelmapa','assets/tilemaps/carcelmapa.json');
 
     this.load.setPath('assets/sprites/');
-
-    this.load.image('carceltile','jawbreaker_tiles.png');
     
     this.load.image('wall', 'platform.png');
     this.load.spritesheet('guard', 'guardia.png', { frameWidth: 4, frameHeight: 4 });
