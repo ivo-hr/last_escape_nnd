@@ -53,9 +53,9 @@ export default class NightScene extends Phaser.Scene {
     //esto es lo que hace que no haya context menu en el juego al pulsar click derecho
     this.input.mouse.disableContextMenu();
 
-    this.susBar = new SuspicionBar(this, 10, 50, 30, 250);
+    this.susBar = new SuspicionBar(this, 10, 50, 35, 250);
     this.Workshop = new Workshop(this, this.player, 1100, 400, 300, 300, -0.1);
-    this.clock = new Clock(this, 1000, 800, 150, 150);
+    this.clock = new Clock(this, 260, 35, 70, 70);
     this.createRenderTexture();
 
     //timer de la noche
