@@ -17,6 +17,7 @@ export default class GameCharacter extends Phaser.GameObjects.Container {
       grafic.displayHeight = 20;
       super(scene, x, y, grafic);
 
+      this.grafics = grafic;
       this.scene.add.existing(this);
       this.speed = 5;
 
@@ -28,10 +29,6 @@ export default class GameCharacter extends Phaser.GameObjects.Container {
       this.body.offset = new Phaser.Math.Vector2(-this.body.width/2, -this.body.height/2);
       
       this.body.setCollideWorldBounds();
-    }
-    //no funciona o lo estoy haciendo mal
-    giveSprite(){
-      return this.grafic;
     }
 
     preUpdate(t, dt){
