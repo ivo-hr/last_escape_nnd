@@ -41,7 +41,7 @@ export default class NightScene extends Phaser.Scene {
     this.items = this.add.group();
 
     this.player = new Player(this, 100, 300);
-    this.guard = new Guard(this, 75, 200, +0.3);
+    this.guard = new Guard(this, 75, 200, +0.3, true);
 
     this.physics.add.collider(this.player, this.groundLayer);
 

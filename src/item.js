@@ -22,6 +22,7 @@ export default class Item extends Phaser.GameObjects.Sprite {
 
         this.saveInitialPosition();
 
+        this.isBig = bigItem;
         this.player = _player;
         this.picked = false;
         this.setScale(scale);
@@ -43,13 +44,13 @@ export default class Item extends Phaser.GameObjects.Sprite {
 
                 //si el objeto no es grande de momento se suma puntos al score y se elimina el item
                 //cuando este creada la lista de objetos en el juego se marcara el objeto pequeño recogido
-                if (!bigItem) {
+                if (!this.isBig) {
                     this.player.point();
                     this.destroy();
                 }
 
                 //si el objeto es grande se modificara el booleano picked para que lo lleve el jugador
-                else if (bigItem) {
+                else if (this.isBig) {
                     if (!this.picked && !this.player.isCarrying()) {
                         this.picked = true;
                         this.player.toggleCarrying();
@@ -106,5 +107,10 @@ export default class Item extends Phaser.GameObjects.Sprite {
 
         this.x = this.iniX;
         this.y = this.iniY;
+    }
+
+    isBigItem(){
+
+        return this.isBig;
     }
 }
