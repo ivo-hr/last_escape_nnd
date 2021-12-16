@@ -10,21 +10,20 @@ export default class Item extends Phaser.GameObjects.Sprite {
    * @param {Player} _player el jugador
    * @param {number} x Coordenada X
    * @param {number} y Coordenada Y
-   * @param {number} scale Para saber la escala del item para que se puedan diferenciar los grandes y pequeños de momento
    * @param {boolean} bigItem booleano para saber si es item grande o no
-   * @param {boolean} picked booleano para saber si el objeto ha sido recogido por el jugador 
+   * @param {string} sprite Sprite que usa el item
    */
-    constructor(scene, _player, x, y, scale, bigItem) {
-        super(scene, x, y, 'itemtemp');
+    constructor(scene, _player, x, y, bigItem, sprite) {
+        super(scene, x, y, sprite);
 
         //está por encima de la máscara de visión
         this.setDepth(3);
 
         this.saveInitialPosition();
 
+        this.isBig = bigItem;
         this.player = _player;
         this.picked = false;
-        this.setScale(scale);
         this.scene.add.existing(this);
         this.setInteractive();//esto hace que pueda recibir eventos del raton
         this.scene.items.add(this);//lo añade al grupo de items de la escena
@@ -43,13 +42,13 @@ export default class Item extends Phaser.GameObjects.Sprite {
 
                 //si el objeto no es grande de momento se suma puntos al score y se elimina el item
                 //cuando este creada la lista de objetos en el juego se marcara el objeto pequeño recogido
-                if (!bigItem) {
-                    this.player.point();
+                if (!this.isBig) {
+                    this.itemObtained();
                     this.destroy();
                 }
 
                 //si el objeto es grande se modificara el booleano picked para que lo lleve el jugador
-                else if (bigItem) {
+                else if (this.isBig) {
                     if (!this.picked && !this.player.isCarrying()) {
                         this.picked = true;
                         this.player.toggleCarrying();
@@ -74,7 +73,7 @@ export default class Item extends Phaser.GameObjects.Sprite {
                 this.scene.physics.add.overlap(this, this.scene.Workshop, () => {
                     if (!this.picked) {
                         console.log("item dropped in base");
-                        this.player.point();
+                        this.itemObtained();
                         this.destroy();
                     }
                 });
@@ -106,5 +105,10 @@ export default class Item extends Phaser.GameObjects.Sprite {
 
         this.x = this.iniX;
         this.y = this.iniY;
+    }
+
+    isBigItem(){
+
+        return this.isBig;
     }
 }

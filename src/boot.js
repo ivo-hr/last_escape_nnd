@@ -14,18 +14,33 @@ export default class Boot extends Phaser.Scene {
   }
 
   /**
+   * Método que carga la fuente especificada
+   * @param {string} name Nombre de la fuente 
+   * @param {string} url Dirección de la fuente
+   */
+  loadFont(name, url) {
+    let newFont = new FontFace(name, `url(${url})`);
+    newFont.load().then(function (loaded) {
+        document.fonts.add(loaded);
+    }).catch(function (error) {
+        return error;
+    });
+  }
+
+  /**
    * Carga de los assets del juego
    */
   preload() {
     // Con setPath podemos establecer el prefijo que se añadirá a todos los load que aparecen a continuación
 
+    this.load.image('carceltile','assets/tilesets/jawbreaker_tiles.png');
     this.load.tilemapTiledJSON('carcelmapa','assets/tilemaps/carcelmapa.json');
+    this.load.script('webfont', 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js');
+
+    this.loadFont("Pixels", "/assets/fonts/Pixels.ttf");
 
     this.load.setPath('assets/sprites/');
-
-    this.load.image('carceltile','jawbreaker_tiles.png');
     
-    this.load.image('wall', 'platform.png');
     this.load.spritesheet('guard', 'guardia.png', { frameWidth: 4, frameHeight: 4 });
     this.load.spritesheet('player', 'enterrador.png', { frameWidth: 4, frameHeight: 4 });
     this.load.image('itemtemp', 'itemtemp.png');
@@ -37,6 +52,13 @@ export default class Boot extends Phaser.Scene {
     this.load.image('mask', 'mask1.png');
     this.load.image('susOverlay', 'susbarOverlay.png');
     this.load.image('clock', 'clock.png');
+    this.load.image('sierra', 'sierra2.png');
+    this.load.image('bisagra', 'bisagra1.png');
+    this.load.image('clavos', 'cajaclavos.png');
+    this.load.image('cruz', 'cruz.png');
+    this.load.image('martillo', 'martillo.png');
+    this.load.image('pala', 'pala.png');
+    this.load.image('tabla', 'tabla.png');  
   }
 
   /**

@@ -2,10 +2,17 @@ import Player from './player.js';
 import Guard from './guard.js';
 import SuspicionBar from './suspicionbar.js';
 import Workshop from './workshop.js';
-import Item from './item.js';
 import ItemList from './itemList.js';
 import Clock from './clock.js';
 import BlurPostFX from '../assets/pipelines/BlurPostFX.js';
+
+import Hammer from './items/hammer.js';
+import Saw from './items/saw.js';
+import Plank from './items/plank.js';
+import Cross from './items/cross.js';
+import Nails from './items/nails.js';
+import Hinge from './items/hinge.js';
+import Shovel from './items/shovel.js';
 /**
  * Escena principal del juego.
  * @extends Phaser.Scene
@@ -41,21 +48,28 @@ export default class NightScene extends Phaser.Scene {
     this.items = this.add.group();
 
     this.player = new Player(this, 100, 300);
-    this.guard = new Guard(this, 75, 200, +0.3);
+    this.guard = new Guard(this, 75, 200, +0.3, true);
 
     this.physics.add.collider(this.player, this.groundLayer);
 
-    this.items.add(new Item(this, this.player, 700, 100, 0.2, false));
-    this.items.add(new Item(this, this.player, 700, 400, 0.3, true));
-    this.items.add(new Item(this, this.player, 300, 400, 0.5, true));
+    this.items.add(new Hammer(this, this.player, 700, 100));
+    this.items.add(new Saw(this, this.player, 700, 400));
+    this.items.add(new Hammer(this, this.player, 300, 400));
 
-    this.itemList = new ItemList(this, 2000, 1000, 400, 700, 400);
+    let listConfig = {
+      shownX: this.canvas.width/2,
+      hiddenX: this.canvas.width * 1.5,
+      y: this.canvas.height/2,
+      height: 700,
+      width: 500
+    };
+    this.itemList = new ItemList(this, listConfig);
     //esto es lo que hace que no haya context menu en el juego al pulsar click derecho
     this.input.mouse.disableContextMenu();
 
-    this.susBar = new SuspicionBar(this, 10, 50, 30, 250);
+    this.susBar = new SuspicionBar(this, 10, 50, 35, 250);
     this.Workshop = new Workshop(this, this.player, 1100, 400, 300, 300, -0.1);
-    this.clock = new Clock(this, 1000, 800, 150, 150);
+    this.clock = new Clock(this, 260, 35, 70, 70);
     this.createRenderTexture();
 
     //timer de la noche

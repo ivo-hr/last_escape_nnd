@@ -17,6 +17,7 @@ export default class GameCharacter extends Phaser.GameObjects.Container {
       grafic.displayHeight = 20;
       super(scene, x, y, grafic);
 
+      this.grafics = grafic;
       this.scene.add.existing(this);
       this.speed = 5;
 
@@ -29,7 +30,6 @@ export default class GameCharacter extends Phaser.GameObjects.Container {
       
       this.body.setCollideWorldBounds();
     }
-
 
     preUpdate(t, dt){
 

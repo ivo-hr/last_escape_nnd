@@ -24,7 +24,6 @@ export default class Workshop extends Phaser.GameObjects.Rectangle {
         this.scene.physics.add.overlap(this, player, () => { 
             if (this.scene.DEBUG) console.log("in Base"); 
             this.scene.susBar.SusIncrease(susVar);
-            this.scene.itemList.ShowItemList();
         }); //overlap (actua como el trigger en unity)
     } 
 }

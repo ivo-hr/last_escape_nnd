@@ -11,13 +11,16 @@ export default class Guard extends GameCharacter {
    * @param {number} x Coordenada X
    * @param {number} y Coordenada Y
    * @param {number} susVar Variación de sospecha
+   * @param {boolean} highSecurity Booleano que indica si el guardia ve instantáneamente al jugador (true) o sólo cuando lleva objeto (false)
    */
-  constructor(scene, x, y, susVar) {
+  constructor(scene, x, y, susVar, highSecurity) {
 
     super(scene, x, y, 'guard');
 
     //z-index, el guardia se renderiza en el "nivel" 1
     this.setDepth(1);
+
+    this.isHighSecurity = highSecurity;
 
     //array de puntos de la patrulla del guardia
     this.patrolPoints = [
@@ -198,6 +201,8 @@ export default class Guard extends GameCharacter {
     visionConeSprite.setAlpha(0.5);
     visionConeSprite.setDepth(0); //se dibuja bajo el guardia
 
+    if(this.isHighSecurity) visionConeSprite.setTint(0xff0000);
+
     guard.add(visionConeSprite);
   }
 
@@ -226,13 +231,13 @@ export default class Guard extends GameCharacter {
           console.log("veo al jugador");
         }
 
-        if (this.scene.player.isCarrying()) {
+        if (this.scene.player.isCarrying() || this.isHighSecurity) {
 
           this.playerDetected();
         }
       }
 
-      else if (!o2.isPicked()) {
+      else if (!o2.isPicked() && o2.isBigItem()) {
         //debug
         if (this.scene.DEBUG) {
 

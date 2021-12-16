@@ -33,7 +33,7 @@ export default class Clock extends Phaser.GameObjects.Sprite {
         //Porcentaje del tiempo transcurrido de la noche
         let nightPercent = (this.scene.timer.getElapsed() / 180000) * 100;
         //Cambio del ángulo en función del porcentaje de tiempo transcurrido
-        this.angle = nightPercent * 100 / 45 + 100;
+        this.angle = nightPercent * 180 / 100 - 225;
 
         //if (this.scene.DEBUG) console.log ("clockrotation: " + this.angle);
     }
