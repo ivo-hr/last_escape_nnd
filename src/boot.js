@@ -14,6 +14,20 @@ export default class Boot extends Phaser.Scene {
   }
 
   /**
+   * Método que carga la fuente especificada
+   * @param {string} name Nombre de la fuente 
+   * @param {string} url Dirección de la fuente
+   */
+  loadFont(name, url) {
+    let newFont = new FontFace(name, `url(${url})`);
+    newFont.load().then(function (loaded) {
+        document.fonts.add(loaded);
+    }).catch(function (error) {
+        return error;
+    });
+  }
+
+  /**
    * Carga de los assets del juego
    */
   preload() {
@@ -21,6 +35,9 @@ export default class Boot extends Phaser.Scene {
 
     this.load.image('carceltile','assets/tilesets/jawbreaker_tiles.png');
     this.load.tilemapTiledJSON('carcelmapa','assets/tilemaps/carcelmapa.json');
+    this.load.script('webfont', 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js');
+
+    this.loadFont("Pixels", "/assets/fonts/Pixels.ttf");
 
     this.load.setPath('assets/sprites/');
     

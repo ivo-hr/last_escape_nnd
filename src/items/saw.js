@@ -13,4 +13,9 @@ export default class Saw extends Item {
         super(scene, _player, x, y, true, 'sierra');
         this.setScale(2);
     }
+
+    itemObtained() {
+
+        this.scene.itemList.itemObtained('sierra');
+    }
 }

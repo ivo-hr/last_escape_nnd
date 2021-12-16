@@ -13,4 +13,9 @@ export default class Cross extends Item {
         super(scene, _player, x, y, true, 'cruz');
         this.setScale(2);
     }
+
+    itemObtained() {
+
+        this.scene.itemList.itemObtained('cruz');
+    }
 }

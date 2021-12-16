@@ -21,10 +21,6 @@ export default class Player extends GameCharacter {
 
     //z-index, el jugador se renderiza en el "nivel" 2
     this.setDepth(2);
-    this.score = 0;
-
-    // Esta label es la UI en la que pondremos el número de objetos pequeños del jugador
-    this.label = this.scene.add.text(10, 10, "");
 
     //this.cursors = this.scene.input.keyboard.createCursorKeys();
     this.pointer = this.scene.input.activePointer;
@@ -45,9 +41,7 @@ export default class Player extends GameCharacter {
     this.spotlight.setOrigin(0.5);
 
     this.spotlight.scale = 3.5;
-
-    this.updateScore();
-
+    
     this.carrying = false;//empieza con el booleano de llevar objetos en falso
 
     //creamos las animaciones del jugador
@@ -72,21 +66,6 @@ export default class Player extends GameCharacter {
       this.body.setVelocityX(0);
       this.body.setVelocityY(0);
     });
-  }
-
-  /**
-   * Suma 1 a la score y la actualiza
-   */
-  point() {
-    this.score++;
-    this.updateScore();
-  }
-
-  /**
-   * Actualiza la UI con la puntuación actual
-   */
-  updateScore() {
-    this.label.text = 'Items: ' + this.score;
   }
 
   /**

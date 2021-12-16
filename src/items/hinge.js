@@ -13,4 +13,9 @@ export default class Hinge extends Item {
         super(scene, _player, x, y, false, 'bisagra');
         this.setScale(2);
     }
+
+    itemObtained() {
+
+        this.scene.itemList.itemObtained('bisagra');
+    }
 }

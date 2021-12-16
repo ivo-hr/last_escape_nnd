@@ -13,4 +13,9 @@ export default class Shovel extends Item {
         super(scene, _player, x, y, true, 'pala');
         this.setScale(2);
     }
+
+    itemObtained() {
+
+        this.scene.itemList.itemObtained('pala');
+    }
 }

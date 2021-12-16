@@ -13,4 +13,9 @@ export default class Plank extends Item {
         super(scene, _player, x, y, true, 'tabla');
         this.setScale(2);
     }
+
+    itemObtained() {
+
+        this.scene.itemList.itemObtained('tabla');
+    }
 }

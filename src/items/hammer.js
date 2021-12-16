@@ -13,4 +13,9 @@ export default class Hammer extends Item {
         super(scene, _player, x, y, false, 'martillo');
         this.setScale(2);
     }
+
+    itemObtained() {
+
+        this.scene.itemList.itemObtained('martillo');
+    }
 }

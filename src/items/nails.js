@@ -13,4 +13,9 @@ export default class Nails extends Item {
         super(scene, _player, x, y, false, 'clavos');
         this.setScale(2);
     }
+
+    itemObtained() {
+
+        this.scene.itemList.itemObtained('clavos');
+    }
 }

@@ -43,7 +43,7 @@ export default class Item extends Phaser.GameObjects.Sprite {
                 //si el objeto no es grande de momento se suma puntos al score y se elimina el item
                 //cuando este creada la lista de objetos en el juego se marcara el objeto pequeño recogido
                 if (!this.isBig) {
-                    this.player.point();
+                    this.itemObtained();
                     this.destroy();
                 }
 
@@ -73,7 +73,7 @@ export default class Item extends Phaser.GameObjects.Sprite {
                 this.scene.physics.add.overlap(this, this.scene.Workshop, () => {
                     if (!this.picked) {
                         console.log("item dropped in base");
-                        this.player.point();
+                        this.itemObtained();
                         this.destroy();
                     }
                 });
