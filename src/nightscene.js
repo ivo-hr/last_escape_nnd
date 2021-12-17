@@ -224,6 +224,8 @@ export default class NightScene extends Phaser.Scene {
     });
 
     this.patrullas = this.map.createFromObjects('Patrulla', {gid: 67});
+    this.patrullas.map(p => p.x *= offsetX);
+    this.patrullas.map(p => p.y *= offsetY)
 
     this.loadObjectTilemap(this.map, 'Guardias', 82, ({ x, y, props }) => {
 
@@ -231,13 +233,15 @@ export default class NightScene extends Phaser.Scene {
       guard.x *= offsetX;
       guard.y *= offsetY;
 
-      // for (i = 0; i < this.patrullas.length; i++){
+      for (let i = 0; i < this.patrullas.length; i++){
 
-      //   if (this.patrullas[i].guardia === guard.props.guardia) {
+        if (this.patrullas[i].getData('guardia') === props.nGuardia) {
           
-      //     guardia.insertPatrolPoint(this.patrullas[i].punto, this.patrullas[i].x, this.patrullas[i].y);
-      //   }
-      // }
+          guard.insertPatrolPoint(this.patrullas[i].getData('punto'), this.patrullas[i].x, this.patrullas[i].y);
+        }
+      }
+
+      guard.startPatrol();
     });
   }
 
