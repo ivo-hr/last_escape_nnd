@@ -19,6 +19,8 @@ export default class Item extends Phaser.GameObjects.Sprite {
         //está por encima de la máscara de visión
         this.setDepth(3);
 
+        this.setOrigin(0.5);
+
         this.saveInitialPosition();
 
         this.isBig = bigItem;

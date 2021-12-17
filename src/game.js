@@ -10,11 +10,10 @@ import NightChange from './nightchangescene.js';
 let config = {
     type: Phaser.WEBGL,
     canvas: document.getElementById("mainCanvas"),
-    width:  1420,
-    height: 800,
+    width:  360*4,
+    height: 224*4,
     backgroundColor: '#708090',
     scale: {
-        // mode: Phaser.Scale.FIT,  
         autoCenter: Phaser.Scale.CENTER_HORIZONTALLY
     },
     pixelArt: true,

@@ -50,6 +50,8 @@ export default class NightScene extends Phaser.Scene {
       this.itemList = new ItemList(this, listConfig);
     }
 
+    this.player = new Player(this, 100, 300);
+
     this.createTilemap();
     this.createObjectsFromTilemap();
 
@@ -59,15 +61,9 @@ export default class NightScene extends Phaser.Scene {
     //graphics usados para el debug del raycast
     this.graphics = this.add.graphics({ lineStyle: { width: 1, color: 0x00ff00}, fillStyle: { color: 0xff00ff } });
 
-    this.player = new Player(this, 100, 300);
-    this.guard = new Guard(this, 75, 200, +0.3, true);
+    //this.guard = new Guard(this, 75, 200, +0.3, true);
 
     this.physics.add.collider(this.player, this.groundLayer);
-
-    new Hammer(this, this.player, 700, 100);
-    new Saw(this, this.player, 700, 400);
-    new Hammer(this, this.player, 300, 400);
-
     
     //esto es lo que hace que no haya context menu en el juego al pulsar click derecho
     this.input.mouse.disableContextMenu();
@@ -129,10 +125,10 @@ export default class NightScene extends Phaser.Scene {
     this.tilemapIniWidth = this.backgroundLayer.displayWidth;
     this.tilemapIniHeight = this.backgroundLayer.displayHeight;
 
-    this.backgroundLayer.displayWidth = this.canvas.width;
-    this.backgroundLayer.displayHeight = this.canvas.height;
-    this.groundLayer.displayWidth = this.canvas.width;
-    this.groundLayer.displayHeight = this.canvas.height;
+    this.backgroundLayer.displayHeight *= 4;
+    this.backgroundLayer.displayWidth *= 4;
+    this.groundLayer.displayHeight *= 4;
+    this.groundLayer.displayWidth *= 4;
 
     this.groundLayer.setCollisionByProperty({ colisiona: true });
   }
@@ -181,17 +177,80 @@ export default class NightScene extends Phaser.Scene {
 
   createObjectsFromTilemap(){
 
-    let offsetX = this.canvas.width / this.tilemapIniWidth;
-    let offsetY = this.canvas.height / this.tilemapIniHeight;
+    let offsetX = 4;
+    let offsetY = 4;
 
-    this.guards = this.map.createFromObjects('Guardias', {
-      gid: 82
+    this.loadObjectTilemap(this.map, 'Objetos', 81, ({ x, y, props }) => {
+
+      let plank = new Plank(this, this.player, x, y);
+      plank.x *= offsetX;
+      plank.y *= offsetY;
     });
-    this.guards.map(g => g.x *= offsetX);
-    this.guards.map(g => g.y *= offsetY);
+    this.loadObjectTilemap(this.map, 'Objetos', 76, ({ x, y, props }) => {
 
-    this.patrols = this.map.createFromObjects('Patrullas', {gid: 67});
-    this.patrols.map(p => p.x *= offsetX);
-    this.patrols.map(p => p.y *= offsetY);
+      let cross = new Cross(this, this.player, x, y);
+      cross.x *= offsetX;
+      cross.y *= offsetY;
+    });
+    this.loadObjectTilemap(this.map, 'Objetos', 77, ({ x, y, props }) => {
+
+      let hammer = new Hammer(this, this.player, x, y);
+      hammer.x *= offsetX;
+      hammer.y *= offsetY;
+    });
+    this.loadObjectTilemap(this.map, 'Objetos', 73, ({ x, y, props }) => {
+
+      let hinge = new Hinge(this, this.player, x, y);
+      hinge.x *= offsetX;
+      hinge.y *= offsetY;
+    });
+    this.loadObjectTilemap(this.map, 'Objetos', 75, ({ x, y, props }) => {
+
+      let nails = new Nails(this, this.player, x, y);
+      nails.x *= offsetX;
+      nails.y *= offsetY;
+    });
+    this.loadObjectTilemap(this.map, 'Objetos', 78, ({ x, y, props }) => {
+
+      let shovel = new Shovel(this, this.player, x, y);
+      shovel.x *= offsetX;
+      shovel.y *= offsetY;
+    });
+    this.loadObjectTilemap(this.map, 'Objetos', 80, ({ x, y, props }) => {
+
+      let saw = new Saw(this, this.player, x, y);
+      saw.x *= offsetX;
+      saw.y *= offsetY;
+    });
+
+    this.patrullas = this.map.createFromObjects('Patrulla', {gid: 67});
+
+    this.loadObjectTilemap(this.map, 'Guardias', 82, ({ x, y, props }) => {
+
+      let guard = new Guard(this, x, y, props.isHighSecurity);
+      guard.x *= offsetX;
+      guard.y *= offsetY;
+
+      // for (i = 0; i < this.patrullas.length; i++){
+
+      //   if (this.patrullas[i].guardia === guard.props.guardia) {
+          
+      //     guardia.insertPatrolPoint(this.patrullas[i].punto, this.patrullas[i].x, this.patrullas[i].y);
+      //   }
+      // }
+    });
+  }
+
+  loadObjectTilemap (mapa, capa, gid, callback) {
+    const objetos = mapa.getObjectLayer(capa).objects.filter(x => x.gid === gid)
+    for (const objeto of objetos) {
+      const props = {}
+      if (objeto.properties) {
+        for (const { name, value } of objeto.properties) {
+          props[name] = value
+        }
+      }
+      callback({ x: objeto.x, y: objeto.y, props })
+    }
   }
 }

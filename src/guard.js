@@ -22,13 +22,7 @@ export default class Guard extends GameCharacter {
     this.isHighSecurity = highSecurity;
 
     //array de puntos de la patrulla del guardia
-    this.patrolPoints = [
-      75, 50,
-      650, 50,
-      650, 720,
-      75, 720,
-      75, 50
-    ]
+    this.patrolPoints;
     this.patrolIndex = 0; //índice que recorre los puntos de la patrulla
 
     //movimiento hacia el primer punto
@@ -288,7 +282,7 @@ export default class Guard extends GameCharacter {
 
     if (this.susIncreaseEnabled) {
 
-      this.scene.susBar.SusIncrease();
+      this.scene.susBar.susIncrease();
     }
   }
 
@@ -402,5 +396,10 @@ export default class Guard extends GameCharacter {
     else {
       this.grafics.play('movingguard', true);
     }
+  }
+  
+  insertPatrolPoint(position, _x, _y) {
+
+    this.patrolPoints[position] = { x: _x, y: _y };
   }
 }
