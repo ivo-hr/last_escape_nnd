@@ -9,14 +9,14 @@ export default class Clock extends Phaser.GameObjects.Sprite {
      * @param {Phaser.Scene} scene Escena a la que pertenece el reloj
      * @param {number} x Coordenada x
      * @param {number} y Coordenada y
-     * @param {number} _width Ancho del reloj
-     * @param {number} _height Alto del reloj
+     * @param {number} height Alto del reloj
+     * @param {number} width Ancho del reloj
      */
-    constructor(scene, x, y, _height, _width) {
-        super(scene, x, y, 'clock');
+    constructor(scene, clockConfig) {
+        super(scene, clockConfig.x, clockConfig.y, 'clock');
 
-        this.displayWidth = _width;
-        this.displayHeight = _height;
+        this.displayWidth = clockConfig.width;
+        this.displayHeight = clockConfig.height;
 
         this.setDepth(10);
         this.angle = 45;

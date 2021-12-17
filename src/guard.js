@@ -10,10 +10,9 @@ export default class Guard extends GameCharacter {
    * @param {Phaser.Scene} scene Escena a la que pertenece el jugador
    * @param {number} x Coordenada X
    * @param {number} y Coordenada Y
-   * @param {number} susVar Variación de sospecha
    * @param {boolean} highSecurity Booleano que indica si el guardia ve instantáneamente al jugador (true) o sólo cuando lleva objeto (false)
    */
-  constructor(scene, x, y, susVar, highSecurity) {
+  constructor(scene, x, y, highSecurity) {
 
     super(scene, x, y, 'guard');
 
@@ -57,7 +56,6 @@ export default class Guard extends GameCharacter {
     this.playerIsInRange = false;
 
     this.susIncreaseEnabled = false;
-    this.susIncrement = susVar;
 
     //angulo de vision del guardia
     this.visionAngle = 60;
@@ -276,7 +274,7 @@ export default class Guard extends GameCharacter {
 
     if (this.susIncreaseEnabled) {
 
-      this.scene.susBar.SusIncrease(this.susIncrement);
+      this.scene.susBar.SusIncrease();
     }
   }
 
