@@ -927,6 +927,62 @@
                  "width":4,
                  "x":286,
                  "y":42
+                }, 
+                {
+                 "gid":67,
+                 "height":4,
+                 "id":49,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"guardia",
+                         "type":"int",
+                         "value":4
+                        }, 
+                        {
+                         "name":"punto",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
+                         "name":"visible",
+                         "type":"bool",
+                         "value":false
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":4,
+                 "x":222,
+                 "y":162
+                }, 
+                {
+                 "gid":67,
+                 "height":4,
+                 "id":50,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"guardia",
+                         "type":"int",
+                         "value":4
+                        }, 
+                        {
+                         "name":"punto",
+                         "type":"int",
+                         "value":3
+                        }, 
+                        {
+                         "name":"visible",
+                         "type":"bool",
+                         "value":false
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":4,
+                 "x":190,
+                 "y":162
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1102,7 +1158,7 @@
          "y":0
         }],
  "nextlayerid":6,
- "nextobjectid":49,
+ "nextobjectid":51,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.7.2",
@@ -1111,7 +1167,7 @@
         {
          "columns":8,
          "firstgid":1,
-         "image":"jawbreaker_tiles.png",
+         "image":"..\/tiledTilemaps\/jawbreaker_tiles.png",
          "imageheight":72,
          "imagewidth":64,
          "margin":0,
@@ -1251,7 +1307,7 @@
         {
          "columns":3,
          "firstgid":73,
-         "image":"items.png",
+         "image":"..\/tiledTilemaps\/items.png",
          "imageheight":48,
          "imagewidth":48,
          "margin":0,
@@ -1264,7 +1320,7 @@
         {
          "columns":1,
          "firstgid":82,
-         "image":"guardia.png",
+         "image":"..\/tiledTilemaps\/guardia.png",
          "imageheight":20,
          "imagewidth":4,
          "margin":0,

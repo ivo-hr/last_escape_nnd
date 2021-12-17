@@ -80,9 +80,7 @@ export default class Guard extends GameCharacter {
   preUpdate(t, dt) {
     super.preUpdate(t, dt);
 
-    let vector;
-    vector = new Phaser.Math.Vector2(this.patrolPoints[this.patrolIndex].x - this.x, this.patrolPoints[this.patrolIndex].y - this.y);
-    
+    let vector = new Phaser.Math.Vector2(this.patrolPoints[this.patrolIndex].x - this.x, this.patrolPoints[this.patrolIndex].y - this.y);
 
     let distance = vector.length();
     if (distance <= 1) {
@@ -142,7 +140,7 @@ export default class Guard extends GameCharacter {
    */
   ajustGuardRotation() {
 
-    let vector = new Phaser.Math.Vector2(this.patrolPoints[this.patrolIndex] - this.x, this.patrolPoints[this.patrolIndex + 1] - this.y);
+    let vector = new Phaser.Math.Vector2(this.patrolPoints[this.patrolIndex].x - this.x, this.patrolPoints[this.patrolIndex].y - this.y);
     this.setRotation(vector.angle());
   }
 
@@ -318,7 +316,7 @@ export default class Guard extends GameCharacter {
     this.exclamation.setVisible(false);
     this.exclamationIsPlaying = false;
 
-    this.scene.physics.moveTo(this, this.patrolPoints[this.patrolIndex], this.patrolPoints[this.patrolIndex + 1]);
+    this.scene.physics.moveTo(this, this.patrolPoints[this.patrolIndex].x, this.patrolPoints[this.patrolIndex].y );
   }
 
   /**
@@ -394,12 +392,20 @@ export default class Guard extends GameCharacter {
     }
   }
   
+  /**
+   * Inserta un punto de la patrulla en la posición del array indicada
+   * @param {*} position Posición en el array 
+   * @param {*} _x Coordenada x
+   * @param {*} _y Coordenada y
+   */
   insertPatrolPoint(position, _x, _y) {
 
     this.patrolPoints[position] = { x: _x, y: _y };
   }
 
-
+  /**
+   * Método que comienza la patrulla del guardia, moviéndose al primer punto del array de puntos
+   */
   startPatrol() {
 
     //movimiento hacia el primer punto
