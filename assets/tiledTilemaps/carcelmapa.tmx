@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="45" height="28" tilewidth="8" tileheight="8" infinite="0" nextlayerid="6" nextobjectid="51">
+ <editorsettings>
+  <export target="carcelmapa.json" format="json"/>
+ </editorsettings>
+ <tileset firstgid="1" source="carceltile.tsx"/>
+ <tileset firstgid="73" source="objectsheet.tsx"/>
+ <tileset firstgid="82" source="guardiasprites.tsx"/>
+ <layer id="1" name="Suelo" width="45" height="28">
+  <properties>
+   <property name="colisiona" type="bool" value="false"/>
+  </properties>
+  <data encoding="csv">
+1,1,1,24,1,1,1,1,1,1,1,1,1,1,1,24,1,1,1,1,1,32,1,1,1,1,24,1,1,1,1,32,1,1,1,1,1,17,1,1,1,1,32,1,1,
+1,1,1,1,1,1,1,24,1,1,1,1,24,1,1,1,17,1,1,1,17,1,1,1,1,1,1,1,17,1,1,1,1,17,1,24,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,24,1,1,1,1,32,1,1,1,1,1,1,1,1,24,1,1,1,1,32,1,1,1,1,17,1,1,
+12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,
+12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,
+12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,
+12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,
+12,12,12,12,12,5,5,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,1,1,1,1,12,12,12,12,12,12,12,12,12,12,12,
+12,12,12,12,12,12,12,12,35,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,1,1,1,24,12,12,12,12,12,12,12,12,12,12,12,
+12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,1,17,1,1,12,12,12,12,12,12,12,12,12,12,12,
+12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,1,1,1,1,12,12,12,12,12,12,12,12,12,12,12,
+12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,1,1,1,1,6,6,1,1,1,1,1,1,1,1,1,12,12,12,12,12,12,12,12,12,12,12,
+12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,1,17,1,1,1,1,1,17,1,1,1,1,1,24,1,12,12,12,12,12,12,12,12,12,12,12,
+12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,1,1,1,1,24,1,24,1,1,1,17,1,1,1,1,12,12,12,12,12,12,12,12,12,12,12,
+12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,1,1,24,1,1,1,1,1,1,1,1,1,24,1,1,12,12,12,12,12,12,12,12,12,12,12,
+12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,1,1,1,17,1,1,24,1,1,24,1,1,1,1,1,12,12,12,12,12,12,12,12,12,12,12,
+12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,1,24,1,1,1,1,1,1,1,17,1,1,1,1,17,12,12,12,12,12,12,12,12,12,12,12,
+12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,1,1,1,1,1,1,24,1,1,1,1,17,1,1,1,12,12,12,12,12,12,12,12,12,12,12,
+12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,1,1,1,1,6,6,1,1,1,1,1,1,1,24,1,12,12,12,12,12,12,12,12,12,12,12,
+12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,1,1,1,1,12,12,12,12,12,12,12,12,12,12,12,
+12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,1,1,1,17,12,12,12,12,12,12,12,12,12,12,12,
+12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,
+12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,
+12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,
+12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,
+12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,
+12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,
+12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12
+</data>
+ </layer>
+ <objectgroup id="3" name="Objetos">
+  <object id="2" gid="81" x="136" y="184" width="8" height="8"/>
+  <object id="3" gid="81" x="168" y="40" width="8" height="8"/>
+  <object id="4" gid="78" x="232" y="112" width="8" height="8"/>
+  <object id="5" gid="80" x="344" y="104" width="8" height="8"/>
+  <object id="7" gid="77" x="88" y="40" width="8" height="8"/>
+  <object id="8" gid="76" x="8" y="184" width="8" height="8"/>
+  <object id="9" gid="75" x="136" y="216" width="8" height="8"/>
+  <object id="10" gid="81" x="120" y="128" width="8" height="8"/>
+  <object id="11" gid="73" x="48" y="112" width="8" height="8"/>
+ </objectgroup>
+ <objectgroup id="5" name="Patrulla">
+  <object id="12" gid="67" x="20" y="82" width="4" height="4">
+   <properties>
+    <property name="guardia" type="int" value="1"/>
+    <property name="punto" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="23" gid="67" x="20" y="82" width="4" height="4">
+   <properties>
+    <property name="guardia" type="int" value="1"/>
+    <property name="punto" type="int" value="3"/>
+   </properties>
+  </object>
+  <object id="15" gid="67" x="116" y="82" width="4" height="4">
+   <properties>
+    <property name="guardia" type="int" value="1"/>
+    <property name="punto" type="int" value="2"/>
+   </properties>
+  </object>
+  <object id="14" gid="67" x="20" y="162" width="4" height="4">
+   <properties>
+    <property name="guardia" type="int" value="1"/>
+    <property name="punto" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="17" gid="67" x="48" y="210" width="4" height="4">
+   <properties>
+    <property name="guardia" type="int" value="2"/>
+    <property name="punto" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="18" gid="67" x="48" y="192" width="4" height="4">
+   <properties>
+    <property name="guardia" type="int" value="2"/>
+    <property name="punto" type="int" value="3"/>
+   </properties>
+  </object>
+  <object id="19" gid="67" x="104" y="192" width="4" height="4">
+   <properties>
+    <property name="guardia" type="int" value="2"/>
+    <property name="punto" type="int" value="2"/>
+   </properties>
+  </object>
+  <object id="20" gid="67" x="104" y="210" width="4" height="4">
+   <properties>
+    <property name="guardia" type="int" value="2"/>
+    <property name="punto" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="21" gid="67" x="180" y="210" width="4" height="4">
+   <properties>
+    <property name="guardia" type="int" value="3"/>
+    <property name="punto" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="22" gid="67" x="336" y="210" width="4" height="4">
+   <properties>
+    <property name="guardia" type="int" value="3"/>
+    <property name="punto" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="38" gid="67" x="336" y="152" width="4" height="4">
+   <properties>
+    <property name="guardia" type="int" value="6"/>
+    <property name="punto" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="39" gid="67" x="312" y="152" width="4" height="4">
+   <properties>
+    <property name="guardia" type="int" value="6"/>
+    <property name="punto" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="40" gid="67" x="312" y="128" width="4" height="4">
+   <properties>
+    <property name="guardia" type="int" value="6"/>
+    <property name="punto" type="int" value="2"/>
+   </properties>
+  </object>
+  <object id="41" gid="67" x="336" y="128" width="4" height="4">
+   <properties>
+    <property name="guardia" type="int" value="6"/>
+    <property name="punto" type="int" value="3"/>
+   </properties>
+  </object>
+  <object id="24" gid="67" x="286" y="184" width="4" height="4">
+   <properties>
+    <property name="guardia" type="int" value="4"/>
+    <property name="punto" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="36" gid="67" x="286" y="184" width="4" height="4">
+   <properties>
+    <property name="guardia" type="int" value="5"/>
+    <property name="punto" type="int" value="4"/>
+   </properties>
+  </object>
+  <object id="25" gid="67" x="222" y="184" width="4" height="4">
+   <properties>
+    <property name="guardia" type="int" value="4"/>
+    <property name="punto" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="37" gid="67" x="222" y="184" width="4" height="4">
+   <properties>
+    <property name="guardia" type="int" value="5"/>
+    <property name="punto" type="int" value="5"/>
+   </properties>
+  </object>
+  <object id="26" gid="67" x="222" y="162" width="4" height="4">
+   <properties>
+    <property name="guardia" type="int" value="5"/>
+    <property name="punto" type="int" value="6"/>
+   </properties>
+  </object>
+  <object id="27" gid="67" x="190" y="162" width="4" height="4">
+   <properties>
+    <property name="guardia" type="int" value="5"/>
+    <property name="punto" type="int" value="7"/>
+   </properties>
+  </object>
+  <object id="28" gid="67" x="190" y="80" width="4" height="4">
+   <properties>
+    <property name="guardia" type="int" value="4"/>
+    <property name="punto" type="int" value="4"/>
+   </properties>
+  </object>
+  <object id="32" gid="67" x="190" y="80" width="4" height="4">
+   <properties>
+    <property name="guardia" type="int" value="5"/>
+    <property name="punto" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="29" gid="67" x="222" y="80" width="4" height="4">
+   <properties>
+    <property name="guardia" type="int" value="4"/>
+    <property name="punto" type="int" value="5"/>
+   </properties>
+  </object>
+  <object id="33" gid="67" x="222" y="80" width="4" height="4">
+   <properties>
+    <property name="guardia" type="int" value="5"/>
+    <property name="punto" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="30" gid="67" x="222" y="42" width="4" height="4">
+   <properties>
+    <property name="guardia" type="int" value="4"/>
+    <property name="punto" type="int" value="6"/>
+   </properties>
+  </object>
+  <object id="34" gid="67" x="222" y="42" width="4" height="4">
+   <properties>
+    <property name="guardia" type="int" value="5"/>
+    <property name="punto" type="int" value="2"/>
+   </properties>
+  </object>
+  <object id="31" gid="67" x="286" y="42" width="4" height="4">
+   <properties>
+    <property name="guardia" type="int" value="4"/>
+    <property name="punto" type="int" value="7"/>
+   </properties>
+  </object>
+  <object id="35" gid="67" x="286" y="42" width="4" height="4">
+   <properties>
+    <property name="guardia" type="int" value="5"/>
+    <property name="punto" type="int" value="3"/>
+   </properties>
+  </object>
+  <object id="49" gid="67" x="222" y="162" width="4" height="4">
+   <properties>
+    <property name="guardia" type="int" value="4"/>
+    <property name="punto" type="int" value="2"/>
+   </properties>
+  </object>
+  <object id="50" gid="67" x="190" y="162" width="4" height="4">
+   <properties>
+    <property name="guardia" type="int" value="4"/>
+    <property name="punto" type="int" value="3"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="4" name="Guardias">
+  <object id="42" gid="82" x="20" y="162" width="4" height="4">
+   <properties>
+    <property name="isHighSecurity" type="bool" value="false"/>
+    <property name="nGuardia" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="44" gid="82" x="48" y="210" width="4" height="4">
+   <properties>
+    <property name="isHighSecurity" type="bool" value="false"/>
+    <property name="nGuardia" type="int" value="2"/>
+   </properties>
+  </object>
+  <object id="45" gid="82" x="180" y="210" width="4" height="4">
+   <properties>
+    <property name="isHighSecurity" type="bool" value="true"/>
+    <property name="nGuardia" type="int" value="3"/>
+   </properties>
+  </object>
+  <object id="46" gid="82" x="286" y="184" width="4" height="4">
+   <properties>
+    <property name="isHighSecurity" type="bool" value="false"/>
+    <property name="nGuardia" type="int" value="4"/>
+   </properties>
+  </object>
+  <object id="47" gid="82" x="190" y="80" width="4" height="4">
+   <properties>
+    <property name="isHighSecurity" type="bool" value="false"/>
+    <property name="nGuardia" type="int" value="5"/>
+   </properties>
+  </object>
+  <object id="48" gid="82" x="336" y="152" width="4" height="4">
+   <properties>
+    <property name="isHighSecurity" type="bool" value="true"/>
+    <property name="nGuardia" type="int" value="6"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer id="2" name="Paredes" width="45" height="28">
+  <properties>
+   <property name="colisiona" type="bool" value="true"/>
+  </properties>
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+2147483685,41,41,41,41,41,41,41,41,41,20,41,41,41,41,41,41,41,41,41,20,41,41,41,41,41,20,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,37,
+26,0,0,0,0,0,0,0,0,0,26,0,0,0,0,0,0,0,0,0,26,0,0,0,0,0,26,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,26,
+26,0,0,0,0,0,0,0,0,0,26,0,0,0,0,0,0,0,0,0,26,0,0,0,0,0,26,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,26,
+26,0,0,0,0,0,0,0,0,0,26,0,0,0,0,0,0,0,0,0,26,0,0,0,0,0,26,0,0,2147483685,41,41,41,41,37,0,0,2147483685,41,41,21,0,0,2147483669,2147483676,
+26,0,0,0,0,0,0,0,0,0,28,41,41,41,41,41,21,0,0,2147483669,36,21,0,0,2147483669,41,2147483682,0,0,26,0,0,0,0,26,0,0,26,0,0,0,0,0,0,26,
+28,41,2147483683,35,21,0,0,2147483669,2147483683,35,2147483682,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,26,0,0,0,0,26,0,0,26,0,0,0,0,0,0,26,
+26,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,26,0,0,0,0,26,0,0,28,21,0,0,2147483669,41,41,2147483676,
+26,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,26,0,38,0,0,26,0,0,26,0,0,0,0,0,0,26,
+26,0,0,0,0,2147483685,41,41,20,41,41,37,0,0,0,0,0,0,0,2147483685,41,41,21,0,0,2147483669,41,41,41,2147483682,0,0,0,0,26,0,0,34,37,0,0,0,0,0,26,
+26,0,0,0,0,26,0,0,1073741846,0,0,26,0,0,0,0,0,0,0,26,0,0,0,0,0,0,0,0,0,0,0,0,0,0,26,0,0,0,26,0,0,0,0,0,26,
+26,0,0,0,0,26,0,0,0,0,0,26,0,0,0,0,0,0,0,26,0,0,0,0,0,0,0,0,38,0,0,0,0,0,26,0,0,0,34,41,41,41,41,41,2147483676,
+26,0,0,0,0,26,0,0,22,0,0,28,41,41,37,0,2147483685,41,41,2147483676,0,0,0,0,0,38,0,0,0,0,0,0,38,0,26,0,0,0,0,0,0,0,0,0,26,
+26,0,0,0,0,28,41,41,2147483682,0,2147483669,2147483676,40,40,26,0,26,40,40,26,0,0,0,0,0,0,0,0,0,0,0,0,0,0,26,0,0,0,0,0,0,0,0,0,26,
+26,0,0,0,0,26,0,0,0,0,0,28,41,41,2147483682,0,34,41,41,2147483676,0,0,38,0,0,0,0,0,0,0,38,0,0,0,26,0,0,0,0,0,0,0,0,0,26,
+26,0,0,0,0,26,0,0,22,0,0,26,0,0,0,0,0,0,0,26,0,0,0,0,0,0,0,0,0,0,0,0,0,0,26,0,0,0,0,0,0,0,0,0,26,
+26,0,0,0,0,34,21,0,34,41,41,2147483682,0,0,0,0,0,0,0,34,41,41,21,0,0,2147483669,41,41,41,37,0,0,0,0,26,0,0,0,0,0,0,0,0,0,26,
+26,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,26,0,0,0,38,26,0,0,0,0,0,0,0,0,0,26,
+26,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,26,0,0,0,0,26,0,0,0,2147483685,41,21,0,0,2147483669,2147483676,
+28,41,41,41,41,41,41,41,41,41,41,41,41,21,0,0,2147483685,41,41,41,41,41,41,41,41,41,37,0,0,34,41,41,41,41,2147483682,0,0,0,26,0,0,0,0,0,26,
+26,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,26,0,0,0,0,0,0,0,0,0,26,0,0,0,0,0,0,0,0,0,0,0,26,0,0,0,0,0,26,
+26,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,26,0,0,0,0,0,0,0,0,0,26,0,0,0,0,0,0,0,0,0,0,0,26,0,0,0,0,0,26,
+26,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,26,0,0,0,22,0,0,0,0,0,34,41,41,41,41,41,41,41,41,41,41,41,2147483682,0,0,0,0,0,26,
+26,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,26,0,0,0,26,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,26,
+26,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,26,0,0,0,26,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,26,
+34,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,36,41,41,41,36,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,2147483682
+</data>
+ </layer>
+</map>

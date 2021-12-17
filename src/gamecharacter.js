@@ -19,7 +19,7 @@ export default class GameCharacter extends Phaser.GameObjects.Container {
 
       this.grafics = grafic;
       this.scene.add.existing(this);
-      this.speed = 5;
+      this.speed = 2;
 
       this.scene.physics.add.existing(this);
 

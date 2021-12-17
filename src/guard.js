@@ -10,10 +10,9 @@ export default class Guard extends GameCharacter {
    * @param {Phaser.Scene} scene Escena a la que pertenece el jugador
    * @param {number} x Coordenada X
    * @param {number} y Coordenada Y
-   * @param {number} susVar Variación de sospecha
    * @param {boolean} highSecurity Booleano que indica si el guardia ve instantáneamente al jugador (true) o sólo cuando lleva objeto (false)
    */
-  constructor(scene, x, y, susVar, highSecurity) {
+  constructor(scene, x, y, highSecurity) {
 
     super(scene, x, y, 'guard');
 
@@ -23,20 +22,8 @@ export default class Guard extends GameCharacter {
     this.isHighSecurity = highSecurity;
 
     //array de puntos de la patrulla del guardia
-    this.patrolPoints = [
-      75, 50,
-      650, 50,
-      650, 720,
-      75, 720,
-      75, 50
-    ]
+    this.patrolPoints = [];
     this.patrolIndex = 0; //índice que recorre los puntos de la patrulla
-
-    //movimiento hacia el primer punto
-    this.scene.physics.moveTo(this, this.patrolPoints[this.patrolIndex], this.patrolPoints[this.patrolIndex + 1]);
-
-    //rotación del guardia
-    this.ajustGuardRotation();
 
     //radio de visión del guardia
     this.visionRadius = 100;
@@ -57,7 +44,6 @@ export default class Guard extends GameCharacter {
     this.playerIsInRange = false;
 
     this.susIncreaseEnabled = false;
-    this.susIncrement = susVar;
 
     //angulo de vision del guardia
     this.visionAngle = 60;
@@ -70,24 +56,18 @@ export default class Guard extends GameCharacter {
 
     this.interrogationIsPlaying = false;
     this.exclamationIsPlaying = false;
-  }
 
-  /**
-   * Método que crea una imagen usada para el tween de detección del guardia dado el nombre del sprite y ajusta sus parámetros
-   * @param {string} spriteName Nombre del sprite con el que se creará la imagen
-   * @returns {Phaser.GameObjects.Image} Imagen creada y ajustada
-   */
-  createTweenImage(spriteName) {
-
-    let image = this.scene.add.image(this.x, this.y, spriteName);
-
-    image.setOrigin(0.5, 1);
-    image.setScale(4);
-    image.setDepth(4);
-
-    image.setVisible(false);
-
-    return image;
+    scene.anims.create({
+      key: 'idleguard',
+      frames: scene.anims.generateFrameNumbers('guard', { start: 0, end: 0 }),
+      repeat: 0
+    });
+    scene.anims.create({
+      key: 'movingguard',
+      frames: scene.anims.generateFrameNumbers('guard', { start: 1, end: 4 }),
+      frameRate: 7,
+      repeat: -1
+    });
   }
 
   /**
@@ -100,19 +80,19 @@ export default class Guard extends GameCharacter {
   preUpdate(t, dt) {
     super.preUpdate(t, dt);
 
-    let vector = new Phaser.Math.Vector2(this.patrolPoints[this.patrolIndex] - this.x, this.patrolPoints[this.patrolIndex + 1] - this.y);
-    let distance = vector.length();
+    let vector = new Phaser.Math.Vector2(this.patrolPoints[this.patrolIndex].x - this.x, this.patrolPoints[this.patrolIndex].y - this.y);
 
+    let distance = vector.length();
     if (distance <= 1) {
-      if (this.patrolIndex < this.patrolPoints.length - 2) {
-        this.patrolIndex += 2;
-        this.scene.physics.moveTo(this, this.patrolPoints[this.patrolIndex], this.patrolPoints[this.patrolIndex + 1]);
+      if (this.patrolIndex < this.patrolPoints.length - 1) {
+        this.patrolIndex++;
+        this.scene.physics.moveTo(this, this.patrolPoints[this.patrolIndex].x, this.patrolPoints[this.patrolIndex].y);
 
         this.ajustGuardRotation();
       }
       else {
         this.patrolIndex = 0;
-        this.scene.physics.moveTo(this, this.patrolPoints[this.patrolIndex], this.patrolPoints[this.patrolIndex + 1]);
+        this.scene.physics.moveTo(this, this.patrolPoints[this.patrolIndex].x, this.patrolPoints[this.patrolIndex].y);
 
         this.ajustGuardRotation();
       }
@@ -133,6 +113,26 @@ export default class Guard extends GameCharacter {
     //this.drawVisionArc();
 
     if (this.scene.DEBUG) this.scene.graphics.clear();
+
+    this.animsManager();
+  }
+  
+  /**
+   * Método que crea una imagen usada para el tween de detección del guardia dado el nombre del sprite y ajusta sus parámetros
+   * @param {string} spriteName Nombre del sprite con el que se creará la imagen
+   * @returns {Phaser.GameObjects.Image} Imagen creada y ajustada
+   */
+   createTweenImage(spriteName) {
+
+    let image = this.scene.add.image(this.x, this.y, spriteName);
+
+    image.setOrigin(0.5, 1);
+    image.setScale(4);
+    image.setDepth(4);
+
+    image.setVisible(false);
+
+    return image;
   }
 
   /**
@@ -140,7 +140,7 @@ export default class Guard extends GameCharacter {
    */
   ajustGuardRotation() {
 
-    let vector = new Phaser.Math.Vector2(this.patrolPoints[this.patrolIndex] - this.x, this.patrolPoints[this.patrolIndex + 1] - this.y);
+    let vector = new Phaser.Math.Vector2(this.patrolPoints[this.patrolIndex].x - this.x, this.patrolPoints[this.patrolIndex].y - this.y);
     this.setRotation(vector.angle());
   }
 
@@ -276,7 +276,7 @@ export default class Guard extends GameCharacter {
 
     if (this.susIncreaseEnabled) {
 
-      this.scene.susBar.SusIncrease(this.susIncrement);
+      this.scene.susBar.susIncrease();
     }
   }
 
@@ -316,7 +316,7 @@ export default class Guard extends GameCharacter {
     this.exclamation.setVisible(false);
     this.exclamationIsPlaying = false;
 
-    this.scene.physics.moveTo(this, this.patrolPoints[this.patrolIndex], this.patrolPoints[this.patrolIndex + 1]);
+    this.scene.physics.moveTo(this, this.patrolPoints[this.patrolIndex].x, this.patrolPoints[this.patrolIndex].y );
   }
 
   /**
@@ -377,5 +377,41 @@ export default class Guard extends GameCharacter {
   activateSusIncrease() {
 
     this.susIncreaseEnabled = true;
+  }
+
+  /**
+   * Manager de las animaciones del guardia
+   */
+   animsManager() {
+    
+    if (this.body.newVelocity.x == 0 && this.body.newVelocity.y == 0) {
+      this.grafics.play('idleguard', true);
+    }
+    else {
+      this.grafics.play('movingguard', true);
+    }
+  }
+  
+  /**
+   * Inserta un punto de la patrulla en la posición del array indicada
+   * @param {*} position Posición en el array 
+   * @param {*} _x Coordenada x
+   * @param {*} _y Coordenada y
+   */
+  insertPatrolPoint(position, _x, _y) {
+
+    this.patrolPoints[position] = { x: _x, y: _y };
+  }
+
+  /**
+   * Método que comienza la patrulla del guardia, moviéndose al primer punto del array de puntos
+   */
+  startPatrol() {
+
+    //movimiento hacia el primer punto
+    this.scene.physics.moveTo(this, this.patrolPoints[this.patrolIndex].x, this.patrolPoints[this.patrolIndex].y);
+
+    //rotación del guardia
+    this.ajustGuardRotation();
   }
 }

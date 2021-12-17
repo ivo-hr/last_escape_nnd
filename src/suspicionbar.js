@@ -9,20 +9,23 @@ export default class SuspicionBar extends Phaser.GameObjects.Sprite {
      * @param {Phaser.Scene} scene Escena a la que pertenece la barra
      * @param {number} x Coordenada x
      * @param {number} y Coordenada y
-     * @param {number} _width Ancho de la barra
-     * @param {number} _height Alto de la barra
+     * @param {number} height Alto de la barra
+     * @param {number} width Ancho de la barra
+     * @param {number} susVar Variación de la sospecha cuando el jugador es detectado por un guardiaa
      */
-    constructor(scene, x, y, _height, _width) {
-        super(scene, x, y, 'susbar');
+    constructor(scene, barConfig) {
+        super(scene, barConfig.x, barConfig.y, 'susbar');
 
-        this.displayWidth = _width;
-        this.displayHeight = _height;
-        this._initialWidth = _width; //ancho completo de la barra
+        this.displayWidth = barConfig.width;
+        this.displayHeight = barConfig.height;
+        this._initialWidth = barConfig.width; //ancho completo de la barra
+
+        this.susVariation = barConfig.susVar;
 
         //El sprite que se dibuja por encima para mejor UI
         this.overlay = this.scene.add.image(this.x, this.y, 'susOverlay', 0);
         this.overlay.setOrigin(0, 0.5);
-        this.overlay.displayHeight = _height + 20;
+        this.overlay.displayHeight = barConfig.height + 20;
         this.overlay.displayWidth = this._initialWidth + 10;
         this.overlay.setVisible(true);
         this.overlay.setDepth(11);
@@ -36,13 +39,31 @@ export default class SuspicionBar extends Phaser.GameObjects.Sprite {
         this.displayWidth = this.suspicion * this._initialWidth / 100; //ajusta el ancho para que sea relativo a la sospecha
     }
     /**
-     * Incrementa la sospecha según un incremento dado
-     * @param {number} incr Incremento de la sospecha
+     * Incrementa la sospecha según el incremento
      */
-    SusIncrease(incr){
+    susIncrease(){
 
-        if ((incr > 0 && this.suspicion < 100) || (incr < 0 && this.suspicion > 0)) {
-            this.suspicion += incr * 10/(this.suspicion + 1);
+        if ((this.susVariation > 0 && this.suspicion < 100) || (this.susVariation < 0 && this.suspicion > 0)) {
+            this.suspicion += this.susVariation * 10/(this.suspicion + 1);
+        }
+        else if (this.suspicion >= 100) {
+            //this.scene.lostNight();
+            this.scene.nightEnd();
+        }
+        this.displayWidth = this.suspicion * this._initialWidth / 100;  //ajusta el ancho para que sea relativo a la sospecha
+
+        //cambio de tinte de la barra
+        this.tint = 0xff5050;
+        
+
+        //debug
+        if (this.scene.DEBUG) console.log("Sus level:" + this.suspicion);
+    }
+
+    susDecrease(){
+
+        if ((this.susVariation > 0 && this.suspicion > 0) || (this.susVariation < 0 && this.suspicion < 100)) {
+            this.suspicion -= this.susVariation/2 * 10/(this.suspicion + 1);
         }
         else if (this.suspicion >= 100) {
             //this.scene.lostNight();

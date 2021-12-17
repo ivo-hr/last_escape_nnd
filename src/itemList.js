@@ -191,7 +191,7 @@ export default class ItemList extends Phaser.GameObjects.Container {
             case 'clavos': this.items.clavos = true; break;
             case 'martillo': this.items.martillo = true; break;
             case 'bisagras': this.items.bisagras = true; break;
-            case 'tabla': this.tablas++; break;
+            case 'tabla': this.items.tablas++; break;
         }
         
         this.updateListText();

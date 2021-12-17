@@ -26,7 +26,6 @@ export default class Item extends Phaser.GameObjects.Sprite {
         this.picked = false;
         this.scene.add.existing(this);
         this.setInteractive();//esto hace que pueda recibir eventos del raton
-        this.scene.items.add(this);//lo añade al grupo de items de la escena
         this.scene.physics.add.existing(this);
 
         this.pointer = this.scene.input.activepointer;
@@ -70,7 +69,7 @@ export default class Item extends Phaser.GameObjects.Sprite {
                 this.setPosition(this.player.x, this.player.y);
                 console.log("DROPPED");
                 //si esta dentro del workshop suma puntos de momento y se elimina 
-                this.scene.physics.add.overlap(this, this.scene.Workshop, () => {
+                this.scene.physics.add.overlap(this, this.scene.workshop, () => {
                     if (!this.picked) {
                         console.log("item dropped in base");
                         this.itemObtained();

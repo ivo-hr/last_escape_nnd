@@ -35,9 +35,8 @@ export default class Boot extends Phaser.Scene {
 
     this.load.image('carceltile','assets/tilesets/jawbreaker_tiles.png');
     this.load.tilemapTiledJSON('carcelmapa','assets/tilemaps/carcelmapa.json');
-    this.load.script('webfont', 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js');
 
-    this.loadFont("Pixels", "/assets/fonts/Pixels.ttf");
+    this.loadFont('Pixels', 'assets/fonts/Pixels.ttf');
 
     this.load.setPath('assets/sprites/');
     
