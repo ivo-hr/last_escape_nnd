@@ -26,7 +26,6 @@ export default class Item extends Phaser.GameObjects.Sprite {
         this.picked = false;
         this.scene.add.existing(this);
         this.setInteractive();//esto hace que pueda recibir eventos del raton
-        this.scene.items.add(this);//lo añade al grupo de items de la escena
         this.scene.physics.add.existing(this);
 
         this.pointer = this.scene.input.activepointer;
