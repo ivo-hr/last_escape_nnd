@@ -19,8 +19,6 @@ export default class Item extends Phaser.GameObjects.Sprite {
         //está por encima de la máscara de visión
         this.setDepth(3);
 
-        this.setOrigin(0.5);
-
         this.saveInitialPosition();
 
         this.isBig = bigItem;
@@ -71,7 +69,7 @@ export default class Item extends Phaser.GameObjects.Sprite {
                 this.setPosition(this.player.x, this.player.y);
                 console.log("DROPPED");
                 //si esta dentro del workshop suma puntos de momento y se elimina 
-                this.scene.physics.add.overlap(this, this.scene.Workshop, () => {
+                this.scene.physics.add.overlap(this, this.scene.workshop, () => {
                     if (!this.picked) {
                         console.log("item dropped in base");
                         this.itemObtained();
