@@ -13,11 +13,7 @@ export default class Player extends GameCharacter {
    * @param {number} y Coordenada Y
    */
   constructor(scene, x, y) {
-    //let spritePlayer = scene.add.sprite(20, 20, 'player')
-
     super(scene, x, y, 'player');
-    //super(scene, x, y, spritePlayer)
-    //let spritePlayer = this.giveSprite();
 
     //z-index, el jugador se renderiza en el "nivel" 2
     this.setDepth(2);

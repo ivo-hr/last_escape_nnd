@@ -68,6 +68,18 @@ export default class Guard extends GameCharacter {
 
     this.interrogationIsPlaying = false;
     this.exclamationIsPlaying = false;
+
+    scene.anims.create({
+      key: 'idleguard',
+      frames: scene.anims.generateFrameNumbers('guard', { start: 0, end: 0 }),
+      repeat: 0
+    });
+    scene.anims.create({
+      key: 'movingguard',
+      frames: scene.anims.generateFrameNumbers('guard', { start: 1, end: 4 }),
+      frameRate: 7,
+      repeat: -1
+    });
   }
 
   /**
@@ -131,6 +143,8 @@ export default class Guard extends GameCharacter {
     //this.drawVisionArc();
 
     if (this.scene.DEBUG) this.scene.graphics.clear();
+
+    this.animsManager();
   }
 
   /**
@@ -375,5 +389,18 @@ export default class Guard extends GameCharacter {
   activateSusIncrease() {
 
     this.susIncreaseEnabled = true;
+  }
+
+  /**
+   * Manager de las animaciones del guardia
+   */
+   animsManager() {
+    
+    if (this.body.newVelocity.x == 0 && this.body.newVelocity.y == 0) {
+      this.grafics.play('idleguard', true);
+    }
+    else {
+      this.grafics.play('movingguard', true);
+    }
   }
 }
