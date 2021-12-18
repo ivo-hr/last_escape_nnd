@@ -58,5 +58,8 @@ export default class NightChange extends Phaser.Scene {
     this.input.keyboard.on('keydown', function (event) { 
       this.scene.start('night1', { noche: this.noche });
     }, this);
+    this.input.on('pointerdown', function (event) { 
+      this.scene.start('night1', { noche: this.noche });
+    }, this);
   }
 }
