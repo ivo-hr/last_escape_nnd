@@ -27,7 +27,7 @@ export default class Item extends Phaser.GameObjects.Sprite {
         this.scene.add.existing(this);
         this.setInteractive();//esto hace que pueda recibir eventos del raton
         this.scene.physics.add.existing(this);
-
+        this.safeSound = this.scene.sound.add("leftInShop");
         this.pointer = this.scene.input.activepointer;
 
         //esto es lo que hace cuando se pulsa un boton del raton
@@ -73,6 +73,7 @@ export default class Item extends Phaser.GameObjects.Sprite {
                     if (!this.picked) {
                         console.log("item dropped in base");
                         this.itemObtained();
+                        this.safeSound.play();
                         this.destroy();
                     }
                 });

@@ -31,15 +31,26 @@ export default class Boot extends Phaser.Scene {
    * Carga de los assets del juego
    */
   preload() {
-    // Con setPath podemos establecer el prefijo que se añadirá a todos los load que aparecen a continuación
+    
 
     this.load.image('carceltile','assets/tilesets/jawbreaker_tiles.png');
     this.load.tilemapTiledJSON('carcelmapa','assets/tilemaps/carcelmapa.json');
 
+    //Fuentes del juego
     this.loadFont('Pixels', 'assets/fonts/Pixels.ttf');
+    this.loadFont('HelpMe', 'assets/fonts/HelpMe-owODB.ttf');
+    
+    //Sonidos del juego
+    this.load.audio('leftInShop', 'assets/sfx/leftInWrkShp.mp3');
+    this.load.audio('pickup', 'assets/sfx/pickup.mp3');
+    this.load.audio('susIncrSound', 'assets/sfx/susIncrease.mp3');
+    this.load.audio('MainTh', 'assets/sfx/main_theme.mp3');
 
+    //Sprites del juego
+    // Con setPath podemos establecer el prefijo que se añadirá a todos los load que aparecen a continuación
     this.load.setPath('assets/sprites/');
     
+    this.load.image('mainMenu', 'menu.png');
     this.load.spritesheet('guard', 'guardia.png', { frameWidth: 4, frameHeight: 4 });
     this.load.spritesheet('player', 'enterrador.png', { frameWidth: 4, frameHeight: 4 });
     this.load.image('itemtemp', 'itemtemp.png');

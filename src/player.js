@@ -37,7 +37,9 @@ export default class Player extends GameCharacter {
     this.spotlight.setOrigin(0.5);
 
     this.spotlight.scale = 3.5;
-    
+
+    this.pickupSfx = this.scene.sound.add("pickup");
+
     this.carrying = false;//empieza con el booleano de llevar objetos en falso
 
     //creamos las animaciones del jugador
@@ -70,7 +72,7 @@ export default class Player extends GameCharacter {
   toggleCarrying() {
 
     this.carrying = !this.carrying;
-
+    this.pickupSfx.play();
     if (this.scene.DEBUG) console.log("Cambiando el carrying")
   }
 
@@ -122,7 +124,10 @@ export default class Player extends GameCharacter {
 
       //si la distancia es mayor a 5 se mueve, si no para
       if (distance > 5) {
+        if (!this.carrying)
         this.scene.physics.moveTo(this, x, y, 60 * this.speed);
+        else
+        this.scene.physics.moveTo(this, x, y, 60/2 * this.speed);
         //this.play('moving', true);
         //this.spritePlayer.play('moving', true);
       }

@@ -70,6 +70,11 @@ export default class NightScene extends Phaser.Scene {
 
     this.createRenderTexture();
 
+    //Banda sonora
+    this.music = this.sound.add("MainTh");
+    this.music.setLoop(true);
+    this.music.setVolume(0.2);
+    this.music.play();
     //timer de la noche
     this.timer = this.time.addEvent({
       delay: 180000, //3 min
@@ -173,7 +178,7 @@ export default class NightScene extends Phaser.Scene {
   nightEnd() {
         
     console.log("acaba la noche");
-    
+    this.music.stop();
     this.noche++;
     this.scene.start('nightchange', { noche: this.noche, itemList: this.itemList });
   }
