@@ -44,6 +44,7 @@ export default class Boot extends Phaser.Scene {
     this.load.audio('leftInShop', 'assets/sfx/leftInWrkShp.mp3');
     this.load.audio('pickup', 'assets/sfx/pickup.mp3');
     this.load.audio('susIncrSound', 'assets/sfx/susIncrease.mp3');
+    this.load.audio('susDecrSound', 'assets/sfx/susDecrease.mp3');
     this.load.audio('MainTh', 'assets/sfx/main_theme.mp3');
 
     //Sprites del juego
