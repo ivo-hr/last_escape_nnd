@@ -196,4 +196,19 @@ export default class ItemList extends Phaser.GameObjects.Container {
         
         this.updateListText();
     }
+
+    itemIsObtained(item) {
+
+        switch(item){
+
+            case 'sierra': return this.items.sierra;
+            case 'pala': return this.items.pala;
+            case 'cruz': return this.items.cruz;
+            case 'clavos': return this.items.clavos;
+            case 'martillo': return this.items.martillo;
+            case 'bisagras': return this.items.bisagras;
+
+            case 'tabla': return this.items.tablas === 3;
+        }
+    }
 }   

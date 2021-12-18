@@ -52,6 +52,8 @@ export default class NightScene extends Phaser.Scene {
 
     this.createTilemap();
 
+    this.items = this.physics.add.group();
+
     this.createNonTilemapObjects();
     this.createObjectsFromTilemap();
 
@@ -146,8 +148,8 @@ export default class NightScene extends Phaser.Scene {
    */
   createRenderTexture(){
 
-    let width = this.scale.width;
-	  let height = this.scale.height;
+    let width = this.canvas.width;
+	  let height = this.canvas.height;
 
     let renderTexture = this.make.renderTexture({
       width,
@@ -188,50 +190,42 @@ export default class NightScene extends Phaser.Scene {
    */
   createObjectsFromTilemap(){
 
-    this.offsetX = 4;
-    this.offsetY = 4;
+    this.scale = 4;
 
-    this.loadObjectTilemap(this.map, 'Objetos', 81, ({ x, y, props }) => {
+    if (!this.itemList.itemIsObtained('tabla')) this.loadObjectTilemap(this.map, 'Objetos', 81, ({ x, y, props }) => {
 
       let plank = new Plank(this, this.player, x, y);
-      this.repositionObject(plank);
-      this.correctItemPosition(plank);
+      this.configureItem(plank);
     });
-    this.loadObjectTilemap(this.map, 'Objetos', 76, ({ x, y, props }) => {
+    if (!this.itemList.itemIsObtained('cruz')) this.loadObjectTilemap(this.map, 'Objetos', 76, ({ x, y, props }) => {
 
       let cross = new Cross(this, this.player, x, y);
-      this.repositionObject(cross);
-      this.correctItemPosition(cross);
+      this.configureItem(cross);
     });
-    this.loadObjectTilemap(this.map, 'Objetos', 77, ({ x, y, props }) => {
+    if (!this.itemList.itemIsObtained('martillo')) this.loadObjectTilemap(this.map, 'Objetos', 77, ({ x, y, props }) => {
 
       let hammer = new Hammer(this, this.player, x, y);
-      this.repositionObject(hammer);
-      this.correctItemPosition(hammer);
+      this.configureItem(hammer);
     });
-    this.loadObjectTilemap(this.map, 'Objetos', 73, ({ x, y, props }) => {
+    if (!this.itemList.itemIsObtained('bisagras')) this.loadObjectTilemap(this.map, 'Objetos', 73, ({ x, y, props }) => {
 
       let hinge = new Hinge(this, this.player, x, y);
-      this.repositionObject(hinge);
-      this.correctItemPosition(hinge);
+      this.configureItem(hinge);
     });
-    this.loadObjectTilemap(this.map, 'Objetos', 75, ({ x, y, props }) => {
+    if (!this.itemList.itemIsObtained('clavos')) this.loadObjectTilemap(this.map, 'Objetos', 75, ({ x, y, props }) => {
 
       let nails = new Nails(this, this.player, x, y);
-      this.repositionObject(nails);
-      this.correctItemPosition(nails);
+      this.configureItem(nails);
     });
-    this.loadObjectTilemap(this.map, 'Objetos', 78, ({ x, y, props }) => {
+    if (!this.itemList.itemIsObtained('pala')) this.loadObjectTilemap(this.map, 'Objetos', 78, ({ x, y, props }) => {
 
       let shovel = new Shovel(this, this.player, x, y);
-      this.repositionObject(shovel);
-      this.correctItemPosition(shovel);
+      this.configureItem(shovel);
     });
-    this.loadObjectTilemap(this.map, 'Objetos', 80, ({ x, y, props }) => {
+    if (!this.itemList.itemIsObtained('sierra')) this.loadObjectTilemap(this.map, 'Objetos', 80, ({ x, y, props }) => {
 
       let saw = new Saw(this, this.player, x, y);
-      this.repositionObject(saw);
-      this.correctItemPosition(saw);
+      this.configureItem(saw);
     });
 
     this.patrullas = this.map.createFromObjects('Patrulla', {gid: 67});
@@ -254,14 +248,22 @@ export default class NightScene extends Phaser.Scene {
     });
   }
 
+  configureItem(item) {
+
+    this.repositionObject(item);
+    this.correctItemPosition(item);
+    this.items.add(item);
+  }
+
   repositionObject(object) {
-    object.x *= this.offsetX;
-    object.y *= this.offsetY;
+    object.x *= this.scale;
+    object.y *= this.scale;
   }
 
   correctItemPosition(item) {
     item.x += item.displayWidth/2;
     item.y -= item.displayHeight/2;
+    item.saveInitialPosition();
   }
 
   /**
