@@ -2,6 +2,9 @@ import Boot from './boot.js';
 import MenuScene from './menuscene.js';
 import Night1 from './night1.js';
 import NightChange from './nightchangescene.js';
+import BadEnding from './badendingscene.js';
+import GoodEnding from './goodendingscene.js'
+import NeutralEnding from './neutralendingscene.js'
 
 /**
  * Inicio del juego en Phaser. Creamos el archivo de configuración del juego y creamos
@@ -17,7 +20,7 @@ let config = {
         autoCenter: Phaser.Scale.CENTER_HORIZONTALLY
     },
     pixelArt: true,
-    scene: [Boot, MenuScene, Night1, NightChange],
+    scene: [Boot, MenuScene, Night1, NightChange,BadEnding,GoodEnding,NeutralEnding],
 
     //configuracion de fisicas arcade
     physics: {
