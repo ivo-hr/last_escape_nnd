@@ -1,5 +1,3 @@
-//import Item from "./item";
-
 /**
  * Clase que representa la lista de objetos
 */
@@ -44,7 +42,15 @@ export default class ItemList extends Phaser.GameObjects.Container {
 
         this.createListText();
 
-        this.input = this.scene.input.keyboard.addKey('L');
+        this.createInputEvent();
+    }
+
+    /**
+     * Método que crea el evento de input para abrir y cerrar la lista
+     */
+    createInputEvent() {
+
+        this.input = this.scene.input.keyboard.addKey('TAB');
 
         this.input.on('down', this.toggleList, this);
     }
@@ -195,5 +201,49 @@ export default class ItemList extends Phaser.GameObjects.Container {
         }
         
         this.updateListText();
+    }
+
+    /**
+     * Método que devuelve si el item especificado ha sido obtenido en otra noche
+     * @param {string} item Nombre del objeto a comprobar
+     * @returns {boolean} Si el item ha sido o no recogido (se encuentra marcado en la lista)
+     */
+    itemIsObtained(item) {
+
+        switch(item){
+
+            case 'sierra': return this.items.sierra;
+            case 'pala': return this.items.pala;
+            case 'cruz': return this.items.cruz;
+            case 'clavos': return this.items.clavos;
+            case 'martillo': return this.items.martillo;
+            case 'bisagras': return this.items.bisagras;
+
+            case 'tabla': return this.items.tablas === 3;
+        }
+    }
+
+    /**
+     * Método que devuelve el objeto que contiene los objetos de la lista
+     * @returns {object} Los objetos de la lista
+     */
+    getItemData() {
+
+        return this.items;
+    }
+
+    /**
+     * Método que sustituye los datos de los objetos de la lista por otros dados
+     * @param {object} data Datos de los objetos para sustituir los inciales
+     */
+    changeItemData(data) {
+
+        this.items.sierra = data.sierra;
+        this.items.tablas = data.tablas;
+        this.items.clavos = data.clavos;
+        this.items.martillo = data.martillo;
+        this.items.bisagras = data.bisagras;
+        this.items.cruz = data.cruz;
+        this.items.pala = data.pala;
     }
 }   

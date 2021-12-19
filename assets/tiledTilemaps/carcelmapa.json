@@ -225,7 +225,7 @@
                  "type":"",
                  "visible":true,
                  "width":4,
-                 "x":116,
+                 "x":130,
                  "y":82
                 }, 
                 {
@@ -254,7 +254,7 @@
                  "visible":true,
                  "width":4,
                  "x":20,
-                 "y":162
+                 "y":138
                 }, 
                 {
                  "gid":67,
@@ -1167,7 +1167,7 @@
         {
          "columns":8,
          "firstgid":1,
-         "image":"..\/tiledTilemaps\/jawbreaker_tiles.png",
+         "image":"jawbreaker_tiles.png",
          "imageheight":72,
          "imagewidth":64,
          "margin":0,
@@ -1307,7 +1307,7 @@
         {
          "columns":3,
          "firstgid":73,
-         "image":"..\/tiledTilemaps\/items.png",
+         "image":"items.png",
          "imageheight":48,
          "imagewidth":48,
          "margin":0,
@@ -1320,7 +1320,7 @@
         {
          "columns":1,
          "firstgid":82,
-         "image":"..\/tiledTilemaps\/guardia.png",
+         "image":"guardia.png",
          "imageheight":20,
          "imagewidth":4,
          "margin":0,

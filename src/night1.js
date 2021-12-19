@@ -1,6 +1,6 @@
 import NightScene from "./nightscene.js";
 /**
- * Escena principal del juego.
+ * Noche 1 del juego.
  * @extends NightScene
  */
 export default class Night1 extends NightScene {
@@ -10,7 +10,7 @@ export default class Night1 extends NightScene {
   }
 
   /**
-   * Creación de los elementos de la escena principal de juego
+   * Creación de los elementos de la noche
    */
   create() {
 

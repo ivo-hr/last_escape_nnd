@@ -31,15 +31,28 @@ export default class Boot extends Phaser.Scene {
    * Carga de los assets del juego
    */
   preload() {
-    // Con setPath podemos establecer el prefijo que se añadirá a todos los load que aparecen a continuación
+    
 
     this.load.image('carceltile','assets/tilesets/jawbreaker_tiles.png');
     this.load.tilemapTiledJSON('carcelmapa','assets/tilemaps/carcelmapa.json');
 
+    //Fuentes del juego
     this.loadFont('Pixels', 'assets/fonts/Pixels.ttf');
+    this.loadFont('HelpMe', 'assets/fonts/HelpMe-owODB.ttf');
+    
+    //Sonidos del juego
+    this.load.audio('leftInShop', 'assets/sfx/leftInWrkShp.mp3');
+    this.load.audio('pickup', 'assets/sfx/pickup.mp3');
+    this.load.audio('susIncrSound', 'assets/sfx/susIncrease.mp3');
+    this.load.audio('susDecrSound', 'assets/sfx/susDecrease.mp3');
+    this.load.audio('MainTh', 'assets/sfx/main_theme.mp3');
 
+    //Sprites del juego
+    // Con setPath podemos establecer el prefijo que se añadirá a todos los load que aparecen a continuación
     this.load.setPath('assets/sprites/');
     
+    this.load.image('mainMenu', 'menu.png');
+    this.load.image('playbutton', 'playbutton.png');
     this.load.spritesheet('guard', 'guardia.png', { frameWidth: 4, frameHeight: 4 });
     this.load.spritesheet('player', 'enterrador.png', { frameWidth: 4, frameHeight: 4 });
     this.load.image('itemtemp', 'itemtemp.png');
@@ -48,7 +61,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('itemlist', 'itemlist.png');
     this.load.image('interrogacion', 'interrogacion.png');
     this.load.image('exclamacion', 'exclamacion.png');
-    this.load.image('mask', 'mask1.png');
+    this.load.image('mask', 'visionmask.png');
     this.load.image('susOverlay', 'susbarOverlay.png');
     this.load.image('clock', 'clock.png');
     this.load.image('sierra', 'sierra2.png');
@@ -57,7 +70,8 @@ export default class Boot extends Phaser.Scene {
     this.load.image('cruz', 'cruz.png');
     this.load.image('martillo', 'martillo.png');
     this.load.image('pala', 'pala.png');
-    this.load.image('tabla', 'tabla.png');  
+    this.load.image('tabla', 'tabla.png');
+    this.load.spritesheet('pulse', 'pulso.png', { frameWidth: 16, frameHeight: 16 });  
   }
 
   /**
@@ -66,6 +80,6 @@ export default class Boot extends Phaser.Scene {
    */
   create() {
     
-    this.scene.start('nightchange', { noche: 1 });
+    this.scene.start('menuscene');
   }
 }

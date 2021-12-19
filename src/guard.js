@@ -35,6 +35,13 @@ export default class Guard extends GameCharacter {
     //creamos el sprite del cono de visión
     this.createVisionConeSprite(this);
 
+    //creamos el sprite del pulso
+    this.pulseSprite = this.scene.add.sprite(0,0, 'pulse');
+    this.pulseSprite.setDepth(10);
+    this.pulseSprite.setScale(5);
+    this.pulseSprite.setPosition(this.body.x, this.body.y);
+    this.pulseSprite.setVisible(false);
+
     this.scene.physics.add.collider(this, this.scene.player);
     this.body.setImmovable();
 
@@ -67,6 +74,19 @@ export default class Guard extends GameCharacter {
       frames: scene.anims.generateFrameNumbers('guard', { start: 1, end: 4 }),
       frameRate: 7,
       repeat: -1
+    });
+    scene.anims.create({
+      key: 'pulse',
+      frames: scene.anims.generateFrameNumbers('pulse', { start: 0, end: 7 }),
+      frameRate: 8,
+      repeat: 0
+    });
+
+    let timer = this.scene.time.addEvent({       
+      delay: 2000, //2s       
+      callback: this.pulseAnim,       
+      callbackScope: this,
+      loop: true     
     });
   }
 
@@ -113,7 +133,7 @@ export default class Guard extends GameCharacter {
     //this.drawVisionArc();
 
     if (this.scene.DEBUG) this.scene.graphics.clear();
-
+    
     this.animsManager();
   }
   
@@ -128,7 +148,7 @@ export default class Guard extends GameCharacter {
 
     image.setOrigin(0.5, 1);
     image.setScale(4);
-    image.setDepth(4);
+    image.setDepth(5);
 
     image.setVisible(false);
 
@@ -390,13 +410,27 @@ export default class Guard extends GameCharacter {
     else {
       this.grafics.play('movingguard', true);
     }
+    
+  }
+
+  /**
+   * Metodo de la animacion del pulso
+   */
+  pulseAnim(){
+    //si el guardia esta en el circulo de vision del jugador el pulso no se hace para ese guardia
+    if(!this.scene.physics.overlap(this, this.scene.player.visionCircle)){
+      this.pulseSprite.setPosition(this.x, this.y);
+      this.pulseSprite.setVisible(true);
+      this.pulseSprite.play('pulse', true);
+      this.pulseSprite.on('animationcomplete', () => {this.pulseSprite.setVisible(false)});
+    }
   }
   
   /**
    * Inserta un punto de la patrulla en la posición del array indicada
-   * @param {*} position Posición en el array 
-   * @param {*} _x Coordenada x
-   * @param {*} _y Coordenada y
+   * @param {number} position Posición en el array 
+   * @param {number} _x Coordenada x
+   * @param {number} _y Coordenada y
    */
   insertPatrolPoint(position, _x, _y) {
 

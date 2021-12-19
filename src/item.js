@@ -19,15 +19,13 @@ export default class Item extends Phaser.GameObjects.Sprite {
         //está por encima de la máscara de visión
         this.setDepth(3);
 
-        this.saveInitialPosition();
-
         this.isBig = bigItem;
         this.player = _player;
         this.picked = false;
         this.scene.add.existing(this);
         this.setInteractive();//esto hace que pueda recibir eventos del raton
         this.scene.physics.add.existing(this);
-
+        this.safeSound = this.scene.sound.add("leftInShop");
         this.pointer = this.scene.input.activepointer;
 
         //esto es lo que hace cuando se pulsa un boton del raton
@@ -59,25 +57,40 @@ export default class Item extends Phaser.GameObjects.Sprite {
             }
         });
 
-        //evento para soltar el objeto
         this.scene.input.on('pointerdown', pointer => {
-            if (this.picked && this.player.isCarrying() && pointer.middleButtonDown()) {
-                this.picked = false;
-                this.player.toggleCarrying();
-                //con esto se quita del container del jugador y se pone en la posicion del jugador
-                this.player.remove(this);
-                this.setPosition(this.player.x, this.player.y);
-                console.log("DROPPED");
-                //si esta dentro del workshop suma puntos de momento y se elimina 
-                this.scene.physics.add.overlap(this, this.scene.workshop, () => {
-                    if (!this.picked) {
-                        console.log("item dropped in base");
-                        this.itemObtained();
-                        this.destroy();
-                    }
-                });
+            if (pointer.middleButtonDown()) {
+                
+                this.dropItem();
             }
         });
+
+        let input = this.scene.input.keyboard.addKey('SPACE');
+        //evento para soltar el objeto
+        input.on('down', this.dropItem, this);
+    }
+
+    /**
+     * Método que suelta el objeto si estaba cogido por el jugador
+     */
+    dropItem() {
+
+        if (this.picked && this.player.isCarrying()) {
+
+            this.picked = false;
+            this.player.toggleCarrying();
+            //con esto se quita del container del jugador y se pone en la posicion del jugador
+            this.player.remove(this);
+            this.setPosition(this.player.x, this.player.y);
+
+            //si esta dentro del workshop suma puntos de momento y se elimina
+            if (this.scene.physics.overlap(this, this.scene.workshop) && !this.picked) {
+
+                if (this.scene.DEBUG) console.log("item dropped in base");
+                this.itemObtained();
+                this.safeSound.play();
+                this.destroy();
+            }
+        }
     }
 
     /**
@@ -106,6 +119,10 @@ export default class Item extends Phaser.GameObjects.Sprite {
         this.y = this.iniY;
     }
 
+    /**
+     * Método que devuelve si un item es grande o no
+     * @returns {boolean} Si el objeto es grande
+     */
     isBigItem(){
 
         return this.isBig;

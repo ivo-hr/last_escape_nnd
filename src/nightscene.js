@@ -13,6 +13,7 @@ import Cross from './items/cross.js';
 import Nails from './items/nails.js';
 import Hinge from './items/hinge.js';
 import Shovel from './items/shovel.js';
+import Item from './item.js';
 /**
  * Escena principal del juego.
  * @extends Phaser.Scene
@@ -26,9 +27,11 @@ export default class NightScene extends Phaser.Scene {
     super({ key: scenceKey });
   }
 
-  init(datos, itemList) {
+  init(datos) {
     this.noche = datos.noche;
-    this.itemList = itemList 
+    if (datos.itemData) {
+      this.itemData = datos.itemData;
+    } 
   }
 
   /**
@@ -38,25 +41,30 @@ export default class NightScene extends Phaser.Scene {
 
     this.canvas = document.getElementById("mainCanvas");
 
-    if(!this.itemList){
+    let listConfig = {
+      shownX: this.canvas.width/2,
+      hiddenX: this.canvas.width * 1.5,
+      y: this.canvas.height/2,
+      height: 700,
+      width: 500
+    };
+    this.itemList = new ItemList(this, listConfig);
 
-      let listConfig = {
-        shownX: this.canvas.width/2,
-        hiddenX: this.canvas.width * 1.5,
-        y: this.canvas.height/2,
-        height: 700,
-        width: 500
-      };
-      this.itemList = new ItemList(this, listConfig);
+    if (this.itemData) {
+      
+      this.itemList.changeItemData(this.itemData);
+      this.itemList.updateListText();
     }
 
     this.createTilemap();
+
+    this.items = this.physics.add.group();
 
     this.createNonTilemapObjects();
     this.createObjectsFromTilemap();
 
     //bool que indica si el juego esta en debug
-    this.DEBUG = true;
+    this.DEBUG = false;
 
     //graphics usados para el debug del raycast
     this.graphics = this.add.graphics({ lineStyle: { width: 1, color: 0x00ff00}, fillStyle: { color: 0xff00ff } });
@@ -70,6 +78,11 @@ export default class NightScene extends Phaser.Scene {
 
     this.createRenderTexture();
 
+    //Banda sonora
+    this.music = this.sound.add("MainTh");
+    this.music.setLoop(true);
+    this.music.setVolume(0.2);
+    this.music.play();
     //timer de la noche
     this.timer = this.time.addEvent({
       delay: 180000, //3 min
@@ -79,6 +92,9 @@ export default class NightScene extends Phaser.Scene {
     });
   }
 
+  /**
+   * Método que crea los objetos que no están incluidos en el tilemap
+   */
   createNonTilemapObjects() {
     
     this.player = new Player(this, 100, 300);
@@ -93,10 +109,10 @@ export default class NightScene extends Phaser.Scene {
     this.susBar = new SuspicionBar(this, barConfig);
 
     let workshopConfig = {
-      x: 170,
-      y: 160,
-      height: 180,
-      width: 310,
+      x: 175,
+      y: 190,
+      height: 140,
+      width: 300,
       susVar: -0.1
     };
     this.workshop = new Workshop(this, workshopConfig);
@@ -141,8 +157,8 @@ export default class NightScene extends Phaser.Scene {
    */
   createRenderTexture(){
 
-    let width = this.scale.width;
-	  let height = this.scale.height;
+    let width = this.canvas.width;
+	  let height = this.canvas.height;
 
     let renderTexture = this.make.renderTexture({
       width,
@@ -150,7 +166,7 @@ export default class NightScene extends Phaser.Scene {
     }, true);
 
     //lo creamos un nivel encima del resto de objetos
-    renderTexture.setDepth(2);
+    renderTexture.setDepth(4);
 
     //dibujamos el mapa vacío en el redertexture
     renderTexture.draw(this.backgroundLayer);
@@ -172,10 +188,10 @@ export default class NightScene extends Phaser.Scene {
    */
   nightEnd() {
         
-    console.log("acaba la noche");
-    
+    if (this.DEBUG) console.log("acaba la noche");
+    this.music.stop();
     this.noche++;
-    this.scene.start('nightchange', { noche: this.noche, itemList: this.itemList });
+    this.scene.start('nightchange', { noche: this.noche, itemData: this.itemList.getItemData() });
   }
 
   /**
@@ -183,50 +199,42 @@ export default class NightScene extends Phaser.Scene {
    */
   createObjectsFromTilemap(){
 
-    this.offsetX = 4;
-    this.offsetY = 4;
+    this.scale = 4;
 
-    this.loadObjectTilemap(this.map, 'Objetos', 81, ({ x, y, props }) => {
+    if (!this.itemList.itemIsObtained('tabla')) this.loadObjectTilemap(this.map, 'Objetos', 81, ({ x, y, props }) => {
 
       let plank = new Plank(this, this.player, x, y);
-      this.repositionObject(plank);
-      this.correctItemPosition(plank);
+      this.configureItem(plank);
     });
-    this.loadObjectTilemap(this.map, 'Objetos', 76, ({ x, y, props }) => {
+    if (!this.itemList.itemIsObtained('cruz')) this.loadObjectTilemap(this.map, 'Objetos', 76, ({ x, y, props }) => {
 
       let cross = new Cross(this, this.player, x, y);
-      this.repositionObject(cross);
-      this.correctItemPosition(cross);
+      this.configureItem(cross);
     });
-    this.loadObjectTilemap(this.map, 'Objetos', 77, ({ x, y, props }) => {
+    if (!this.itemList.itemIsObtained('martillo')) this.loadObjectTilemap(this.map, 'Objetos', 77, ({ x, y, props }) => {
 
       let hammer = new Hammer(this, this.player, x, y);
-      this.repositionObject(hammer);
-      this.correctItemPosition(hammer);
+      this.configureItem(hammer);
     });
-    this.loadObjectTilemap(this.map, 'Objetos', 73, ({ x, y, props }) => {
+    if (!this.itemList.itemIsObtained('bisagras')) this.loadObjectTilemap(this.map, 'Objetos', 73, ({ x, y, props }) => {
 
       let hinge = new Hinge(this, this.player, x, y);
-      this.repositionObject(hinge);
-      this.correctItemPosition(hinge);
+      this.configureItem(hinge);
     });
-    this.loadObjectTilemap(this.map, 'Objetos', 75, ({ x, y, props }) => {
+    if (!this.itemList.itemIsObtained('clavos')) this.loadObjectTilemap(this.map, 'Objetos', 75, ({ x, y, props }) => {
 
       let nails = new Nails(this, this.player, x, y);
-      this.repositionObject(nails);
-      this.correctItemPosition(nails);
+      this.configureItem(nails);
     });
-    this.loadObjectTilemap(this.map, 'Objetos', 78, ({ x, y, props }) => {
+    if (!this.itemList.itemIsObtained('pala')) this.loadObjectTilemap(this.map, 'Objetos', 78, ({ x, y, props }) => {
 
       let shovel = new Shovel(this, this.player, x, y);
-      this.repositionObject(shovel);
-      this.correctItemPosition(shovel);
+      this.configureItem(shovel);
     });
-    this.loadObjectTilemap(this.map, 'Objetos', 80, ({ x, y, props }) => {
+    if (!this.itemList.itemIsObtained('sierra')) this.loadObjectTilemap(this.map, 'Objetos', 80, ({ x, y, props }) => {
 
       let saw = new Saw(this, this.player, x, y);
-      this.repositionObject(saw);
-      this.correctItemPosition(saw);
+      this.configureItem(saw);
     });
 
     this.patrullas = this.map.createFromObjects('Patrulla', {gid: 67});
@@ -249,14 +257,34 @@ export default class NightScene extends Phaser.Scene {
     });
   }
 
-  repositionObject(object) {
-    object.x *= this.offsetX;
-    object.y *= this.offsetY;
+  /**
+   * Método que configura los parámetros del item creado
+   * @param {Item} item Objeto a ser configurado
+   */
+  configureItem(item) {
+
+    this.repositionObject(item);
+    this.correctItemPosition(item);
+    this.items.add(item);
   }
 
+  /**
+   * Método que reposiciona un objeto dado según el escalado del tilemap
+   * @param {Phaser.GameObject} object Objeto a ser reposicionado
+   */
+  repositionObject(object) {
+    object.x *= this.scale;
+    object.y *= this.scale;
+  }
+
+  /**
+   * Método que corrige la posición del objeto dado para que cuadre con el tilemap
+   * @param {item} item Objeto a corregir su posición 
+   */
   correctItemPosition(item) {
     item.x += item.displayWidth/2;
     item.y -= item.displayHeight/2;
+    item.saveInitialPosition();
   }
 
   /**

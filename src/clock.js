@@ -18,7 +18,7 @@ export default class Clock extends Phaser.GameObjects.Sprite {
         this.displayWidth = clockConfig.width;
         this.displayHeight = clockConfig.height;
 
-        this.setDepth(10);
+        this.setDepth(9);
         this.angle = 45;
         this.scene.add.existing(this);
     }

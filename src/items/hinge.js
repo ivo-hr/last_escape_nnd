@@ -14,8 +14,12 @@ export default class Hinge extends Item {
         this.setScale(2);
     }
 
+    /**
+     * Método que devuelve si el item ha sido recogido
+     * @returns {boolean} Si el item ha sido recogido o no
+     */
     itemObtained() {
 
-        this.scene.itemList.itemObtained('bisagra');
+        this.scene.itemList.itemObtained('bisagras');
     }
 }
