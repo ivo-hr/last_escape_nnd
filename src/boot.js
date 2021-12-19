@@ -69,7 +69,8 @@ export default class Boot extends Phaser.Scene {
     this.load.image('cruz', 'cruz.png');
     this.load.image('martillo', 'martillo.png');
     this.load.image('pala', 'pala.png');
-    this.load.image('tabla', 'tabla.png');  
+    this.load.image('tabla', 'tabla.png');
+    this.load.spritesheet('pulse', 'pulso.png', { frameWidth: 16, frameHeight: 16 });  
   }
 
   /**
