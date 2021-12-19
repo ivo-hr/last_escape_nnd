@@ -24,8 +24,8 @@ export default class Player extends GameCharacter {
     this.visionRadius = 200;
 
     //círculo de visión del jugador
-    let visionCircle = new VisionCircle(this.scene, this.visionRadius);
-    this.add(visionCircle);
+    this.visionCircle = new VisionCircle(this.scene, this.visionRadius);
+    this.add(this.visionCircle);
 
     this.spotlight = this.scene.make.image({
       x: this.x,
