@@ -20,6 +20,6 @@ export default class Hinge extends Item {
      */
     itemObtained() {
 
-        this.scene.itemList.itemObtained('bisagra');
+        this.scene.itemList.itemObtained('bisagras');
     }
 }

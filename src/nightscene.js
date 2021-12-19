@@ -64,7 +64,7 @@ export default class NightScene extends Phaser.Scene {
     this.createObjectsFromTilemap();
 
     //bool que indica si el juego esta en debug
-    this.DEBUG = true;
+    this.DEBUG = false;
 
     //graphics usados para el debug del raycast
     this.graphics = this.add.graphics({ lineStyle: { width: 1, color: 0x00ff00}, fillStyle: { color: 0xff00ff } });
@@ -85,7 +85,7 @@ export default class NightScene extends Phaser.Scene {
     this.music.play();
     //timer de la noche
     this.timer = this.time.addEvent({
-      delay: 18000, //3 min
+      delay: 180000, //3 min
       
       callback: this.nightEnd,
       callbackScope: this 
@@ -166,7 +166,7 @@ export default class NightScene extends Phaser.Scene {
     }, true);
 
     //lo creamos un nivel encima del resto de objetos
-    renderTexture.setDepth(2);
+    renderTexture.setDepth(4);
 
     //dibujamos el mapa vacío en el redertexture
     renderTexture.draw(this.backgroundLayer);

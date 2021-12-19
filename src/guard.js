@@ -128,7 +128,7 @@ export default class Guard extends GameCharacter {
 
     image.setOrigin(0.5, 1);
     image.setScale(4);
-    image.setDepth(4);
+    image.setDepth(5);
 
     image.setVisible(false);
 
