@@ -27,9 +27,11 @@ export default class NightScene extends Phaser.Scene {
     super({ key: scenceKey });
   }
 
-  init(datos, itemList) {
+  init(datos) {
     this.noche = datos.noche;
-    this.itemList = itemList 
+    if (datos.itemData) {
+      this.itemData = datos.itemData;
+    } 
   }
 
   /**
@@ -39,16 +41,19 @@ export default class NightScene extends Phaser.Scene {
 
     this.canvas = document.getElementById("mainCanvas");
 
-    if(!this.itemList){
+    let listConfig = {
+      shownX: this.canvas.width/2,
+      hiddenX: this.canvas.width * 1.5,
+      y: this.canvas.height/2,
+      height: 700,
+      width: 500
+    };
+    this.itemList = new ItemList(this, listConfig);
 
-      let listConfig = {
-        shownX: this.canvas.width/2,
-        hiddenX: this.canvas.width * 1.5,
-        y: this.canvas.height/2,
-        height: 700,
-        width: 500
-      };
-      this.itemList = new ItemList(this, listConfig);
+    if (this.itemData) {
+      
+      this.itemList.changeItemData(this.itemData);
+      this.itemList.updateListText();
     }
 
     this.createTilemap();
@@ -80,7 +85,7 @@ export default class NightScene extends Phaser.Scene {
     this.music.play();
     //timer de la noche
     this.timer = this.time.addEvent({
-      delay: 180000, //3 min
+      delay: 18000, //3 min
       
       callback: this.nightEnd,
       callbackScope: this 
@@ -183,10 +188,10 @@ export default class NightScene extends Phaser.Scene {
    */
   nightEnd() {
         
-    console.log("acaba la noche");
+    if (this.DEBUG) console.log("acaba la noche");
     this.music.stop();
     this.noche++;
-    this.scene.start('nightchange', { noche: this.noche, itemList: this.itemList });
+    this.scene.start('nightchange', { noche: this.noche, itemData: this.itemList.getItemData() });
   }
 
   /**

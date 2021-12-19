@@ -12,6 +12,9 @@ export default class NightChange extends Phaser.Scene {
 
   init(datos) {
     this.noche = datos.noche;
+    if (datos.itemData) {
+      this.itemData = datos.itemData;
+    } 
   }
 /**
    * Creación de la escena. Tan solo contiene el texto que indica la noche que toca a continuación
@@ -56,10 +59,10 @@ export default class NightChange extends Phaser.Scene {
   activateListener(){
 
     this.input.keyboard.on('keydown', function (event) { 
-      this.scene.start('night1', { noche: this.noche });
+      this.scene.start('night1', { noche: this.noche, itemList: this.itemList });
     }, this);
     this.input.on('pointerdown', function (event) { 
-      this.scene.start('night1', { noche: this.noche });
+      this.scene.start('night1', { noche: this.noche, itemData: this.itemData });
     }, this);
   }
 }

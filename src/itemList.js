@@ -42,6 +42,14 @@ export default class ItemList extends Phaser.GameObjects.Container {
 
         this.createListText();
 
+        this.createInputEvent();
+    }
+
+    /**
+     * Método que crea el evento de input para abrir y cerrar la lista
+     */
+    createInputEvent() {
+
         this.input = this.scene.input.keyboard.addKey('L');
 
         this.input.on('down', this.toggleList, this);
@@ -213,5 +221,29 @@ export default class ItemList extends Phaser.GameObjects.Container {
 
             case 'tabla': return this.items.tablas === 3;
         }
+    }
+
+    /**
+     * Método que devuelve el objeto que contiene los objetos de la lista
+     * @returns {object} Los objetos de la lista
+     */
+    getItemData() {
+
+        return this.items;
+    }
+
+    /**
+     * Método que sustituye los datos de los objetos de la lista por otros dados
+     * @param {object} data Datos de los objetos para sustituir los inciales
+     */
+    changeItemData(data) {
+
+        this.items.sierra = data.sierra;
+        this.items.tablas = data.tablas;
+        this.items.clavos = data.clavos;
+        this.items.martillo = data.martillo;
+        this.items.bisagras = data.bisagras;
+        this.items.cruz = data.cruz;
+        this.items.pala = data.pala;
     }
 }   
