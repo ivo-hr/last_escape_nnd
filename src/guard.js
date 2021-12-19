@@ -36,12 +36,11 @@ export default class Guard extends GameCharacter {
     this.createVisionConeSprite(this);
 
     //creamos el sprite del pulso
-    this.pulseSprite = this.scene.add.sprite(0,0, 'pulse');//.play('pulse');
+    this.pulseSprite = this.scene.add.sprite(0,0, 'pulse');
     this.pulseSprite.setDepth(10);
     this.pulseSprite.setScale(5);
     this.pulseSprite.setPosition(this.body.x, this.body.y);
     this.pulseSprite.setVisible(false);
-    //this.add(this.pulseSprite);
 
     this.scene.physics.add.collider(this, this.scene.player);
     this.body.setImmovable();
