@@ -35,6 +35,13 @@ export default class Guard extends GameCharacter {
     //creamos el sprite del cono de visión
     this.createVisionConeSprite(this);
 
+    //creamos el sprite del pulso
+    this.pulseSprite = this.scene.add.sprite(0,0, 'pulse');//.play('pulse');
+    this.pulseSprite.setDepth(10);
+    this.pulseSprite.setScale(5);
+    this.pulseSprite.setPosition(this.body.x, this.body.y);
+    //this.add(this.pulseSprite);
+
     this.scene.physics.add.collider(this, this.scene.player);
     this.body.setImmovable();
 
@@ -67,6 +74,18 @@ export default class Guard extends GameCharacter {
       frames: scene.anims.generateFrameNumbers('guard', { start: 1, end: 4 }),
       frameRate: 7,
       repeat: -1
+    });
+    scene.anims.create({
+      key: 'pulse',
+      frames: scene.anims.generateFrameNumbers('pulse', { start: 0, end: 7 }),
+      frameRate: 8,
+      repeat: 0
+    });
+
+    this.timer = this.scene.time.addEvent({
+      delay: 5000,
+      callback: this.pulseAnim(),
+      callbackScope: this
     });
   }
 
@@ -113,8 +132,10 @@ export default class Guard extends GameCharacter {
     //this.drawVisionArc();
 
     if (this.scene.DEBUG) this.scene.graphics.clear();
-
+    
     this.animsManager();
+
+    this.pulseSprite.setPosition(this.x, this.y);
   }
   
   /**
@@ -390,6 +411,24 @@ export default class Guard extends GameCharacter {
     else {
       this.grafics.play('movingguard', true);
     }
+    
+  }
+
+  /**
+   * Metodo de la animacion del pulso
+   */
+  pulseAnim(){
+    
+    this.pulseSprite.play('pulse', true);
+    //this.pulseSprite.delay(1000);
+    this.pulseSprite.stop();
+    console.log('testeo anim');
+    this.timer = this.scene.time.addEvent({
+      delay: 5000,
+      callback: this.pulseAnim(),
+      callbackScope: this
+    });
+    
   }
   
   /**
