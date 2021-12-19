@@ -1,5 +1,5 @@
 import Boot from './boot.js';
-import End from './end.js';
+import MenuScene from './menuscene.js';
 import Night1 from './night1.js';
 import NightChange from './nightchangescene.js';
 
@@ -17,7 +17,7 @@ let config = {
         autoCenter: Phaser.Scale.CENTER_HORIZONTALLY
     },
     pixelArt: true,
-    scene: [Boot, Night1, NightChange],
+    scene: [Boot, MenuScene, Night1, NightChange],
 
     //configuracion de fisicas arcade
     physics: {

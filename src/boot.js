@@ -52,6 +52,7 @@ export default class Boot extends Phaser.Scene {
     this.load.setPath('assets/sprites/');
     
     this.load.image('mainMenu', 'menu.png');
+    this.load.image('playbutton', 'playbutton.png');
     this.load.spritesheet('guard', 'guardia.png', { frameWidth: 4, frameHeight: 4 });
     this.load.spritesheet('player', 'enterrador.png', { frameWidth: 4, frameHeight: 4 });
     this.load.image('itemtemp', 'itemtemp.png');
@@ -79,6 +80,6 @@ export default class Boot extends Phaser.Scene {
    */
   create() {
     
-    this.scene.start('nightchange', { noche: 1 });
+    this.scene.start('menuscene');
   }
 }
