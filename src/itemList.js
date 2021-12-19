@@ -50,7 +50,7 @@ export default class ItemList extends Phaser.GameObjects.Container {
      */
     createInputEvent() {
 
-        this.input = this.scene.input.keyboard.addKey('L');
+        this.input = this.scene.input.keyboard.addKey('TAB');
 
         this.input.on('down', this.toggleList, this);
     }
