@@ -105,6 +105,10 @@ export default class Item extends Phaser.GameObjects.Sprite {
         this.y = this.iniY;
     }
 
+    /**
+     * Método que devuelve si un item es grande o no
+     * @returns {boolean} Si el objeto es grande
+     */
     isBigItem(){
 
         return this.isBig;

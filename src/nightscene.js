@@ -13,6 +13,7 @@ import Cross from './items/cross.js';
 import Nails from './items/nails.js';
 import Hinge from './items/hinge.js';
 import Shovel from './items/shovel.js';
+import Item from './item.js';
 /**
  * Escena principal del juego.
  * @extends Phaser.Scene
@@ -86,6 +87,9 @@ export default class NightScene extends Phaser.Scene {
     });
   }
 
+  /**
+   * Método que crea los objetos que no están incluidos en el tilemap
+   */
   createNonTilemapObjects() {
     
     this.player = new Player(this, 100, 300);
@@ -248,6 +252,10 @@ export default class NightScene extends Phaser.Scene {
     });
   }
 
+  /**
+   * Método que configura los parámetros del item creado
+   * @param {Item} item Objeto a ser configurado
+   */
   configureItem(item) {
 
     this.repositionObject(item);
@@ -255,11 +263,19 @@ export default class NightScene extends Phaser.Scene {
     this.items.add(item);
   }
 
+  /**
+   * Método que reposiciona un objeto dado según el escalado del tilemap
+   * @param {Phaser.GameObject} object Objeto a ser reposicionado
+   */
   repositionObject(object) {
     object.x *= this.scale;
     object.y *= this.scale;
   }
 
+  /**
+   * Método que corrige la posición del objeto dado para que cuadre con el tilemap
+   * @param {item} item Objeto a corregir su posición 
+   */
   correctItemPosition(item) {
     item.x += item.displayWidth/2;
     item.y -= item.displayHeight/2;

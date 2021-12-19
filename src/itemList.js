@@ -1,5 +1,3 @@
-//import Item from "./item";
-
 /**
  * Clase que representa la lista de objetos
 */
@@ -197,6 +195,11 @@ export default class ItemList extends Phaser.GameObjects.Container {
         this.updateListText();
     }
 
+    /**
+     * Método que devuelve si el item especificado ha sido obtenido en otra noche
+     * @param {string} item Nombre del objeto a comprobar
+     * @returns {boolean} Si el item ha sido o no recogido (se encuentra marcado en la lista)
+     */
     itemIsObtained(item) {
 
         switch(item){

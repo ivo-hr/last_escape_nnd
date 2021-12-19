@@ -394,9 +394,9 @@ export default class Guard extends GameCharacter {
   
   /**
    * Inserta un punto de la patrulla en la posición del array indicada
-   * @param {*} position Posición en el array 
-   * @param {*} _x Coordenada x
-   * @param {*} _y Coordenada y
+   * @param {number} position Posición en el array 
+   * @param {number} _x Coordenada x
+   * @param {number} _y Coordenada y
    */
   insertPatrolPoint(position, _x, _y) {
 

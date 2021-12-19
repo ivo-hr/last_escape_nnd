@@ -14,8 +14,12 @@ export default class Cross extends Item {
         this.setScale(2);
     }
 
+    /**
+     * Método que devuelve si el item ha sido recogido
+     * @returns {boolean} Si el item ha sido recogido o no
+     */
     itemObtained() {
 
-        this.scene.itemList.itemObtained('cruz');
+        return this.scene.itemList.itemObtained('cruz');
     }
 }

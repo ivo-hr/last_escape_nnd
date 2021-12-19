@@ -31,6 +31,9 @@ export default class SuspicionBar extends Phaser.GameObjects.Sprite {
         this.overlay.setDepth(11);
         this.setDepth(10);
         this.setOrigin(0, 0.5);
+        
+        //cambio de tinte de la barra
+        this.tint = 0xff5050;
 
         this.scene.add.existing(this);
 
@@ -43,7 +46,7 @@ export default class SuspicionBar extends Phaser.GameObjects.Sprite {
         this.displayWidth = this.suspicion * this._initialWidth / 100; //ajusta el ancho para que sea relativo a la sospecha
     }
     /**
-     * Incrementa la sospecha según el incremento
+     * Método que incrementa la sospecha según el incremento
      */
     susIncrease(){
 
@@ -65,6 +68,9 @@ export default class SuspicionBar extends Phaser.GameObjects.Sprite {
         if (this.scene.DEBUG) console.log("Sus level:" + this.suspicion);
     }
 
+    /**
+     * Método que decrementa la sospecha una décima parte de la variación de sospecha
+     */
     susDecrease(){
 
         if ((this.susVariation > 0 && this.suspicion > 0) || (this.susVariation < 0 && this.suspicion < 100)) {
@@ -72,16 +78,10 @@ export default class SuspicionBar extends Phaser.GameObjects.Sprite {
             this.downSusSfx.play();
         }
         else if (this.suspicion >= 100) {
-            //this.scene.lostNight();
             this.scene.nightEnd();
         }
         this.displayWidth = this.suspicion * this._initialWidth / 100;  //ajusta el ancho para que sea relativo a la sospecha
-
-        //cambio de tinte de la barra
-        this.tint = 0xff5050;
         
-        
-
         //debug
         if (this.scene.DEBUG) console.log("Sus level:" + this.suspicion);
     }
