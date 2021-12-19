@@ -109,10 +109,10 @@ export default class NightScene extends Phaser.Scene {
     this.susBar = new SuspicionBar(this, barConfig);
 
     let workshopConfig = {
-      x: 170,
-      y: 160,
-      height: 180,
-      width: 310,
+      x: 175,
+      y: 190,
+      height: 140,
+      width: 300,
       susVar: -0.1
     };
     this.workshop = new Workshop(this, workshopConfig);

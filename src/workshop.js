@@ -19,6 +19,8 @@ export default class Workshop extends Phaser.GameObjects.Rectangle {
         this.displayWidth = workshopConfig.width;
         this.displayHeight = workshopConfig.height;
 
+        this.createRenderTexture();
+
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this, true); //lo añadimos a la física
 
@@ -27,4 +29,18 @@ export default class Workshop extends Phaser.GameObjects.Rectangle {
             this.scene.susBar.susDecrease();
         }); //overlap (actua como el trigger en unity)
     } 
+
+    /**
+     * Método que crea el RenderTexture usado para indicar la zona del taller
+     */
+    createRenderTexture() {
+
+        let renderTexture = this.scene.make.renderTexture({ x: this.x, y: this.y, width: this.displayWidth, height: this.displayHeight }, true);
+
+        renderTexture.setOrigin(0.5);
+        renderTexture.fill(0x3FC407);
+        renderTexture.setAlpha(0.2);
+
+        renderTexture.setDepth(5);
+    }
 }
