@@ -119,16 +119,8 @@ canvas {
   font-family: HelpMe;
   src: url("/assets/fonts/HelpMe-owODB.ttf");
 }
-@font-face {
-  font-family: SunD;
-  src: url("/assets/fonts/SundiaryDemo-2OgdK.ttf");
-}
-@font-face {
-  font-family: Abbeyline;
-  src: url("/assets/fonts/Abbeyline.ttf");
-}
+
 @font-face {
   font-family: AssassinNinja;
   src: url("/assets/fonts/AssassinNinja-7BYyR.ttf");
 }
-

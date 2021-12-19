@@ -191,7 +191,11 @@ export default class NightScene extends Phaser.Scene {
     if (this.DEBUG) console.log("acaba la noche");
     this.music.stop();
     this.noche++;
+    if(this.noche<=5&&!this.itemList.completo)
     this.scene.start('nightchange', { noche: this.noche, itemData: this.itemList.getItemData() });
+    else if(this.noche>5){
+      this.scene.start('badending', { noche: this.noche, itemData: this.itemList.getItemData() });
+    }
   }
 
   /**
@@ -304,6 +308,15 @@ export default class NightScene extends Phaser.Scene {
         }
       }
       callback({ x: objeto.x, y: objeto.y, props })
+    }
+  }
+
+  changeToEnd(){
+    if(this.noche<5){
+      this.scene.start('goodending', { noche: this.noche, itemData: this.itemList.getItemData() });
+    }
+    else if(this.noche===5){
+      this.scene.start('neutralending', { noche: this.noche, itemData: this.itemList.getItemData() });
     }
   }
 }

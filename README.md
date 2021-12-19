@@ -2,9 +2,9 @@
 <p align="center">  
 <a href="https://twitter.com/NameNotDet"><img alt="Twitter" src="/images/nnd_newlogo.png" width="50" height="50"></a>
 
-  
+## RELEASE! Aquí tenéis el _World Premiere_: https://www.youtube.com/watch?v=GpDfxBmpmV4
 
-_**v. 0.5** (19/11/2021)_
+_**v. 1.0** (19/12/2021)_
 
 ## Descripción
 En este juego web basado en una de los legendarios cortos de _Alfred Hitchcock Presenta_, somos un viejo sepulturero de una cárcel femenina, preparando la huida de una convicta con la que nos hemos aliado. Debemos conseguir lo necesario para poder crear un ataúd, para así poder enterrarla y que pueda escapar, sin que nos pillen los guardias.

@@ -43,6 +43,8 @@ export default class ItemList extends Phaser.GameObjects.Container {
         this.createListText();
 
         this.createInputEvent();
+
+        this.completo=false;
     }
 
     /**
@@ -183,6 +185,36 @@ export default class ItemList extends Phaser.GameObjects.Container {
         this.hingesText.setText('Bisagras: ' + this.items.bisagras);
     }
 
+    checkVictory(){
+        let cont=0;
+        if(this.items.sierra){
+            cont++;
+        }
+        if(this.items.pala){
+            cont++;
+        }
+        if(this.items.cruz){
+            cont++;
+        }
+        if(this.items.clavos){
+        cont++;
+        }
+        if(this.items.martillo){
+            cont++;
+        }
+        if(this.items.bisagras){
+            cont++;
+        }
+        if(this.items.tablas===3){
+            cont++;
+        }
+
+        if (cont===7){
+            this.completo=true;
+        }
+
+    }
+
     /**
      * Método que marca el objeto como recogido y actualiza la lista
      * @param {string} item Objeto recogido
@@ -201,6 +233,10 @@ export default class ItemList extends Phaser.GameObjects.Container {
         }
         
         this.updateListText();
+        this.checkVictory();
+        if(this.completo){
+            this.scene.changeToEnd();
+        }
     }
 
     /**
