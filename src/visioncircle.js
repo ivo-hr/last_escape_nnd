@@ -16,7 +16,5 @@ export default class VisionCircle extends Phaser.GameObjects.Sprite {
         this.body.setCircle(circleRadius);
         let offset = 15-circleRadius; //corrección de 15px para el offset
         this.body.offset = new Phaser.Math.Vector2(offset, offset);
-        
-        this.body.onOverlap = true;
     } 
 }
