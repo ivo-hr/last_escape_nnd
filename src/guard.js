@@ -40,6 +40,7 @@ export default class Guard extends GameCharacter {
     this.pulseSprite.setDepth(10);
     this.pulseSprite.setScale(5);
     this.pulseSprite.setPosition(this.body.x, this.body.y);
+    this.pulseSprite.setVisible(false);
     //this.add(this.pulseSprite);
 
     this.scene.physics.add.collider(this, this.scene.player);
@@ -82,10 +83,11 @@ export default class Guard extends GameCharacter {
       repeat: 0
     });
 
-    this.timer = this.scene.time.addEvent({
-      delay: 5000,
-      callback: this.pulseAnim(),
-      callbackScope: this
+    let timer = this.scene.time.addEvent({       
+      delay: 2000, //2s       
+      callback: this.pulseAnim,       
+      callbackScope: this,
+      loop: true     
     });
   }
 
@@ -134,8 +136,6 @@ export default class Guard extends GameCharacter {
     if (this.scene.DEBUG) this.scene.graphics.clear();
     
     this.animsManager();
-
-    this.pulseSprite.setPosition(this.x, this.y);
   }
   
   /**
@@ -418,17 +418,13 @@ export default class Guard extends GameCharacter {
    * Metodo de la animacion del pulso
    */
   pulseAnim(){
-    
-    this.pulseSprite.play('pulse', true);
-    //this.pulseSprite.delay(1000);
-    this.pulseSprite.stop();
-    console.log('testeo anim');
-    this.timer = this.scene.time.addEvent({
-      delay: 5000,
-      callback: this.pulseAnim(),
-      callbackScope: this
-    });
-    
+    //si el guardia esta en el circulo de vision del jugador el pulso no se hace para ese guardia
+    if(!this.scene.physics.overlap(this, this.scene.player.visionCircle)){
+      this.pulseSprite.setPosition(this.x, this.y);
+      this.pulseSprite.setVisible(true);
+      this.pulseSprite.play('pulse', true);
+      this.pulseSprite.on('animationcomplete', () => {this.pulseSprite.setVisible(false)});
+    }
   }
   
   /**
