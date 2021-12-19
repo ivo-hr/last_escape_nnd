@@ -209,7 +209,7 @@ export default class ItemList extends Phaser.GameObjects.Container {
             cont++;
         }
 
-        if (cont===1){
+        if (cont===7){
             this.completo=true;
         }
 
