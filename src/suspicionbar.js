@@ -3,7 +3,7 @@
  * Clase que representa la barra de sospecha, en forma de sprite
 */
 export default class SuspicionBar extends Phaser.GameObjects.Sprite {
-  
+
     /**
      * Constructor de la barra
      * @param {Phaser.Scene} scene Escena a la que pertenece la barra
@@ -31,7 +31,7 @@ export default class SuspicionBar extends Phaser.GameObjects.Sprite {
         this.overlay.setDepth(11);
         this.setDepth(10);
         this.setOrigin(0, 0.5);
-        
+
         //cambio de tinte de la barra
         this.tint = 0xff5050;
 
@@ -48,10 +48,10 @@ export default class SuspicionBar extends Phaser.GameObjects.Sprite {
     /**
      * Método que incrementa la sospecha según el incremento
      */
-    susIncrease(){
+    susIncrease() {
 
         if ((this.susVariation > 0 && this.suspicion < 100) || (this.susVariation < 0 && this.suspicion > 0)) {
-            this.suspicion += this.susVariation * 10/(this.suspicion + 1);
+            this.suspicion += this.susVariation * 10 / (this.suspicion + 1);
         }
         else if (this.suspicion >= 100) {
             //this.scene.lostNight();
@@ -61,7 +61,7 @@ export default class SuspicionBar extends Phaser.GameObjects.Sprite {
 
         //cambio de tinte de la barra
         this.tint = 0xff5050;
-        
+
         this.upSusSfx.play();
 
         //debug
@@ -71,17 +71,17 @@ export default class SuspicionBar extends Phaser.GameObjects.Sprite {
     /**
      * Método que decrementa la sospecha una décima parte de la variación de sospecha
      */
-    susDecrease(){
+    susDecrease() {
 
         if ((this.susVariation > 0 && this.suspicion > 0) || (this.susVariation < 0 && this.suspicion < 100)) {
-            this.suspicion -= this.susVariation/20;
+            this.suspicion -= this.susVariation / 20;
             this.downSusSfx.play();
         }
         else if (this.suspicion >= 100) {
             this.scene.nightEnd();
         }
         this.displayWidth = this.suspicion * this._initialWidth / 100;  //ajusta el ancho para que sea relativo a la sospecha
-        
+
         //debug
         if (this.scene.DEBUG) console.log("Sus level:" + this.suspicion);
     }
