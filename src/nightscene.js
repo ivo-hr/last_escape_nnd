@@ -41,6 +41,8 @@ export default class NightScene extends Phaser.Scene {
 
     this.canvas = document.getElementById("mainCanvas");
 
+    this.nightDuration = 120000; //2 min de duracion
+
     let listConfig = {
       shownX: this.canvas.width/2,
       hiddenX: this.canvas.width * 1.5,
@@ -65,12 +67,7 @@ export default class NightScene extends Phaser.Scene {
 
     //bool que indica si el juego esta en debug
     this.DEBUG = false;
-
-    //graphics usados para el debug del raycast
-    this.graphics = this.add.graphics({ lineStyle: { width: 1, color: 0x00ff00}, fillStyle: { color: 0xff00ff } });
-
-    //this.guard = new Guard(this, 75, 200, +0.3, true);
-
+    
     this.physics.add.collider(this.player, this.groundLayer);
     
     //esto es lo que hace que no haya context menu en el juego al pulsar click derecho
@@ -85,7 +82,7 @@ export default class NightScene extends Phaser.Scene {
     this.music.play();
     //timer de la noche
     this.timer = this.time.addEvent({
-      delay: 180000, //3 min
+      delay: this.nightDuration,
       
       callback: this.nightEnd,
       callbackScope: this 
@@ -104,7 +101,7 @@ export default class NightScene extends Phaser.Scene {
       y: 50,
       height: 35,
       width: 250,
-      susVar: 0.3
+      susVar: 0.6
     };
     this.susBar = new SuspicionBar(this, barConfig);
 
@@ -121,7 +118,8 @@ export default class NightScene extends Phaser.Scene {
       x: 260,
       y: 35,
       height: 70,
-      width: 70
+      width: 70,
+      nightDuration: this.nightDuration
     };
     this.clock = new Clock(this, clockConfig);
   }
@@ -312,10 +310,10 @@ export default class NightScene extends Phaser.Scene {
   }
 
   changeToEnd(){
-    if(this.noche<5){
+    if(this.noche < 4){
       this.scene.start('goodending', { noche: this.noche, itemData: this.itemList.getItemData() });
     }
-    else if(this.noche===5){
+    else if(this.noche >= 4){
       this.scene.start('neutralending', { noche: this.noche, itemData: this.itemList.getItemData() });
     }
   }

@@ -23,7 +23,7 @@ export default class Button extends Phaser.GameObjects.Sprite {
     /**
      * Método que se ejecuta al poner el puntero sobre el botón
      */
-    onOver(){
+    onOver() {
 
         this.setTint(0x999999);
     }
@@ -31,7 +31,7 @@ export default class Button extends Phaser.GameObjects.Sprite {
     /**
      * Método que se ejecuta al sacar el puntero del botón
      */
-    onExitOver(){
+    onExitOver() {
 
         this.setTint(0xffffff);
     }
@@ -39,7 +39,7 @@ export default class Button extends Phaser.GameObjects.Sprite {
     /**
      * Método que se ejecuta cuando el botón ha sido pulsado
      */
-    onDown(){
+    onDown() {
 
         this.scene.events.emit('buttonPressed');
     }

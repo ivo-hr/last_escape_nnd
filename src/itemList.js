@@ -18,7 +18,7 @@ export default class ItemList extends Phaser.GameObjects.Container {
         let grafic = scene.add.sprite(0, 0, 'itemlist', 0);
         grafic.displayHeight = listConfig.height;
         grafic.displayWidth = listConfig.width;
-        
+
         super(scene, listConfig.hiddenX, listConfig.y, grafic);
 
         this.add(grafic);
@@ -26,7 +26,7 @@ export default class ItemList extends Phaser.GameObjects.Container {
 
         this.scene.add.existing(this);
 
-        this.textY = -listConfig.height/3.5;
+        this.textY = -listConfig.height / 3.5;
         this.lineSpacing = 40;
 
         this.hiddenX = listConfig.hiddenX;
@@ -35,7 +35,7 @@ export default class ItemList extends Phaser.GameObjects.Container {
         this.setDepth(10);
 
         this.opened = false;
-        
+
         this.playingTween = false;
 
         this.items = { tablas: 0, cruz: false, pala: false, sierra: false, clavos: false, martillo: false, bisagras: false };
@@ -44,7 +44,7 @@ export default class ItemList extends Phaser.GameObjects.Container {
 
         this.createInputEvent();
 
-        this.completo=false;
+        this.completo = false;
     }
 
     /**
@@ -60,11 +60,11 @@ export default class ItemList extends Phaser.GameObjects.Container {
     /**
      * Método que activa o desactiva la lista dependiendo de su estado anterior
      */
-    toggleList(){
+    toggleList() {
 
-        if(!this.playingTween){
+        if (!this.playingTween) {
 
-            if(this.opened) this.hideItemList();
+            if (this.opened) this.hideItemList();
             else this.showItemList();
         }
     };
@@ -116,57 +116,57 @@ export default class ItemList extends Phaser.GameObjects.Container {
     /**
      * Método que se llama al completarse la reproducción del tween
      */
-    hasStoppedPlaying(){
+    hasStoppedPlaying() {
 
         this.playingTween = false;
     }
-    
+
     /**
      * Método que crea el texto de la lista
      */
-    createListText(){
+    createListText() {
 
-        let text = this.scene.add.text(0, this.textY, 'Lista', { fontFamily: 'Pixels', fontSize: 64, color: '0x000000', align: 'center'});
+        let text = this.scene.add.text(0, this.textY, 'Lista', { fontFamily: 'Pixels', fontSize: 64, color: '0x000000', align: 'center' });
 
         text.setOrigin(0.5);
-        
+
         this.add(text);
 
         let textX = text.x;
         let textY = text.y;
 
-        textY += 2* this.lineSpacing;
-        this.plankText = this.scene.add.text(textX, textY, 'Tablas: ' + this.items.tablas, { fontFamily: 'Pixels', fontSize: 64, color: '0x000000', align: 'center'});
+        textY += 2 * this.lineSpacing;
+        this.plankText = this.scene.add.text(textX, textY, 'Tablas: ' + this.items.tablas, { fontFamily: 'Pixels', fontSize: 64, color: '0x000000', align: 'center' });
         this.plankText.setOrigin(0.5);
         this.add(this.plankText);
 
         textY += this.lineSpacing;
-        this.sawText = this.scene.add.text(textX, textY, 'Sierra: ' + this.items.sierra, { fontFamily: 'Pixels', fontSize: 64, color: '0x000000', align: 'center'});
+        this.sawText = this.scene.add.text(textX, textY, 'Sierra: ' + this.items.sierra, { fontFamily: 'Pixels', fontSize: 64, color: '0x000000', align: 'center' });
         this.sawText.setOrigin(0.5);
         this.add(this.sawText);
 
         textY += this.lineSpacing;
-        this.shovelText = this.scene.add.text(textX, textY, 'Pala: ' + this.items.pala, { fontFamily: 'Pixels', fontSize: 64, color: '0x000000', align: 'center'});
+        this.shovelText = this.scene.add.text(textX, textY, 'Pala: ' + this.items.pala, { fontFamily: 'Pixels', fontSize: 64, color: '0x000000', align: 'center' });
         this.shovelText.setOrigin(0.5);
         this.add(this.shovelText);
 
         textY += this.lineSpacing;
-        this.hammerText = this.scene.add.text(textX, textY, 'Martillo: ' + this.items.martillo, { fontFamily: 'Pixels', fontSize: 64, color: '0x000000', align: 'center'});
+        this.hammerText = this.scene.add.text(textX, textY, 'Martillo: ' + this.items.martillo, { fontFamily: 'Pixels', fontSize: 64, color: '0x000000', align: 'center' });
         this.hammerText.setOrigin(0.5);
         this.add(this.hammerText);
 
         textY += this.lineSpacing;
-        this.nailsText = this.scene.add.text(textX, textY, 'Clavos: ' + this.items.clavos, { fontFamily: 'Pixels', fontSize: 64, color: '0x000000', align: 'center'});
+        this.nailsText = this.scene.add.text(textX, textY, 'Clavos: ' + this.items.clavos, { fontFamily: 'Pixels', fontSize: 64, color: '0x000000', align: 'center' });
         this.nailsText.setOrigin(0.5);
         this.add(this.nailsText);
 
         textY += this.lineSpacing;
-        this.crossText = this.scene.add.text(textX, textY, 'Cruz: ' + this.items.cruz, { fontFamily: 'Pixels', fontSize: 64, color: '0x000000', align: 'center'});
+        this.crossText = this.scene.add.text(textX, textY, 'Cruz: ' + this.items.cruz, { fontFamily: 'Pixels', fontSize: 64, color: '0x000000', align: 'center' });
         this.crossText.setOrigin(0.5);
         this.add(this.crossText);
 
         textY += this.lineSpacing;
-        this.hingesText = this.scene.add.text(textX, textY, 'Bisagras: ' + this.items.bisagras, { fontFamily: 'Pixels', fontSize: 64, color: '0x000000', align: 'center'});
+        this.hingesText = this.scene.add.text(textX, textY, 'Bisagras: ' + this.items.bisagras, { fontFamily: 'Pixels', fontSize: 64, color: '0x000000', align: 'center' });
         this.hingesText.setOrigin(0.5);
         this.add(this.hingesText);
     }
@@ -185,32 +185,32 @@ export default class ItemList extends Phaser.GameObjects.Container {
         this.hingesText.setText('Bisagras: ' + this.items.bisagras);
     }
 
-    checkVictory(){
-        let cont=0;
-        if(this.items.sierra){
+    checkVictory() {
+        let cont = 0;
+        if (this.items.sierra) {
             cont++;
         }
-        if(this.items.pala){
+        if (this.items.pala) {
             cont++;
         }
-        if(this.items.cruz){
+        if (this.items.cruz) {
             cont++;
         }
-        if(this.items.clavos){
-        cont++;
-        }
-        if(this.items.martillo){
+        if (this.items.clavos) {
             cont++;
         }
-        if(this.items.bisagras){
+        if (this.items.martillo) {
             cont++;
         }
-        if(this.items.tablas===3){
+        if (this.items.bisagras) {
+            cont++;
+        }
+        if (this.items.tablas === 3) {
             cont++;
         }
 
-        if (cont===7){
-            this.completo=true;
+        if (cont === 7) {
+            this.completo = true;
         }
 
     }
@@ -221,7 +221,7 @@ export default class ItemList extends Phaser.GameObjects.Container {
      */
     itemObtained(item) {
 
-        switch(item){
+        switch (item) {
 
             case 'sierra': this.items.sierra = true; break;
             case 'pala': this.items.pala = true; break;
@@ -231,31 +231,11 @@ export default class ItemList extends Phaser.GameObjects.Container {
             case 'bisagras': this.items.bisagras = true; break;
             case 'tabla': this.items.tablas++; break;
         }
-        
+
         this.updateListText();
         this.checkVictory();
-        if(this.completo){
+        if (this.completo) {
             this.scene.changeToEnd();
-        }
-    }
-
-    /**
-     * Método que devuelve si el item especificado ha sido obtenido en otra noche
-     * @param {string} item Nombre del objeto a comprobar
-     * @returns {boolean} Si el item ha sido o no recogido (se encuentra marcado en la lista)
-     */
-    itemIsObtained(item) {
-
-        switch(item){
-
-            case 'sierra': return this.items.sierra;
-            case 'pala': return this.items.pala;
-            case 'cruz': return this.items.cruz;
-            case 'clavos': return this.items.clavos;
-            case 'martillo': return this.items.martillo;
-            case 'bisagras': return this.items.bisagras;
-
-            case 'tabla': return this.items.tablas === 3;
         }
     }
 
