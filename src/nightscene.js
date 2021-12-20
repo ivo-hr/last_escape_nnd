@@ -197,7 +197,7 @@ export default class NightScene extends Phaser.Scene {
     if(this.noche<=5&&!this.itemList.completo)
     this.scene.start('nightchange', { noche: this.noche, itemData: this.itemList.getItemData() });
     else if(this.noche>5){
-      this.scene.start('neutralending', { noche: this.noche, itemData: this.itemList.getItemData() });
+      this.scene.start('badending', { noche: this.noche, itemData: this.itemList.getItemData() });
     }
   }
 
