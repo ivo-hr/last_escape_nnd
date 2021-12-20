@@ -67,12 +67,7 @@ export default class NightScene extends Phaser.Scene {
 
     //bool que indica si el juego esta en debug
     this.DEBUG = false;
-
-    //graphics usados para el debug del raycast
-    this.graphics = this.add.graphics({ lineStyle: { width: 1, color: 0x00ff00}, fillStyle: { color: 0xff00ff } });
-
-    //this.guard = new Guard(this, 75, 200, +0.3, true);
-
+    
     this.physics.add.collider(this.player, this.groundLayer);
     
     //esto es lo que hace que no haya context menu en el juego al pulsar click derecho

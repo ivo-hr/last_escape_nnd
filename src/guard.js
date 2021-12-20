@@ -142,7 +142,7 @@ export default class Guard extends GameCharacter {
    * @param {string} spriteName Nombre del sprite con el que se creará la imagen
    * @returns {Phaser.GameObjects.Image} Imagen creada y ajustada
    */
-   createTweenImage(spriteName) {
+  createTweenImage(spriteName) {
 
     let image = this.scene.add.image(this.x, this.y, spriteName);
 
