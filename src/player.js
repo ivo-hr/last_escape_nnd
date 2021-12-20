@@ -36,7 +36,7 @@ export default class Player extends GameCharacter {
 
     this.spotlight.setOrigin(0.5);
 
-    let spotlightScale =  [1, 0.8, 0.6, 0.4, 0.2];
+    let spotlightScale = [1, 0.8, 0.6, 0.4, 0.2];
     this.visionCircle.setScale(spotlightScale[this.scene.noche - 1]);
     this.spotlight.scale = spotlightScale[this.scene.noche - 1];
 
@@ -91,7 +91,7 @@ export default class Player extends GameCharacter {
    * Método que controla si la animación es parada o en movimiento
    */
   animsManager() {
-    
+
     if (this.body.newVelocity.x == 0 && this.body.newVelocity.y == 0) {
       this.grafics.play('idle', true);
     }
@@ -127,9 +127,9 @@ export default class Player extends GameCharacter {
       //si la distancia es mayor a 5 se mueve, si no para
       if (distance > 5) {
         if (!this.carrying)
-        this.scene.physics.moveTo(this, x, y, 60 * this.speed);
+          this.scene.physics.moveTo(this, x, y, 60 * this.speed);
         else
-        this.scene.physics.moveTo(this, x, y, 60/2 * this.speed);
+          this.scene.physics.moveTo(this, x, y, 60 / 2 * this.speed);
         //this.play('moving', true);
         //this.spritePlayer.play('moving', true);
       }

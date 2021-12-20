@@ -13,14 +13,14 @@ import NeutralEnding from './neutralendingscene.js'
 let config = {
     type: Phaser.WEBGL,
     canvas: document.getElementById("mainCanvas"),
-    width:  360*4,
-    height: 224*4,
+    width: 360 * 4,
+    height: 224 * 4,
     backgroundColor: '#708090',
     scale: {
         autoCenter: Phaser.Scale.CENTER_HORIZONTALLY
     },
     pixelArt: true,
-    scene: [Boot, MenuScene, Night1, NightChange,BadEnding,GoodEnding,NeutralEnding],
+    scene: [Boot, MenuScene, Night1, NightChange, BadEnding, GoodEnding, NeutralEnding],
 
     //configuracion de fisicas arcade
     physics: {

@@ -59,7 +59,7 @@ export default class Item extends Phaser.GameObjects.Sprite {
 
         this.scene.input.on('pointerdown', pointer => {
             if (pointer.middleButtonDown()) {
-                
+
                 this.dropItem();
             }
         });
@@ -123,7 +123,7 @@ export default class Item extends Phaser.GameObjects.Sprite {
      * Método que devuelve si un item es grande o no
      * @returns {boolean} Si el objeto es grande
      */
-    isBigItem(){
+    isBigItem() {
 
         return this.isBig;
     }

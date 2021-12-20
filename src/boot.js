@@ -21,9 +21,9 @@ export default class Boot extends Phaser.Scene {
   loadFont(name, url) {
     let newFont = new FontFace(name, `url(${url})`);
     newFont.load().then(function (loaded) {
-        document.fonts.add(loaded);
+      document.fonts.add(loaded);
     }).catch(function (error) {
-        return error;
+      return error;
     });
   }
 
@@ -31,15 +31,15 @@ export default class Boot extends Phaser.Scene {
    * Carga de los assets del juego
    */
   preload() {
-    
 
-    this.load.image('carceltile','assets/tilesets/jawbreaker_tiles.png');
-    this.load.tilemapTiledJSON('carcelmapa','assets/tilemaps/carcelmapa.json');
+
+    this.load.image('carceltile', 'assets/tilesets/jawbreaker_tiles.png');
+    this.load.tilemapTiledJSON('carcelmapa', 'assets/tilemaps/carcelmapa.json');
 
     //Fuentes del juego
     this.loadFont('Pixels', 'assets/fonts/Pixels.ttf');
     this.loadFont('HelpMe', 'assets/fonts/HelpMe-owODB.ttf');
-    
+
     //Sonidos del juego
     this.load.audio('leftInShop', 'assets/sfx/leftInWrkShp.mp3');
     this.load.audio('pickup', 'assets/sfx/pickup.mp3');
@@ -50,7 +50,7 @@ export default class Boot extends Phaser.Scene {
     //Sprites del juego
     // Con setPath podemos establecer el prefijo que se añadirá a todos los load que aparecen a continuación
     this.load.setPath('assets/sprites/');
-    
+
     this.load.image('mainMenu', 'menu.png');
     this.load.image('playbutton', 'playbutton.png');
     this.load.spritesheet('guard', 'guardia.png', { frameWidth: 4, frameHeight: 4 });
@@ -71,7 +71,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('martillo', 'martillo.png');
     this.load.image('pala', 'pala.png');
     this.load.image('tabla', 'tabla.png');
-    this.load.spritesheet('pulse', 'pulso.png', { frameWidth: 16, frameHeight: 16 });  
+    this.load.spritesheet('pulse', 'pulso.png', { frameWidth: 16, frameHeight: 16 });
   }
 
   /**
@@ -79,7 +79,7 @@ export default class Boot extends Phaser.Scene {
    * nivel del juego
    */
   create() {
-    
+
     this.scene.start('menuscene');
   }
 }
