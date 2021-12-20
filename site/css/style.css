@@ -121,10 +121,10 @@ canvas {
 /* FONT INCLUSIONS */
 @font-face {
   font-family: HelpMe;
-  src: url("assets/fonts/HelpMe-owODB.ttf");
+  src: url("/assets/fonts/HelpMe-owODB.ttf");
 }
 
 @font-face {
   font-family: AssassinNinja;
-  src: url("assets/fonts/AssassinNinja-7BYyR.ttf");
+  src: url("/assets/fonts/AssassinNinja-7BYyR.ttf");
 }
