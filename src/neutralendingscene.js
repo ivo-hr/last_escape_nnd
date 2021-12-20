@@ -28,22 +28,30 @@ export default class NeutralEnding extends Phaser.Scene {
       var mainmenu = this.add.image(document.getElementById("mainCanvas").width/2, document.getElementById("mainCanvas").height/2, 'mainMenu', 0);
       mainmenu.displayHeight = document.getElementById("mainCanvas").height;
       mainmenu.displayWidth = document.getElementById("mainCanvas").width;
-      this.add.text(document.getElementById("mainCanvas").width/2, document.getElementById("mainCanvas").height/4 * 3, 'Final Neutro'+'\nLograste escapar dentro del ataud, siendo enterrada junto a otra persona\n esperando a que el sepulturaro te desentierre,pero...\n es el sepulturero el ', {fontFamily:'HelpMe'})
-        .setOrigin(0.5, 0.5)  // Colocamos el pivote en el centro de cuadro de texto 
-        .setAlign('center')
+
+      let text = this.add.text(document.getElementById("mainCanvas").width/2, document.getElementById("mainCanvas").height/4 * 2.5, 'Final Neutral', {fontFamily:'HelpMe', fontSize: 32, color: '#FF8C00'});
+      text.setOrigin(0.5, 0.5)  // Colocamos el pivote en el centro de cuadro de texto 
+      text.setAlign('center');
+      
+      text = this.add.text(document.getElementById("mainCanvas").width/2, document.getElementById("mainCanvas").height/4 * 3, 'Lograste construir del ataud, entieras a la convicta\n ella espera a que las desentierres, pero...\n Nunca llegas a desenterrarla.', {fontFamily:'HelpMe'});
+      text.setOrigin(0.5, 0.5)  // Colocamos el pivote en el centro de cuadro de texto 
+      text.setAlign('center');
       //Título del juego
-      this.add.text(document.getElementById("mainCanvas").width/2, document.getElementById("mainCanvas").height/2, 'LAST ESCAPE', {font: "70px HelpMe"})
-        .setOrigin(0.5, 0.5)  // Colocamos el pivote en el centro de cuadro de texto 
-        .setAlign('center')
-        ;  // Centramos el texto dentro del cuadro de texto
+      text = this.add.text(document.getElementById("mainCanvas").width/2, document.getElementById("mainCanvas").height/2, 'LAST ESCAPE', {font: "70px HelpMe"});
+      text.setOrigin(0.5, 0.5);  // Colocamos el pivote en el centro de cuadro de texto 
+      text.setAlign('center'); // Centramos el texto dentro del cuadro de texto
+      
+      text = this.add.text(document.getElementById("mainCanvas").width/2, document.getElementById("mainCanvas").height/4 * 3.5, 'Quién ha sido enterrado con la convicta?', {fontFamily:'HelpMe', fontSize: 22, color: '#f00'});
+      text.setOrigin(0.5, 0.5);  // Colocamos el pivote en el centro de cuadro de texto 
+      text.setAlign('center');
 
     
     
-    let timer = this.time.addEvent({
-      delay: 500, //0.5s
-      callback: this.activateListener,
-      callbackScope: this 
-    });
+    // let timer = this.time.addEvent({
+    //   delay: 500, //0.5s
+    //   callback: this.activateListener,
+    //   callbackScope: this 
+    // });
   }
 
   /**

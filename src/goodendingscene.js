@@ -28,22 +28,26 @@ export default class GoodEnding extends Phaser.Scene {
       var mainmenu = this.add.image(document.getElementById("mainCanvas").width/2, document.getElementById("mainCanvas").height/2, 'mainMenu', 0);
       mainmenu.displayHeight = document.getElementById("mainCanvas").height;
       mainmenu.displayWidth = document.getElementById("mainCanvas").width;
-      this.add.text(document.getElementById("mainCanvas").width/2, document.getElementById("mainCanvas").height/4 * 3, 'Final Bueno'+'\nLograste escapar de la prision siendo enterrada dentro del ataud,\n mas tarde el sepulturero de desrentierra...\n ERES LIBRE', {fontFamily:'HelpMe'})
-        .setOrigin(0.5, 0.5)  // Colocamos el pivote en el centro de cuadro de texto 
-        .setAlign('center')
-      //Título del juego
-      this.add.text(document.getElementById("mainCanvas").width/2, document.getElementById("mainCanvas").height/2, 'LAST ESCAPE', {font: "70px HelpMe"})
-        .setOrigin(0.5, 0.5)  // Colocamos el pivote en el centro de cuadro de texto 
-        .setAlign('center')
-        ;  // Centramos el texto dentro del cuadro de texto
+
+      let text = this.add.text(document.getElementById("mainCanvas").width/2, document.getElementById("mainCanvas").height/4 * 2.5, 'Final Bueno', {fontFamily:'HelpMe', fontSize: 32, color: '#0f0'});
+      text.setOrigin(0.5, 0.5);  // Colocamos el pivote en el centro de cuadro de texto 
+      text.setAlign('center');  // Centramos el texto dentro del cuadro de texto
+
+      text = this.add.text(document.getElementById("mainCanvas").width/2, document.getElementById("mainCanvas").height/4 * 3, 'Lograste construir el ataud en el que enterrar a la convicta,\n mas tarde la desentierras...\n Es libre', {fontFamily:'HelpMe'});
+      text.setOrigin(0.5, 0.5);  // Colocamos el pivote en el centro de cuadro de texto 
+      text.setAlign('center');  // Centramos el texto dentro del cuadro de texto
+
+      text = this.add.text(document.getElementById("mainCanvas").width/2, document.getElementById("mainCanvas").height/2, 'LAST ESCAPE', {font: "70px HelpMe"});
+      text.setOrigin(0.5, 0.5);  // Colocamos el pivote en el centro de cuadro de texto 
+      text.setAlign('center');  // Centramos el texto dentro del cuadro de texto  // Centramos el texto dentro del cuadro de texto
 
     
     
-    let timer = this.time.addEvent({
-      delay: 500, //0.5s
-      callback: this.activateListener,
-      callbackScope: this 
-    });
+    // let timer = this.time.addEvent({
+    //   delay: 500, //0.5s
+    //   callback: this.activateListener,
+    //   callbackScope: this 
+    // });
   }
 
   /**

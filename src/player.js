@@ -36,7 +36,9 @@ export default class Player extends GameCharacter {
 
     this.spotlight.setOrigin(0.5);
 
-    this.spotlight.scale = 1;
+    let spotlightScale =  [1, 0.8, 0.6, 0.4, 0.2];
+    this.visionCircle.setScale(spotlightScale[this.scene.noche - 1]);
+    this.spotlight.scale = spotlightScale[this.scene.noche - 1];
 
     this.pickupSfx = this.scene.sound.add("pickup");
 

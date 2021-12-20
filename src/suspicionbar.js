@@ -74,7 +74,7 @@ export default class SuspicionBar extends Phaser.GameObjects.Sprite {
     susDecrease(){
 
         if ((this.susVariation > 0 && this.suspicion > 0) || (this.susVariation < 0 && this.suspicion < 100)) {
-            this.suspicion -= this.susVariation/10;
+            this.suspicion -= this.susVariation/20;
             this.downSusSfx.play();
         }
         else if (this.suspicion >= 100) {
