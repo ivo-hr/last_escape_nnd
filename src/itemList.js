@@ -240,6 +240,26 @@ export default class ItemList extends Phaser.GameObjects.Container {
     }
 
     /**
+     * Método que devuelve si el item especificado ha sido obtenido en otra noche
+     * @param {string} item Nombre del objeto a comprobar
+     * @returns {boolean} Si el item ha sido o no recogido (se encuentra marcado en la lista)
+     */
+     itemIsObtained(item) {
+
+        switch(item){
+
+            case 'sierra': return this.items.sierra;
+            case 'pala': return this.items.pala;
+            case 'cruz': return this.items.cruz;
+            case 'clavos': return this.items.clavos;
+            case 'martillo': return this.items.martillo;
+            case 'bisagras': return this.items.bisagras;
+
+            case 'tabla': return this.items.tablas === 3;
+        }
+    }
+    
+    /**
      * Método que devuelve el objeto que contiene los objetos de la lista
      * @returns {object} Los objetos de la lista
      */
