@@ -90,7 +90,7 @@ El juego acaba cuando el jugador complete esta lista. Se compone de:
 
   
 ### UML del juego
-<img src= "/images/diagramaUML.png">
+<img src= "/images/UMLHitoFinal.png">
   
   
 ## Referencias:
