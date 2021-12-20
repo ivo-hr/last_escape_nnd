@@ -2,7 +2,7 @@
 <p align="center">  
 <a href="https://twitter.com/NameNotDet"><img alt="Twitter" src="/images/nnd_newlogo.png" width="50" height="50"></a>
 
-## RELEASE! Aquí tenéis el _World Premiere_: https://www.youtube.com/watch?v=GpDfxBmpmV4
+## RELEASE! Aquí tenéis el _World Premiere_: https://www.youtube.com/watch?v=Z68yFFVzehc
 
 _**v. 1.0** (19/12/2021)_
 
