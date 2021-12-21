@@ -170,9 +170,6 @@ export default class NightScene extends Phaser.Scene {
 
     //cambiamos el tinte a uno mas oscuro
     renderTexture.setTint(0x5050b0);
-  
-    //filtro
-    //this.cameras.main.setPostPipeline(BlurPostFX);
 
     //máscara
     renderTexture.mask = new Phaser.Display.Masks.BitmapMask(this, this.player.spotlight);
