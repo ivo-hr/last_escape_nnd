@@ -47,7 +47,7 @@ export default class SuspicionBar extends Phaser.GameObjects.Sprite {
     susIncrease() {
 
         if ((this.susVariation > 0 && this.suspicion < 100) || (this.susVariation < 0 && this.suspicion > 0)) {
-            this.suspicion += this.susVariation * 10 / (this.suspicion + 1);
+            this.suspicion += this.susVariation;
         }
         else if (this.suspicion >= 100) {
             //this.scene.lostNight();
@@ -70,7 +70,7 @@ export default class SuspicionBar extends Phaser.GameObjects.Sprite {
     susDecrease() {
 
         if ((this.susVariation > 0 && this.suspicion > 0) || (this.susVariation < 0 && this.suspicion < 100)) {
-            this.suspicion -= this.susVariation / 20;
+            this.suspicion -= this.susVariation / 10;
             this.downSusSfx.play();
         }
         else if (this.suspicion >= 100) {

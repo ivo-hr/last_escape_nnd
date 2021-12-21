@@ -15,7 +15,7 @@ let config = {
     canvas: document.getElementById("mainCanvas"),
     width: 360 * 4,
     height: 224 * 4,
-    backgroundColor: '#708090',
+    backgroundColor: '#222222',
     scale: {
         autoCenter: Phaser.Scale.CENTER_HORIZONTALLY
     },
