@@ -93,7 +93,7 @@ export default class NightScene extends Phaser.Scene {
    */
   createNonTilemapObjects() {
     
-    this.player = new Player(this, 100, 300);
+    this.player = new Player(this, 200, 200);
     
     let barConfig = {
       x: 10,
@@ -187,6 +187,7 @@ export default class NightScene extends Phaser.Scene {
     if(this.noche<=5&&!this.itemList.completo)
     this.scene.start('nightchange', { noche: this.noche, itemData: this.itemList.getItemData() });
     else if(this.noche>5){
+      this.music.stop();
       this.scene.start('badending', { noche: this.noche, itemData: this.itemList.getItemData() });
     }
   }
@@ -305,6 +306,7 @@ export default class NightScene extends Phaser.Scene {
   }
 
   changeToEnd(){
+    this.music.stop();
     if(this.noche < 4){
       this.scene.start('goodending', { noche: this.noche, itemData: this.itemList.getItemData() });
     }
