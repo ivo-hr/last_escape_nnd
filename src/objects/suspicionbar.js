@@ -6,12 +6,8 @@ export default class SuspicionBar extends Phaser.GameObjects.Sprite {
 
     /**
      * Constructor de la barra
-     * @param {Phaser.Scene} scene Escena a la que pertenece la barra
-     * @param {number} x Coordenada x
-     * @param {number} y Coordenada y
-     * @param {number} height Alto de la barra
-     * @param {number} width Ancho de la barra
-     * @param {number} susVar Variación de la sospecha cuando el jugador es detectado por un guardiaa
+     * @param {Phaser.Scene} scene Escena del juego
+     * @param {SusBarConfig} barConfig Configuración de la barra de sospecha
      */
     constructor(scene, barConfig) {
         super(scene, barConfig.x, barConfig.y, 'susbar');

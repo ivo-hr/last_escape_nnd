@@ -1,4 +1,4 @@
-import Item from "../item.js";
+import Item from "../objects/item.js";
 
 export default class Saw extends Item {
     /** 

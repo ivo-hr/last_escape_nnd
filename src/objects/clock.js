@@ -6,11 +6,8 @@ export default class Clock extends Phaser.GameObjects.Sprite {
 
     /**
      * Constructor de la barra
-     * @param {Phaser.Scene} scene Escena a la que pertenece el reloj
-     * @param {number} x Coordenada x
-     * @param {number} y Coordenada y
-     * @param {number} height Alto del reloj
-     * @param {number} width Ancho del reloj
+     * @param {Phaser.Scene} scene Escena del juego
+     * @param {ClockConfig} clockConfig Configuración del reloj
      */
     constructor(scene, clockConfig) {
         super(scene, clockConfig.x, clockConfig.y, 'clock');

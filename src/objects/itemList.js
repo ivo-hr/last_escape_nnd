@@ -5,13 +5,8 @@ export default class ItemList extends Phaser.GameObjects.Container {
 
     /**
      * Constructor de la lista de objetos
-     * @param {Phaser.Scene} scene Escena a la que pertenece la barra
-     * @param {number} hiddenX Coordenada x escondida
-     * @param {number} shownX Coordenada x mostrada
-     * @param {number} y Coordenada y
-     * @param {number} _width Ancho de la lista
-     * @param {number} _height Alto de la lista
-     * @param {object} items Items recogidos y por recoger
+     * @param {Phaser.Scene} scene Escena del juego
+     * @param {ListConfig} listConfig Configuración de la lista
      */
     constructor(scene, listConfig) {
 

@@ -1,4 +1,4 @@
-import Button from "./button.js";
+import Button from "../objects/button.js";
 
 /**
  * Escena del menú inicial.
