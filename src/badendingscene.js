@@ -25,7 +25,7 @@ export default class NightChange extends Phaser.Scene {
     //Si es la primera noche, esto es el menú ppal
 
     //Imagen del menú ppal
-    var mainmenu = this.add.image(document.getElementById("mainCanvas").width / 2, document.getElementById("mainCanvas").height / 2, 'mainMenu', 0);
+    var mainmenu = this.add.image(document.getElementById("mainCanvas").width / 2, document.getElementById("mainCanvas").height / 2, 'badEnd', 0);
     mainmenu.displayHeight = document.getElementById("mainCanvas").height;
     mainmenu.displayWidth = document.getElementById("mainCanvas").width;
 

@@ -52,6 +52,9 @@ export default class Boot extends Phaser.Scene {
     this.load.setPath('assets/sprites/');
 
     this.load.image('mainMenu', 'menu.png');
+    this.load.image('goodEnd', 'goodEnd.png');
+    this.load.image('badEnd', 'badEnd.png');
+    this.load.image('neutralEnd', 'neutralEnd.png');
     this.load.image('playbutton', 'playbutton.png');
     this.load.spritesheet('guard', 'guardia.png', { frameWidth: 4, frameHeight: 4 });
     this.load.spritesheet('player', 'enterrador.png', { frameWidth: 4, frameHeight: 4 });
