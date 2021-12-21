@@ -200,7 +200,7 @@ export default class ItemList extends Phaser.GameObjects.Container {
         if (this.items.bisagras) {
             cont++;
         }
-        if (this.items.tablas === 3) {
+        if (this.items.tablas >= 3) {
             cont++;
         }
 

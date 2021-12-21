@@ -43,11 +43,11 @@ export default class NightChange extends Phaser.Scene {
 
 
 
-    // let timer = this.time.addEvent({
-    //   delay: 500, //0.5s
-    //   callback: this.activateListener,
-    //   callbackScope: this 
-    // });
+    let timer = this.time.addEvent({
+       delay: 500, //0.5s
+       callback: this.activateListener,
+       callbackScope: this 
+     });
   }
 
   /**
@@ -56,10 +56,10 @@ export default class NightChange extends Phaser.Scene {
   activateListener() {
 
     this.input.keyboard.on('keydown', function (event) {
-      this.scene.start('night1', { noche: this.noche, itemList: this.itemList });
+      this.scene.start('menuscene');
     }, this);
     this.input.on('pointerdown', function (event) {
-      this.scene.start('night1', { noche: this.noche, itemData: this.itemData });
+      this.scene.start('menuscene');
     }, this);
   }
 }
