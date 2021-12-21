@@ -65,11 +65,14 @@ En este juego web basado en una de los legendarios cortos de _Alfred Hitchcock P
 - **Guardias:** los guardias patrullan por la cárcel por rutas predefinidas, que no cambian entre noches, y sospecharán (sube la barra de sospecha) del jugador si entra en su cono de visión junto con un objeto grande. Si no lleva nada encima el jugador pasará desapercibido. Los guardias pueden recoger los objetos del suelo si se los encuentran, devolviéndolos a su lugar. Para representarlo en pantalla se quejarán al verlo (saldrá un bocadillo visible siempre, sin tener en cuentar el rango de visión). Su cono de visión estará representado por la luz de la linterna.
 
 ### Controles
-- **Ratón:**
-LMB para indicar a dónde moverse
-RMB para coger un objeto
-MMB/Space para dejar un objeto
-TAB para ver la lista de objetos
+
+*LMB* en un lugar del mapa para indicar a dónde moverse
+
+*RMB* sobre un objeto para cogerlo
+
+*MMB/Space* para dejar el objeto
+
+*TAB* para ver la lista de objetos
 
 ### Cámara
 El juego tendrá una perspectiva cenital. El mapa ocupa toda la pantalla, sin embargo, el jugador solo verá un área circular que se irá reduciendo.
