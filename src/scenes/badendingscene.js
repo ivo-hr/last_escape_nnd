@@ -2,12 +2,12 @@
  * Escena que se usa para cambiar de noche en el juego.
  * @extends Phaser.Scene
  */
-export default class GoodEnding extends Phaser.Scene {
+export default class NightChange extends Phaser.Scene {
   /**
    * Constructor de la escena
    */
   constructor() {
-    super({ key: 'goodending' });
+    super({ key: 'badending' });
   }
 
   init(datos) {
@@ -25,21 +25,21 @@ export default class GoodEnding extends Phaser.Scene {
     //Si es la primera noche, esto es el menú ppal
 
     //Imagen del menú ppal
-    var mainmenu = this.add.image(document.getElementById("mainCanvas").width / 2, document.getElementById("mainCanvas").height / 2, 'mainMenu', 0);
+    var mainmenu = this.add.image(document.getElementById("mainCanvas").width / 2, document.getElementById("mainCanvas").height / 2, 'badEnd', 0);
     mainmenu.displayHeight = document.getElementById("mainCanvas").height;
     mainmenu.displayWidth = document.getElementById("mainCanvas").width;
 
-    let text = this.add.text(document.getElementById("mainCanvas").width / 2, document.getElementById("mainCanvas").height / 4 * 2.5, 'Final Bueno', { fontFamily: 'HelpMe', fontSize: 32, color: '#0f0' });
+    let text = this.add.text(document.getElementById("mainCanvas").width / 2, document.getElementById("mainCanvas").height / 4 * 2.5, 'Final Malo', { fontFamily: 'HelpMe', fontSize: 32, color: '#f00' });
     text.setOrigin(0.5, 0.5);  // Colocamos el pivote en el centro de cuadro de texto 
-    text.setAlign('center');  // Centramos el texto dentro del cuadro de texto
+    text.setAlign('center');
 
-    text = this.add.text(document.getElementById("mainCanvas").width / 2, document.getElementById("mainCanvas").height / 4 * 3, 'Lograste construir el ataud en el que enterrar a la convicta,\n mas tarde la desentierras...\n Es libre', { fontFamily: 'HelpMe' });
+    text = this.add.text(document.getElementById("mainCanvas").width / 2, document.getElementById("mainCanvas").height / 4 * 3, 'El sepulturero ha muerto de viejo, ahora nadie puede ayudarte a escapar de la carcel', { fontFamily: 'HelpMe' });
     text.setOrigin(0.5, 0.5);  // Colocamos el pivote en el centro de cuadro de texto 
-    text.setAlign('center');  // Centramos el texto dentro del cuadro de texto
+    text.setAlign('center');
 
     text = this.add.text(document.getElementById("mainCanvas").width / 2, document.getElementById("mainCanvas").height / 2, 'LAST ESCAPE', { font: "70px HelpMe" });
     text.setOrigin(0.5, 0.5);  // Colocamos el pivote en el centro de cuadro de texto 
-    text.setAlign('center');  // Centramos el texto dentro del cuadro de texto  // Centramos el texto dentro del cuadro de texto
+    text.setAlign('center');  // Centramos el texto dentro del cuadro de texto
 
 
 

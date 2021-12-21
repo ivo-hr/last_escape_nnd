@@ -1,10 +1,10 @@
-import Boot from './boot.js';
-import MenuScene from './menuscene.js';
-import Night1 from './night1.js';
-import NightChange from './nightchangescene.js';
-import BadEnding from './badendingscene.js';
-import GoodEnding from './goodendingscene.js'
-import NeutralEnding from './neutralendingscene.js'
+import Boot from './scenes/boot.js';
+import MenuScene from './scenes/menuscene.js';
+import Night1 from './scenes/night1.js';
+import NightChange from './scenes/nightchangescene.js';
+import BadEnding from './scenes/badendingscene.js';
+import GoodEnding from './scenes/goodendingscene.js'
+import NeutralEnding from './scenes/neutralendingscene.js'
 
 /**
  * Inicio del juego en Phaser. Creamos el archivo de configuración del juego y creamos
@@ -15,7 +15,7 @@ let config = {
     canvas: document.getElementById("mainCanvas"),
     width: 360 * 4,
     height: 224 * 4,
-    backgroundColor: '#708090',
+    backgroundColor: '#222222',
     scale: {
         autoCenter: Phaser.Scale.CENTER_HORIZONTALLY
     },

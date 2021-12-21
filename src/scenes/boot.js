@@ -50,9 +50,14 @@ export default class Boot extends Phaser.Scene {
     //Sprites del juego
     // Con setPath podemos establecer el prefijo que se añadirá a todos los load que aparecen a continuación
     this.load.setPath('assets/sprites/');
-
+      //Arte del menú y finales
     this.load.image('mainMenu', 'menu.png');
+    this.load.image('goodEnd', 'goodEnd.png');
+    this.load.image('badEnd', 'badEnd.png');
+    this.load.image('neutralEnd', 'neutralEnd.png');
     this.load.image('playbutton', 'playbutton.png');
+
+      //Arte del juego en sí
     this.load.spritesheet('guard', 'guardia.png', { frameWidth: 4, frameHeight: 4 });
     this.load.spritesheet('player', 'enterrador.png', { frameWidth: 4, frameHeight: 4 });
     this.load.image('itemtemp', 'itemtemp.png');

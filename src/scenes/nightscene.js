@@ -1,19 +1,18 @@
-import Player from './player.js';
-import Guard from './guard.js';
-import SuspicionBar from './suspicionbar.js';
-import Workshop from './workshop.js';
-import ItemList from './itemList.js';
-import Clock from './clock.js';
-import BlurPostFX from '../assets/pipelines/BlurPostFX.js';
+import Player from '../objects/player.js';
+import Guard from '../objects/guard.js';
+import SuspicionBar from '../objects/suspicionbar.js';
+import Workshop from '../objects/workshop.js';
+import ItemList from '../objects/itemList.js';
+import Clock from '../objects/clock.js';
 
-import Hammer from './items/hammer.js';
-import Saw from './items/saw.js';
-import Plank from './items/plank.js';
-import Cross from './items/cross.js';
-import Nails from './items/nails.js';
-import Hinge from './items/hinge.js';
-import Shovel from './items/shovel.js';
-import Item from './item.js';
+import Hammer from '../items/hammer.js';
+import Saw from '../items/saw.js';
+import Plank from '../items/plank.js';
+import Cross from '../items/cross.js';
+import Nails from '../items/nails.js';
+import Hinge from '../items/hinge.js';
+import Shovel from '../items/shovel.js';
+import Item from '../objects/item.js';
 /**
  * Escena principal del juego.
  * @extends Phaser.Scene
@@ -109,8 +108,7 @@ export default class NightScene extends Phaser.Scene {
       x: 175,
       y: 190,
       height: 140,
-      width: 300,
-      susVar: -0.1
+      width: 300
     };
     this.workshop = new Workshop(this, workshopConfig);
 
@@ -172,9 +170,6 @@ export default class NightScene extends Phaser.Scene {
 
     //cambiamos el tinte a uno mas oscuro
     renderTexture.setTint(0x5050b0);
-  
-    //filtro
-    //this.cameras.main.setPostPipeline(BlurPostFX);
 
     //máscara
     renderTexture.mask = new Phaser.Display.Masks.BitmapMask(this, this.player.spotlight);

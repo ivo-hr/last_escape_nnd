@@ -6,12 +6,8 @@ export default class Workshop extends Phaser.GameObjects.Rectangle {
 
     /**
      * Constructor del workshop
-     * @param {Phaser.Scene} scene Escena a la que pertenece el workshop
-     * @param {number} x Coordenada x
-     * @param {number} y Coordenada y
-     * @param {number} height Alto del workshop
-     * @param {number} width Ancho del workshop
-     * @param {number} susVar Variación de sospecha
+     * @param {Phaser.Scene} scene Escena del juego
+     * @param {BasicObjectConfig} workshopConfig Configuración del taller
      */
     constructor(scene, workshopConfig) {
         super(scene, workshopConfig.x, workshopConfig.y);
