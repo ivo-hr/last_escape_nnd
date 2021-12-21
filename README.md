@@ -4,9 +4,16 @@
 
 ## RELEASE! Aquí tenéis el _World Premiere_: https://www.youtube.com/watch?v=Z68yFFVzehc
 
-_**v. 1.0** (19/12/2021)_
+_**v. 1.1** (20/12/2021)_
 
-## Descripción
+## Datos generales
+
+### Información
+- **Género:** _point-and-click_, sigilo
+- **Plataforma:** web
+- **PEGI:** 7 (miedo)
+
+### Descripción
 En este juego web basado en una de los legendarios cortos de _Alfred Hitchcock Presenta_, somos un viejo sepulturero de una cárcel femenina, preparando la huida de una convicta con la que nos hemos aliado. Debemos conseguir lo necesario para poder crear un ataúd, para así poder enterrarla y que pueda escapar, sin que nos pillen los guardias.
 
 ## Vista General
@@ -20,6 +27,7 @@ En este juego web basado en una de los legendarios cortos de _Alfred Hitchcock P
 - **Cataratas:** el personaje irá perdiendo la visión con el transcurso de las noches, se reducirá el radio del círculo de visión.
 - **Barra de Sospecha:** el personaje tendrá una barra que indicará si los guardias sospechan de él. La barra se irá llenando gradualmente si el jugador entra en el cono de visión de los guardias con un objeto grande. La barra disminuye lentamente si el jugador se encuentra en el taller.
 - **Escucha:** el personaje puede escuchar a los guardias que patrullan fuera de su radio de visión, en pantalla se verán unas ondas para representarlo. El jugador escuchará a los guardias en intervalos de tiempo. No es visible la dirección de los guardias o hacia dónde se encuentran mirando.
+- **Lista:** el personaje podrá sacar una lista con los objetos que tiene que recoger y cuáles ha recogido ya.
 
 ### Mecánicas del escenario
 - **Coger objetos clave:** el personaje puede coger objetos específicos del escenario y transportarlos.
@@ -32,12 +40,10 @@ En este juego web basado en una de los legendarios cortos de _Alfred Hitchcock P
 
 ### Controles
 - **Ratón:**
-LMB para indicar a dónde moverse,
-RMB para indicar dónde coger/dejar un objeto
-
-- **Teclado:**
-WASD para moverse,
-Space para coger/dejar un objeto
+LMB para indicar a dónde moverse
+RMB para coger un objeto
+MMB/Space para dejar un objeto
+TAB para ver la lista de objetos
 
 ### Cámara
 El juego tendrá una perspectiva cenital. El mapa ocupa toda la pantalla, sin embargo, el jugador solo verá un área circular que se irá reduciendo.
@@ -55,12 +61,13 @@ Esto permitirá una mejor experiencia y sensaciones, a la vez que facilitará la
 
 ## Contenido
 ### Historia
-Una mujer es mandada a la cárcel con cadena perpetua por realizar diversos crímenes, tales como estafa y asesinato. Una vez dentro intenta por todos los medios escapar. Un día conoce al sepulturero de la cárcel apodado “Matasanos” y lo engaña para que le ayude a escapar de la cárcel. 
+En un Estados Unidos de los 80, una mujer es enviada a la cárcel con cadena perpetua por realizar diversos crímenes, tales como estafa y asesinato. Una vez dentro intenta por todos los medios escapar. Un día conoce al sepulturero de la cárcel apodado “Matasanos” y lo engaña para que le ayude a escapar de la cárcel. 
 El sepulturero se encargará entonces de preparar el ataúd para enterrar a la mujer junto con el siguiente preso que muera.	
 
 ### Niveles
 El juego se dividirá en 5 noches. 
 Cada noche comenzará en la zona del taller del sepulturero.
+Cada noche durará 2 minutos.
 
 Al final de las 5 noches habrán 3 resultados: 
 1. El jugador ha completado la lista a tiempo. Se llega al final neutral (mismo final del capítulo original).
@@ -125,3 +132,21 @@ El juego acaba cuando el jugador complete esta lista. Se compone de:
 - Added items list
 ### v0.4:
 - Added game image
+### v0.5 - 0.8:
+- Created movement
+- Created enemies
+- Created basic scenery
+- Implemented main mechanics
+- Created items
+- Created main artwork
+### v0.9:
+- Created final scenery
+- Implemented final mechanics
+### v1.0 **(release)**:
+- Implemented game loop
+- Added new sprites
+- Added sfx
+### v1.1:
+- Bug fixes
+- Code refactoring
+  
