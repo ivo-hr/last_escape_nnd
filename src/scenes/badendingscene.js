@@ -29,15 +29,15 @@ export default class NightChange extends Phaser.Scene {
     mainmenu.displayHeight = document.getElementById("mainCanvas").height;
     mainmenu.displayWidth = document.getElementById("mainCanvas").width;
 
-    let text = this.add.text(document.getElementById("mainCanvas").width / 2, document.getElementById("mainCanvas").height / 4 * 2.5, 'Final Malo', { fontFamily: 'HelpMe', fontSize: 32, color: '#f00' });
+    let text = this.add.text(document.getElementById("mainCanvas").width / 2, document.getElementById("mainCanvas").height / 2, 'Final Malo', { fontFamily: 'HelpMe', fontSize: 48, color: '#f00' });
     text.setOrigin(0.5, 0.5);  // Colocamos el pivote en el centro de cuadro de texto 
     text.setAlign('center');
 
-    text = this.add.text(document.getElementById("mainCanvas").width / 2, document.getElementById("mainCanvas").height / 4 * 3, 'El sepulturero ha muerto de viejo, ahora nadie puede ayudarte a escapar de la carcel', { fontFamily: 'HelpMe' });
+    text = this.add.text(document.getElementById("mainCanvas").width / 2, document.getElementById("mainCanvas").height / 4 * 2.5, 'El sepulturero ha muerto de viejo, ahora nadie puede ayudarte a escapar de la carcel', { fontFamily: 'HelpMe' });
     text.setOrigin(0.5, 0.5);  // Colocamos el pivote en el centro de cuadro de texto 
     text.setAlign('center');
 
-    text = this.add.text(document.getElementById("mainCanvas").width / 2, document.getElementById("mainCanvas").height / 2, 'LAST ESCAPE', { font: "70px HelpMe" });
+    text = this.add.text(document.getElementById("mainCanvas").width / 2, document.getElementById("mainCanvas").height / 4, 'LAST ESCAPE', { font: "70px HelpMe" });
     text.setOrigin(0.5, 0.5);  // Colocamos el pivote en el centro de cuadro de texto 
     text.setAlign('center');  // Centramos el texto dentro del cuadro de texto
 

@@ -93,7 +93,7 @@ export default class NightScene extends Phaser.Scene {
    */
   createNonTilemapObjects() {
     
-    this.player = new Player(this, 100, 300);
+    this.player = new Player(this, 200, 200);
     
     let barConfig = {
       x: 10,
