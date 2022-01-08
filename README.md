@@ -122,7 +122,7 @@ El juego acaba cuando el jugador complete esta lista. Se compone de:
 #### Objetos pequeños
 - 1 caja de clavos.
 - 1 martillo.
-- 1 set de visagras.
+- 1 set de bisagras.
 
 ### Personajes
 - **Matasanos:** es el sepulturero de la cárcel. Es un señor con edad avanzada (unos 60-70 años). Tiene cataratas por la edad, lo que hace que vea mal incluso con sus gafas.
@@ -152,7 +152,7 @@ El juego acaba cuando el jugador complete esta lista. Se compone de:
 
 ## <a name="Gestion"/> Gestión
 ### Gestión:
-A través de Pivotal Tracker nos hemos podido repartir el trabajo y considerar su importancia y complejidad, pudiendo así ofrecer un reparto más equitativo de tareas entre los miembros del equipo. También lo hemops usado para poner fechas límites, bugs que han ido surgiendo y conceptos a mitad de desarrollo que hemos decidido implementar.
+A través de Pivotal Tracker nos hemos podido repartir el trabajo y considerar su importancia y complejidad, pudiendo así ofrecer un reparto más equitativo de tareas entre los miembros del equipo. También lo hemos usado para poner fechas límites, bugs que han ido surgiendo y conceptos a mitad de desarrollo que hemos decidido implementar.
 La facilidad que nos ha ofrecido para gestionar los hitos y el hecho de que podamos compartir todo ello públicamnte hace que esta herramienta se haya vuelto una de las piezas más importantes de este desarrollo.
   
 ### Comunicación:
